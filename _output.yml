@@ -1,0 +1,33 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: section
+  config:
+    self_contained: true
+    # toc:
+    #   collapse: section
+    #   before: |
+    #   <li>Dissertation</li>
+    #   <li>Cintia P. Hinojosa</li>
+    #   after: |
+    #   <li>cintiahinojosa@uchicago.edu</li>
+    download: ["pdf", "epub"]
+rmdformats::robobook:
+  self_contained: true
+  toc_depth: 2
+  lightbox: true
+  gallery: true
+  highight: tango
+  code_folding: hide
+  fig_caption: true
+  code_download: true
+  use_bookdown: true
+  download: ["pdf", "epub"]
+  css: style.css
+pdf_document: default
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

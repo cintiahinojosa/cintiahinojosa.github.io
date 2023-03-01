@@ -1,0 +1,246 @@
+# Ch.2 Study 1 SI {#ch2study1-si}
+
+<!---
+## Study advertisements {-}
+
+
+
+## Protocols {-}
+
+### Focus groups and interviews. {-}
+
+
+
+### Workshop design sessions. {-}
+
+In the workshop sessions, we will start by introducing everyone  Ask parents and participant
+
+
+## Preparations:
+
+- Add participant demographics survey; we have age and gender
+
+## Compensation, incentives, and shows of appreciation:
+
+### What we did/tried
+- provided lunch
+- provided dinner catering for evening sessions
+- 
+
+### Other ideas:
+- CTA card?
+
+### How it worked out:
+- love stickers
+- a shy participant preferred speaking one on one and liked the fidget toys
+- partnering org brought donuts which were a good morning treat over just fruit snacks
+- difficult to estimate attendance 
+--->
+
+## Critical narrative
+
+```{r pilot-sep2022-0, eval = TRUE, out.width = "49%", fig.cap = "Introduction to the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+  "images/ch2study1-pilot-sep2022/Slide1.png" 
+, "images/ch2study1-pilot-sep2022/Slide2.png" 
+, "images/ch2study1-pilot-sep2022/Slide3.png" 
+, "images/ch2study1-pilot-sep2022/Slide4.png" 
+, "images/ch2study1-pilot-sep2022/Slide5.png" 
+, "images/ch2study1-pilot-sep2022/Slide6.png" 
+, "images/ch2study1-pilot-sep2022/Slide7.png" 
+, "images/ch2study1-pilot-sep2022/Slide8.png" 
+))
+```
+
+\clearpage
+
+```{r pilot-sep2022-1, eval = TRUE, out.width = "49%", fig.cap = "Part 1 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide9.png" 
+,  "images/ch2study1-pilot-sep2022/Slide10.png" 
+, "images/ch2study1-pilot-sep2022/Slide11.png" 
+, "images/ch2study1-pilot-sep2022/Slide12.png" 
+, "images/ch2study1-pilot-sep2022/Slide13.png" 
+, "images/ch2study1-pilot-sep2022/Slide14.png" 
+))
+```
+
+\clearpage
+
+```{r pilot-sep2022-2, eval = TRUE, out.width = "49%", fig.cap = "Part 2 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide15.png"
+, "images/ch2study1-pilot-sep2022/Slide16.png" 
+, "images/ch2study1-pilot-sep2022/Slide17.png" 
+, "images/ch2study1-pilot-sep2022/Slide18.png" 
+, "images/ch2study1-pilot-sep2022/Slide19.png" 
+, "images/ch2study1-pilot-sep2022/Slide20.png" 
+, "images/ch2study1-pilot-sep2022/Slide21.png" 
+, "images/ch2study1-pilot-sep2022/Slide25.png" 
+, "images/ch2study1-pilot-sep2022/Slide26.png" 
+, "images/ch2study1-pilot-sep2022/Slide27.png" 
+))
+```
+
+\clearpage
+
+```{r pilot-sep2022-3, eval = TRUE, out.width = "49%", fig.cap = "Part 3 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide28.png"
+,  "images/ch2study1-pilot-sep2022/Slide29.png" 
+, "images/ch2study1-pilot-sep2022/Slide30.png" 
+, "images/ch2study1-pilot-sep2022/Slide31.png" 
+, "images/ch2study1-pilot-sep2022/Slide32.png" ))
+```
+
+\clearpage
+
+```{r pilot-sep2022-4, eval = TRUE, out.width = "49%", fig.cap = "Part 4 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide33.png" 
+, "images/ch2study1-pilot-sep2022/Slide34.png" 
+, "images/ch2study1-pilot-sep2022/Slide35.png" 
+, "images/ch2study1-pilot-sep2022/Slide36.png" 
+, "images/ch2study1-pilot-sep2022/Slide37.png" 
+))
+```
+
+\clearpage
+
+```{r pilot-sep2022-5, eval = TRUE, out.width = "49%", fig.cap = "Part 5 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide38.png" 
+, "images/ch2study1-pilot-sep2022/Slide39.png" 
+, "images/ch2study1-pilot-sep2022/Slide40.png" 
+, "images/ch2study1-pilot-sep2022/Slide41.png" 
+, "images/ch2study1-pilot-sep2022/Slide42.png" 
+, "images/ch2study1-pilot-sep2022/Slide43.png" 
+, "images/ch2study1-pilot-sep2022/Slide44.png" 
+, "images/ch2study1-pilot-sep2022/Slide45.png" 
+, "images/ch2study1-pilot-sep2022/Slide46.png" 
+, "images/ch2study1-pilot-sep2022/Slide47.png" 
+, "images/ch2study1-pilot-sep2022/Slide48.png" 
+))
+```
+
+\clearpage
+
+```{r pilot-sep2022-6, eval = TRUE, out.width = "49%", fig.cap = "Part 6 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide49.png" 
+, "images/ch2study1-pilot-sep2022/Slide50.png" 
+, "images/ch2study1-pilot-sep2022/Slide51.png" 
+, "images/ch2study1-pilot-sep2022/Slide52.png" 
+, "images/ch2study1-pilot-sep2022/Slide53.png" 
+, "images/ch2study1-pilot-sep2022/Slide54.png" 
+, "images/ch2study1-pilot-sep2022/Slide55.png"
+))
+```
+
+\clearpage
+
+<!---
+# Notes
+
+## Focus group questions
+
+
+## Pilot material development
+
+
+- importance of counterspaces in worlds that aren't made for us; puts in structures for transformative change
+  - example of who is most active in current political decisions (wealthier whites)
+- affirm expertise in a way that paves the way for (structural change/change in the narrative): how do people recognize wealth? 
+  - can start from strengths/assets
+  - redefine wealth at the end!!!: So if we go back to our first example about differences between how much wealth black and white families have...let's re-imagine how we value/evaluate
+  - also be comfortable and secure enough to accept/confront/challenge weaknesses
+  - how to establish boundaries based off of what you really want or care about; managing where you spend your time
+  - if you don't have that kind of refuge from social pressures, keep contact with folks who are outside of that world. folks who are more like you. helps keep you grounded and gives you a contrasting perspective. Make sure you have people affirm/remind you of the parts of you that you like, but feel like you can't bring into other spaces.
+    - experience-informed self-realization might be a later-in-life stage; younger first round of identity exploration may have more uncertainty about who I really am, and what I like. What's more salient is what is popular and what other people seem to like being/admiring.
+    - what can this new definition of power look like? 
+      - everyday resistance strategies (because we need to start exercising this power in our immediate everyday lives as we work for the long-term change)
+      - walking away from things, not gatekeeping/hazing others into hardships that you've learned from--share that know
+      - more coalition-building; it takes a collective to (un)learn what works and doesn't work for us
+      - volunteer for community opportunities, leadership development, activist initiatives
+      - look for, ask for, and seek leadership positions where you can show your expertise (and talk about how you've grown) (e.g., video, interviews, city council meetings, show)
+- example of giving homeless students bus cards as a shallow, individual-level solution that solves the problem in their mind, but not in reality because it ignores the structural roots of the problem; goal of stability and agency/self-sufficiency
+
+^ this is all starting to be lessons learned for my personal journey [positionality] the inspiration to write it down and apply it to this project came from watching a panel of URM faculty panel on YouTube. so that's our starting place, our initial idea. and what we want to (pass the ball to you) and be here to offer support for how to (scaffold/support) your ideas and perspectives into (action/something bigger/realize it into what you want to see).
+
+- add video testimony to workshop protocol; add focus on control and how gun violence path turned out to restrict control instead of what they thought
+    - what would you say about it now that you’ve been through what you’ve been through
+- add video of example of how people talk about gun violence without acknowledging their humanity? (e.g., CPD superintendent)  
+- add economic section; keeping money in the neighborhood; ReUp example from RAGE; how long does a dollar stay in the community?
+- ask community organizations I've included to do an interview; message for youth watching this video
+- could add section on how fighting police by trying to get arrested (whether it's seeking catharsis or validation in a protest, or a fight or flight response after being provoked by the police) strengthens the prison industrial system complex and drains more money out of the community. We got be strategic with how we pick our battles and think long term.
+- More explicitly reframe construal of power and make it concrete/relatable
+  - "power must be exercised to be visible"; In terms of a group, "power is the capacity to decide what they want and to act in an organized way to get it. In terms of an individual), power is the capacity to act."  [@Lawrence2004]
+  - critique representations of success as only being represented on the individual level. We hear about MLK, but not the organizing behind it. Did anyone else picture Rosa Parks's story as one of a lady who was minding her business and one day decided she didn't want to give up her seat? The reality is that Parks was strategically selected to cause a planned civic disruption and arrest for the movement. There's context about that moment that is left out (i.e., managing the optics of the original "stand your grand" moment that inspired Parks's protest, which was taken by a young, unwed Black mother). It's that context that has the strategic insights on how to build collective power---that's why it's left out. 
+- race is a social construct but systemic racism is very real because it's backed by power
+- add clip from (@Miller on Big Brains podcast) around 17m (15m also) 
+
+### Insights from community meetings
+- Add RAGE Englewood Re-Up
+  - Community Cash Mob example! coordinates a "flash mob" to support three Black-owned businesses per event; about every 2 to 3 weeks
+  - "Buy the Block" program:
+    - BTB program training, trolley tours to see direction neighborhood development (see fully renovated, move-in ready, and ones that need renovation-important since there's so many vacant properties); they have a slide that shows the path from joining the program to home ownership from a current success store
+  - Have real estate networking meeting: meet to dev community, become homeowners, or improve home; put everyone in a room together and build!
+  - Always show before picture of headquarters, and ($4.9 mill project)
+  - Working with Cook County Land Bank Re-Up Homes Pilot: address the horrible flip and quit practice
+  - acknowledge "hyper-vacancy" in neighborhood that can't be addressed from only micro-market recoveries; residents sharing patterns they notice; city ignores their 311 requests
+  - Cataloging the vacancies (48% is vacant); talk about what people are seeing on their block about vacant housing (what's the same and what's changing); 
+  - problem of trees; not sure if its lack of trees or lack of maintain of existing trees
+  - also see work being done without permits; some residents want to fix up vacant houses "for (?)" the landowners for reduced rent, but then they have may have squatters. There's also well-meaning people who want to do stuff, but aren't skilled or funded enough and it falls through
+  - "We are the majority in this community, but we don't own this community" about gentrification
+  - Monument survey for neighborhood monument; make sure it has the voice AND FINGERPRINTS" of the community
+  - working to get referendum about the greenline on the ballot (expand on what this means and looks like)
+
+
+#### From Englewood Virtual Village Meeting Sept 20,  2022
+- Add that community-based job programs are getting better at removing barriers like criminal history, bus passes for all instead by number of hours; paid internship ("easier to get a job if you already have one"); allow marijuana use because it's legal but also acknowledge that the job opportunities that do test for marijuana have higher pay (e.g., hospitals vs warehouse); transition to full-time job (Cleanslate by Cara, as described by Sam Lovett at the Englewood Virtual Village Meeting)
+- Add example of "food desert" vs "food apartheid" and forced scarcity; RAGE Englewood fights against that narrative because it ignores the artificial scarcity imposed on their neighborhoods
+- Example of Englewood Music Fest; had VIP and accessible seating
+- Hamilton Park in Englewood is an example of a great community asset; beautiful, lots of events
+
+- Teamwork Englewood Quality of Life Initiative: identify indicators with community members
+    - Started as collecting data; is now a working group that doesn't meet just to meet but focuses on action
+    - Health: talk about health and at-home mechanisms for wellness; talk about metabolic illness; cooking demonstrations with folks with food allergies.
+    - Job and economic development: re-open Greenline station, fresh market; women's job initiative
+    - Education and youth development working group: school partnerships, grants, youth programming, parent mentor program (with digital equity focus through Chicago Connected), and safe passage 
+    - Housing and Public Spaces: launched a survey to look at identified strategies, find out if they're still online, figure out how to keep it going
+    - Public Safety: working group and ambassadors with 5 strategies
+    - Businessman competition: intertwined with open house, accept small business plan pitches
+    - Civics: they pay residents $500 per session to learn how to get involved
+--->
+
+
+<!---
+## Focus groups
+
+9/12/22
+SH: 
+- Oakland/Troy Michigan, nice, safe, everyone agrees; people used to speak 
+- neighborhood used to be violent and have guns but it's gotten better; the government helped (patrols?); they help keep the youths busy; no more drugs
+- a lot of community organizations have come; 
+- mom is part of #BLM
+- on comm safety: in  school, they talk about different things about how to stay safe. 
+- on comm police perceptions: mixed feelings; racism is really affecting people of color. my mom is part of BLM and we are black. police are biased when it comes to color. give example of white and black kid. the black people don't feel safe with police
+- racial dynamic: more white and just a fraction of people of color
+- gun violence: they talk about it; never seen a gun in real life, most friends haven't. 
+- why boast about guns?: in a neighborhood that goes drugs, its authority; move around freely; brag about main reason
+- age?: us as blacks can't have guns, we don't know what authority does when they get in position; white people are okay with it no problem; know kids talking about guns and superiority at 9 years old--only talking; talking about it's a (?) they admire ppl that have guns; the admiration doesn't come from TV, someone close has it and they see what it does and the power it has
+- white/black views on guns: white students like feeling superior to the black students; on other hand, black students fear guns and how white students feel about it
+
+DE: 
+- safe and have fun, freshwater
+- community planning projects; and community-based organizations
+- close friend who was telling about join a group; they play and bond with the neighborhood; community activities and organizing events for kids and others for adults
+- on comm safety: police department and communities of color? sharing information with the police
+- in community, there's racial discrimination and they think the police are biased when it comes to people of color. He doesn't feel okay with it.
+- racial dynamic in his neighborhood is more white and people of color. 
+- gun violence: harms underesourced black and latino communities; they talk about it in his neighborhood sometimes; a close friend of mine is white and rich and there was a day he showed him a gun. "I didn't like it" I felt like the other kids[?] and they try to influence friends to shun him; he was boasting; 
+- why boast about guns?: want superiority over other kids; when we showed me, he expected respect and like he can control me
+- age? 9 or 10
+- gun gives power; maybe parents are police of sons
+- whites see guns as not a crime and they should be allowed to carry them. and for poc, blacks, they feel inferior when the whites have got the guns
+--->

@@ -1,0 +1,42 @@
+# Study 4: Replicating critical narrative effects using a nationally-representative probability sample {#ch1study4}
+
+## Design
+
+Study 4 will be a pre-registered attempt to replicate the main effects of the critical narrative on policy support and racial attitudes using a nationally-representative probability sample of U.S. participants (N = 1,200) in a 4x1 between-subjects design.<!-- ### Research design {-} --><!-- A nationally-representative population sample of U.S. participants (N=1,500).   -->
+
+The main hypotheses include:
+
+1.  The critical condition will report reduced support for punitive approaches to gun violence prevention compared to the control conditions (no-treatment control and individualized narrative), and this main effect will be sustained across levels of (H1b) political orientation and (H1c) critical consciousness.
+2.  The critical condition will report increased support for restorative policies compared to the control conditions, and this main effect will be sustained across levels of (H2b) political orientation.
+3.  When asked to allocate a percentage of a new violence prevention budget between investing in safety through police and community development, the critical condition will allocate a smaller percentage to policing compared to the control conditions.
+4.  The critical condition will increase willingness to share the policy memo on social media compared to the control conditions.
+5.  The main effects of critical condition on (a) punitive support and (b) restorative support will be sustained after a one-week period.
+
+This study will also include pre-measures of theoretically-relevant moderators that may include self-reported political orientation, voting history, exposure to news, trust in media news reporting, information-seeking tendency, urban versus rural residence, social media use, and civic engagement (e.g., attended a protest, contacted representatives, volunteered for a political campaign).
+
+## Methods
+
+
+### Participants
+
+### Procedure
+
+I will run the study through NORC AmeriSpeak in two waves with a total of 1,500 participants.
+The first survey will be 15 minutes in length and the second survey will be 5 minutes in length and conducted two weeks after the first survey round.
+
+### Materials
+
+
+
+
+<!-- ## Proposed Study 4: National probability sample -->
+
+<!-- **Time schedule for the national sample:** -->
+
+<!--   - Potential booster with two goals (1) test long-term effects, and (2) help lock in attitudes: e.g., "Remember, last week, you saw this article, "Gun violence in Poor Neighborhoods of Color"? How do positive or negative do you feel towards it on a scale from 1 (extremely negative) to 7 (extremely positive)? -->
+<!--   - delivered from a separate ostensibly different researcher. -->
+
+<!-- **Revise self-persuasion features** -->
+
+<!--  - Amplify the "saying-is-believing" summarization task used in Studies 2 and 3 by asking participants "How would you describe the most persuasive part of the article to a friend?" or simply "What was the most persuasive part of the article?" if the former is too presumptuous. I can include data from pilot testing on the article's persuasiveness, compared to an early version of the naïve article.   -->
+<!--  - Set up an easy decision to support restorative initiatives, such as a matching donations, to internalize attitudes that align with the equity-oriented behavior. A donation to a national cause may be more effective, given participant comments in Study 3 about hesitating because it was a Chicago-specific  petition. -->

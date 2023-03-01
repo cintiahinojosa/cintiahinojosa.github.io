@@ -1,0 +1,275 @@
+# Ch.2 Study 2 SI {#ch2study2-si}
+
+## Traditional narrative
+
+```{r figs-control-si, eval = TRUE, out.width = "49%", fig.cap = "Screenshots of the pilot material for the control treatment condition.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+"images/ch2study3-control/Slide2.png" #title
+, "images/ch2study3-control/Slide8.png" #causes
+#, "images/ch2study3-control/Slide15.png" #violence prev
+, "images/ch2study3-control/Slide20.png" #strategies
+, "images/ch2study3-control/Slide24.png" #community
+, "images/ch2study3-control/Slide28.png" #whitecop
+, "images/ch2study3-control/Slide29.png" #speaking out
+))
+```
+
+```{r control-sep2022-0-si, eval = TRUE, out.width = "49%", fig.cap = "The traditional narrative pilot material as of September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+  "images/ch2study3-control/Slide1.png" 
+, "images/ch2study3-control/Slide2.png" 
+, "images/ch2study3-control/Slide3.png" 
+, "images/ch2study3-control/Slide4.png" 
+, "images/ch2study3-control/Slide5.png" 
+, "images/ch2study3-control/Slide6.png" 
+, "images/ch2study3-control/Slide7.png" 
+, "images/ch2study3-control/Slide8.png" 
+, "images/ch2study3-control/Slide9.png" 
+, "images/ch2study3-control/Slide10.png" 
+, "images/ch2study3-control/Slide11.png" 
+, "images/ch2study3-control/Slide12.png" 
+, "images/ch2study3-control/Slide13.png" 
+, "images/ch2study3-control/Slide14.png" 
+, "images/ch2study3-control/Slide15.png"
+, "images/ch2study3-control/Slide16.png" 
+, "images/ch2study3-control/Slide17.png" 
+, "images/ch2study3-control/Slide18.png" 
+, "images/ch2study3-control/Slide19.png" 
+, "images/ch2study3-control/Slide20.png" 
+, "images/ch2study3-control/Slide21.png" 
+, "images/ch2study3-control/Slide25.png" 
+, "images/ch2study3-control/Slide26.png" 
+, "images/ch2study3-control/Slide27.png" 
+, "images/ch2study3-control/Slide28.png"
+, "images/ch2study3-control/Slide29.png" 
+, "images/ch2study3-control/Slide30.png" 
+))
+```
+
+\clearpage
+
+## Critical narrative
+
+```{r critical-sep2022-0-si, eval = TRUE, out.width = "49%", fig.cap = "Introduction to the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+  "images/ch2study1-pilot-sep2022/Slide1.png" 
+, "images/ch2study1-pilot-sep2022/Slide2.png" 
+, "images/ch2study1-pilot-sep2022/Slide3.png" 
+, "images/ch2study1-pilot-sep2022/Slide4.png" 
+, "images/ch2study1-pilot-sep2022/Slide5.png" 
+, "images/ch2study1-pilot-sep2022/Slide6.png" 
+, "images/ch2study1-pilot-sep2022/Slide7.png" 
+, "images/ch2study1-pilot-sep2022/Slide8.png" 
+))
+```
+
+\clearpage
+
+```{r critical-sep2022-1-si, eval = TRUE, out.width = "49%", fig.cap = "Part 1 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide9.png" 
+,  "images/ch2study1-pilot-sep2022/Slide10.png" 
+, "images/ch2study1-pilot-sep2022/Slide11.png" 
+, "images/ch2study1-pilot-sep2022/Slide12.png" 
+, "images/ch2study1-pilot-sep2022/Slide13.png" 
+, "images/ch2study1-pilot-sep2022/Slide14.png" 
+))
+```
+
+\clearpage
+
+```{r critical-sep2022-2-si, eval = TRUE, out.width = "49%", fig.cap = "Part 2 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide15.png"
+, "images/ch2study1-pilot-sep2022/Slide16.png" 
+, "images/ch2study1-pilot-sep2022/Slide17.png" 
+, "images/ch2study1-pilot-sep2022/Slide18.png" 
+, "images/ch2study1-pilot-sep2022/Slide19.png" 
+, "images/ch2study1-pilot-sep2022/Slide20.png" 
+, "images/ch2study1-pilot-sep2022/Slide21.png" 
+, "images/ch2study1-pilot-sep2022/Slide25.png" 
+, "images/ch2study1-pilot-sep2022/Slide26.png" 
+, "images/ch2study1-pilot-sep2022/Slide27.png" 
+))
+```
+
+\clearpage
+
+```{r critical-sep2022-3-si, eval = TRUE, out.width = "49%", fig.cap = "Part 3 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide28.png"
+,  "images/ch2study1-pilot-sep2022/Slide29.png" 
+, "images/ch2study1-pilot-sep2022/Slide30.png" 
+, "images/ch2study1-pilot-sep2022/Slide31.png" 
+, "images/ch2study1-pilot-sep2022/Slide32.png" ))
+```
+
+\clearpage
+
+```{r critical-sep2022-4-si, eval = TRUE, out.width = "49%", fig.cap = "Part 4 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide33.png" 
+, "images/ch2study1-pilot-sep2022/Slide34.png" 
+, "images/ch2study1-pilot-sep2022/Slide35.png" 
+, "images/ch2study1-pilot-sep2022/Slide36.png" 
+, "images/ch2study1-pilot-sep2022/Slide37.png" 
+))
+```
+
+\clearpage
+
+```{r critical-sep2022-5-si, eval = TRUE, out.width = "49%", fig.cap = "Part 5 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide38.png" 
+, "images/ch2study1-pilot-sep2022/Slide39.png" 
+, "images/ch2study1-pilot-sep2022/Slide40.png" 
+, "images/ch2study1-pilot-sep2022/Slide41.png" 
+, "images/ch2study1-pilot-sep2022/Slide42.png" 
+, "images/ch2study1-pilot-sep2022/Slide43.png" 
+, "images/ch2study1-pilot-sep2022/Slide44.png" 
+, "images/ch2study1-pilot-sep2022/Slide45.png" 
+, "images/ch2study1-pilot-sep2022/Slide46.png" 
+, "images/ch2study1-pilot-sep2022/Slide47.png" 
+, "images/ch2study1-pilot-sep2022/Slide48.png" 
+))
+```
+
+\clearpage
+
+```{r critical-sep2022-6-si, eval = TRUE, out.width = "49%", fig.cap = "Part 6 of the pilot intervention material used in focus groups, interviews, and pilot testing, September 2022.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+ "images/ch2study1-pilot-sep2022/Slide49.png" 
+, "images/ch2study1-pilot-sep2022/Slide50.png" 
+, "images/ch2study1-pilot-sep2022/Slide51.png" 
+, "images/ch2study1-pilot-sep2022/Slide52.png" 
+, "images/ch2study1-pilot-sep2022/Slide53.png" 
+, "images/ch2study1-pilot-sep2022/Slide54.png" 
+, "images/ch2study1-pilot-sep2022/Slide55.png"
+))
+```
+
+\clearpage
+
+## Measures
+
+<!--
+#### Interest and participation in [protective/prosocial] activities 
+Self-reported survey questions about interest in participating in future opportunities for community organizing and civic engagement events.
+The survey violence will also ask participants' interest in participating in skills-based programs, including conflict mediation, (socioemotional development/cognitive-behavioral therapy), event organizing, leadership, and other protective developmental activities. 
+
+#### Participation in youth-serving civic and community organizations.
+Partnering organizations who provide opportunities for positive youth engagement will assist in tracking participant attendance and related behaviors of interest. 
+Note: This may be difficult given lack of centralized infrastructure/safety concerns
+
+#### Hypothetical decision-making 
+In the absence of real opportunities for youth engagement, I can create a DV that captures participants' interest in/behavioral intentions for taking action after experiencing the intervention through opportunities for remote engagement in community activism.
+Measures of related construals such as gun carrying, activism, volunteering, speaking out against violence
+-->
+
+### Construal of guns and gun carrying
+
+#### Gun carrying
+
+*(1=extremely negative, 5=extremely positive)*
+
+1. How do you feel about the idea of carrying a gun in the future? 
+2. How do you feel about the idea of friends or family carrying guns?
+3. How do you feel about the idea of being around guns? 
+
+#### Guns and respect
+
+*(1=not at all, 5=very much)*
+
+1. How much do you respect people who carry guns? 
+2. How much they think their peers respect people who own/use guns.
+
+#### Guns and autonomy
+
+"How much do you agree or disagree with these statements?" *(1=extremely disagree, 5=extremely agree)*
+
+1. Staying away from guns is a way to stand up to people who are trying to control us.
+2. Staying away from guns is a way to be independent.
+
+\clearpage
+
+### Attitudes towards violence
+
+#### Beliefs about aggressive behavior
+
+"How much do you agree or disagree with these statements?" *(1=extremely disagree, 5=extremely agree)*
+
+1.  It's O.K. for me to hit someone to get them to do something I want.
+2.  Sometimes a person doesn't have any choice but to fight.
+3.  If I back down from a fight, everyone will think I'm a coward.
+4.  If people try to do something to make me really mad, they deserve to be beaten up.
+5.  Sometimes I have only two choices: get punched or punch the other kid first.
+
+\clearpage
+
+#### Beliefs about using non-violent strategies
+
+"How much do you agree or disagree with these statements?" *(1=extremely disagree, 5=extremely agree)*
+
+1.  If I'm mad at someone, I just ignore them.
+2.  Even if other kids would think I'm weird, I would try to stop a fight.
+3.  When friends fight, I try to get them to stop.
+4.  There are better ways to solve problems than fighting.
+5.  I try to talk out a problem instead of fighting.
+6.  I feel big and tough when I push someone around.
+7.  If I get crazy with anger, it's O.K. to hit someone.
+
+\clearpage
+
+### Attitudes towards civic engagement
+
+"Speaking for yourself only, how important is it to..." 
+*(1=not at all important, 5 = very important)*
+
+1.  help other people in your community
+2.  help reduce hunger and poverty in your community
+3.  help make your community a better place to live
+4.  help make sure all people are treated fairly
+5.  speak up for equality so everyone has the same rights
+
+\clearpage
+
+### Affect misattribution procedure (AMP)
+
+```{r figs-treat-si, eval = TRUE, out.width = "100%", fig.cap = "Image demonstrating the affect misattribution procedure stages.", fig.show='hold', fig.align='left'}
+knitr::include_graphics( "/Users/cintiahinojosa/Box/Dissertation-Proposal/Materials/ch2study3/AMP stages_weapon.png")
+```
+
+
+<!-- # Additional background -->
+
+<!-- ## Methods details -->
+<!-- ##### Recruitment strategy  -->
+<!-- I have had difficulty partnering with Chicago Public Schools (CPS) due to instability in classroom structures and administrative obstacles in conducting school-based research. I have also had difficulty partnering with other U.S. schools outside of Chicago due to politically polarizing campaigns against critical race theory, which is related to our intervention content. I am currently pursuing the following recruitment options: -->
+
+<!-- - seeking partnerships with Chicago charter schools  -->
+<!-- - seeking partnerships with large youth-serving organizations (e.g., UCAN, youth-serving initiatives through Chicago Parks Department) -->
+<!-- - broadcast a social media marketing campaign to areas of recent shooting reports -->
+
+<!-- ## Procedures  -->
+<!---
+- CTA card?
+- track sign up to workshops (we have program that will let you dig into it; help produce materials for social media or community;)
+- in-person workshop sessions
+- multi-session course on fighting structural injustices; related personal development skills
+   - outcome is whether they show up; provide skills for both groups
+--->
+<!-- #### Participants -->
+<!-- Eligible participants are youth ages 11 to 15 currently residing in Chicago-area neighborhoods with high rates of gun violence. Decisions for eligible neighborhoods were made based off of recommendations from partnering youth-serving organizations and reports of shootings from the Chicago Police Department public database. The age bracket is subject to change based off of qualitative insights from [Study 2.1](#ch2study1), and access to participant pools through partnering local organizations and schools.  -->
+
+<!-- Participants will be recruited to join a 1-hr study about community safety and violence prevention. This study will deliver the experimental intervention messages to motivate participation in positive youth engagement programs. The study announcement will shared through our partnering organizations and will offer participants a $35 e-gift card after the study.  <!---I will ask for parent/guardian and participant consent (at least two weeks in advance of the first survey. If possible, the first survey round will be presented through the partnering organization, to create a more familiar environment without researcher involvement.--->
+
+<!-- Before starting the program evaluation, letters and in-person explanations will be given to inform participants and their parents of the study and explain that students may withdraw at any time without penalty. After collecting parental consent and adolescent assent, participants will be given pre-survey questions to measure baseline attitudes before viewing the randomly-assigned material. -->
+<!-- The research team will be introduced special guests who are asking local youth for their expert, yet traditionally overlooked, opinions on what a kinds of violence prevention programs will best support young Chicagoans. Participants will be asked to watch a 20 minute video that encourages youth to get involved in prosocial, community-based programs related to violence prevention, civic engagement, employment-seeking support, and personal development. Participants will be randomized on an individual level through the survey logic to view the critical or control version of the video.  -->
+
+<!-- Next, I will ask students to write about why they think their peers reacted in that manner to have them indirectly consider the underlying motivations. I will then ask students to think and write about potential behaviors that could help reduce gun violence in their communities, with the treatment material highlighting community-oriented behaviors to reduce inequality and the control material highlighting individual strategies on how to stay away from guns. This writing exercise will help leverage any motivation to “do something” while the feeling is still fresh and solidify a potential plan for action. Lastly, I will have students answer survey questions that will ask for students’ demographic information and self-reported attitudes in order to check that the program is hitting on the right psychological constructs.  -->
+
+<!-- At the end of the study, I will ask all participants if they would like to participate in a novel, multi-session youth engagement program (about what they learned in the video pitch/to promote community safety). I will send participants invitations to the youth program at least one week after they completed the first survey. The youth program will be scheduled in advance and provide multiple opportunities for participants to join in-person and online. I will track participants' attendance to the youth program along with self-reported behaviors and attitudes through (bi?)weekly follow-up surveys. -->
+
+<!-- ## Discussion details -->
+
+\clearpage

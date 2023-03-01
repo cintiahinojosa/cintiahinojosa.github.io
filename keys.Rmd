@@ -1,0 +1,1321 @@
+# Keys {.unnumbered .unlisted}
+
+```{r keys-setup, eval = TRUE}
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed
+                      , echo = FALSE
+                      , message = FALSE
+                      , warning = FALSE
+                      , include = FALSE
+                      , eval = TRUE # TRUE if re-running code from scratch; FALSE if output only
+                      # , fig.show = 'hold'
+                      # , fig.align = 'center'
+                      # , fig.path = '/Users/Box/Dissertation/images/fig-'
+                      # , dev = "png"
+                      # , t.tabcolsep = 0
+                      # , ft.latex.float = "none"
+                      )
+
+options(knitr.duplicate.label = "allow" # allows rendering even if there are duplicate chunk labels
+        , knitr.graphics.auto_pdf = TRUE # better pics
+        , scipen = 999 # eliminates scientific notation
+        , digits = 3
+        # , max.print="100" # default is 75
+        )
+# opts_knit$set(width = 120) # default is 75
+
+# a (so far unused?) option for rendering knitr tables in latex ----
+  # , knitr.table.format = function() {
+  # if (knitr::is_latex_output()) 'latex' else 'pandoc'
+  #   }
+```
+
+```{r libraries-keys, eval = FALSE}
+# BASICS ---------------------------
+pacman::p_load(
+  knitr, kableExtra
+  , tidyverse, tidyr, magrittr
+  , dplyr # names() dplyr# as_tibble()
+  , ggplot2
+  , psych
+  , papaja
+  , sjPlot #sjPlot# view_df()
+  , ltm #ltm# cronbach.alpha()
+  , caret, afex, tufte
+  , broom
+  , interactions
+  , car
+  , rmdfiltr
+  # , rempsyc # ggsave()
+  )
+
+# DATA READ/WRANGLE ---------------------------
+pacman::p_load(
+  qualtRics # read_survey()
+  , haven # read_spss(), labelled(), as_factor()
+  , utils # read.csv()  write.csv()
+  # , foreign # read.dta(), read.spss()
+  # , readstata13, readxl, read_excel
+  # , rtiffs
+  # , viewenhance
+  # , DataEditR
+  )
+
+# LABELS ---------------------------
+pacman::p_load(
+  sjlabelled, labelled
+  # , surveytoolbox
+  # , tinylabels
+  )
+
+# ANALYSIS/SUMMARY ---------------------------
+pacman::p_load(
+  finalfit
+  , emmeans
+  , apastats
+  , ggExtra, ggfortify, ggeffects, ggsci, ggsignif
+  # , bwrappers
+  , Metrics # eval models
+  )
+
+# OUTPUT ---------------------------
+pacman::p_load(
+   codebook
+  # , DT
+  , summarytools, table1
+  , frequency
+  , descr, DescTools
+  , apaTables
+  , table1
+  , flextable
+  , flexplot
+  , xtable
+  # , htmlTable
+  # , gtsummary
+  # , epiDisplay # tab1 for pretty, easy frequency tables,
+  # , papeR
+  # , reactable, visualize
+  # , corx
+  )
+
+# PLOTS ---------------------------
+pacman::p_load(
+  ggExtra, ggfortify, ggcorrplot, ggeffects, ggsci, ggsignif, ggstatsplot
+  # , gghalves, gginference, ggiraph, ggiraphExtra, ggpmisc, ggrepel
+  , sjPlot, sjmisc
+  , grid, gridExtra
+  , corrgram
+  # , introdataviz
+  # , DiagrammeR
+  # , flexdashboard
+  # , lattice, latticeExtra
+  , latex2exp
+  , patchwork
+  ) 
+
+# MEDIATION  ---------------------------
+pacman::p_load(
+  mediation
+  , psych
+  # , jtools # get_ ?
+  # , lavaan, mma
+  # , lme4
+  # , nlme, rstanarm
+  # , robmed
+  # , processr
+  # , QuantPsyc
+  )
+
+# PCA ---------------------------
+# pacman::p_load(VIF, GPArotation, FactoMineR, factoextra, Factoshiny, nFactors)
+
+# TEXT ANALYSIS ---------------------------
+# pacman::p_load(
+  # SADCAT, quanteda, stringr
+  # )
+
+# PUBLISH ---------------------------
+pacman::p_load(
+   tinytex
+  , citr
+  # , printr  # prints latex tables for table1() (?)
+  # , tippy
+  )
+library("pandocfilters")
+# papaja::r_refs("r-references.bib")
+# papaja::r_refs("dissertation-proposal-bib.bib")
+# library(bookdown)
+# library(rticles)
+# library(pagedown)
+# library(thesisdown)
+# library(magick)
+
+# WRITING ---------------------------
+#install.packages("hunspell")
+#devtools::install_github("nevrome/wellspell.addin") # spellcheck() gramcheck()
+#devtools::install_github("nevrome/LanguageToolR")
+#LanguageToolR::lato_quick_setup()
+
+# OTHER ---------------------------
+#pacman::p_load(formatR, esquisse, beepr, webshot, moderndive)
+```
+
+```{r libraries-old, eval = FALSE}
+#data readers
+pacman::p_load(haven, readstata13, readxl, foreign) # others: read_excel, rtiffs
+
+#basics
+pacman::p_load(broom, Metrics, tidyverse, tidyr, magrittr, tufte, psych, rempsyc, knitr, interactions, caret, sjlabelled, afex, DataEditR)
+library(magrittr)
+
+#labels
+#pacman::p_load(sjlabelled, labelled, surveytoolbox, tinylabels) 
+
+#summary/output
+pacman::p_load(apaTables, DT, frequency, codebook, epiDisplay, papeR, descr, DescTools, htmlTable, gtsummary, kableExtra, reactable, summarytools, table1, visualize, xtable, flexplot, corx) # epiDisplay::tab1 for pretty, easy frequency tables,
+library(printr) # prints latex tables for table1::
+library(emmeans)
+library(flextable)
+library(table1)
+library(rstatix)
+
+#publish
+library(apastats)
+library(papaja)
+library(kableExtra)
+library(tinytex)
+library(citr)
+library(tippy)
+
+#plots
+pacman::p_load(introdataviz, DiagrammeR, flexdashboard, ggcorrplot, ggeffects, ggExtra, ggfortify, gghalves, gginference, ggiraph, ggiraphExtra, ggplot2, ggpmisc, ggrepel, ggsci, ggsignif, ggstatsplot, lattice, latticeExtra, finalfit, gridExtra, grid, sjPlot, sjmisc, latex2exp, patchwork) 
+library(ggplot2)
+
+#mediations
+# pacman::p_load(mediation, lavaan, mma, jtools, nlme, rstanarm, lme4, robmed, processr)
+# library(QuantPsyc)
+library(mediation)
+library(psych)
+library(psychTools)
+
+#pca
+pacman::p_load(corrgram, VIF, GPArotation, FactoMineR, factoextra, Factoshiny, nFactors)
+library("psych")
+```
+
+```{r fun.labels, eval = TRUE}
+# CREATE WRAPPING FUNCTION FOR ADDING LABELS TO PLOTS
+# Use this function to call and wrap labels
+# Example: wrap.labels(var_label(DATA$VARIABLE), 10)
+# Example: barplot(DATA$VARIABLE, names.arg = wrap.labels(var_label(DATA$VARIABLE), 10), horiz = T, las = 2, cex.names = 0.5)
+###########################
+
+wrap.it <- function(x, len)
+{ 
+  sapply(x, function(y) paste(strwrap(y, len), 
+                              collapse = "\n"), 
+         USE.NAMES = FALSE)
+}
+
+# Call this function with a list or vector
+wrap.labels <- function(x, len)
+{
+  if (is.list(x))
+  {
+    lapply(x, wrap.it, len)
+  } else {
+    wrap.it(x, len)
+  }
+}
+```
+
+```{r fun-mediation, eval = TRUE}
+extract_mediation_summary <- function (x) { 
+
+  clp <- 100 * x$conf.level
+  isLinear.y <- ((class(x$model.y)[1] %in% c("lm", "rq")) || 
+                   (inherits(x$model.y, "glm") && x$model.y$family$family == 
+                      "gaussian" && x$model.y$family$link == "identity") || 
+                   (inherits(x$model.y, "survreg") && x$model.y$dist == 
+                      "gaussian"))
+
+  printone <- !x$INT && isLinear.y
+
+  if (printone) {
+
+    smat <- c(x$d1, x$d1.ci, x$d1.p)
+    smat <- rbind(smat, c(x$z0, x$z0.ci, x$z0.p))
+    smat <- rbind(smat, c(x$tau.coef, x$tau.ci, x$tau.p))
+    smat <- rbind(smat, c(x$n0, x$n0.ci, x$n0.p))
+
+    rownames(smat) <- c("ACME", "ADE", "Total Effect", "Prop. Mediated")
+
+  } else {
+    smat <- c(x$d0, x$d0.ci, x$d0.p)
+    smat <- rbind(smat, c(x$d1, x$d1.ci, x$d1.p))
+    smat <- rbind(smat, c(x$z0, x$z0.ci, x$z0.p))
+    smat <- rbind(smat, c(x$z1, x$z1.ci, x$z1.p))
+    smat <- rbind(smat, c(x$tau.coef, x$tau.ci, x$tau.p))
+    smat <- rbind(smat, c(x$n0, x$n0.ci, x$n0.p))
+    smat <- rbind(smat, c(x$n1, x$n1.ci, x$n1.p))
+    smat <- rbind(smat, c(x$d.avg, x$d.avg.ci, x$d.avg.p))
+    smat <- rbind(smat, c(x$z.avg, x$z.avg.ci, x$z.avg.p))
+    smat <- rbind(smat, c(x$n.avg, x$n.avg.ci, x$n.avg.p))
+
+    rownames(smat) <- c("ACME (control)", "ACME (treated)", 
+                        "ADE (control)", "ADE (treated)", "Total Effect", 
+                        "Prop. Mediated (control)", "Prop. Mediated (treated)", 
+                        "ACME (average)", "ADE (average)", "Prop. Mediated (average)")
+
+  }
+
+  colnames(smat) <- c("Estimate", paste(clp, "% CI Lower", sep = ""), 
+                      paste(clp, "% CI Upper", sep = ""), "p-value")
+  smat
+
+}
+
+```
+
+```{r keys-themes, eval = TRUE}
+library(ggplot2)
+apa_theme <- theme(
+  plot.margin = margin(t = 15, b = 10, l =10, r = 10)
+#  plot.margin = unit(c(.1, .1, .1, .1), "cm")
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_blank()
+  , plot.caption = element_text(face = "italic", size = 11, hjust = 0, margin = margin(t = 10, b = 10), lineheight = 1.5)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 14, color = "black", face = "bold")
+  , axis.title.y = element_text(margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 12, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid = element_blank()
+  , legend.position = "right" #c(0.20, 0.8)
+  , legend.background = element_rect(color = "white")
+  , legend.title = element_text(size = 14)
+  , legend.text = element_text(size = 12)
+  , legend.margin = margin(t = 5, l = 5, r = 5, b = 5)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+
+
+# apa.title theme
+apa.title_theme <- theme(
+  plot.margin = margin(t = 10, b = 5, l =15, r = 15)
+#  plot.margin = unit(c(.1, .1, .1, .1), "cm")
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 16, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.caption = element_text(size = 11, hjust = 0, margin = margin(t = 10, b = 10), lineheight = 1.5)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 14, color = "black", face = "bold")
+  , axis.title.y = element_text(margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 12, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid = element_blank()
+  , legend.position = "right" #c(0.20, 0.8)
+  , legend.background = element_rect(color = "white")
+  , legend.title = element_text(size = 14)
+  , legend.text = element_text(size = 12)
+  , legend.margin = margin(t = 1, l = 1, r = 1, b = 1)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+
+# apa violin.stats theme (bigger font)
+apa.stats_theme <- theme(
+  plot.margin = margin(t = 5, b = 5, l =15, r = 15)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 20, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.caption = element_text(size = 11, hjust = 0, margin = margin(t = 10, b = 10), lineheight = 1.5)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 18, color = "black", face = "bold")
+  , axis.title.y = element_text(margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 16, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid = element_blank()
+  , legend.position = "right"
+  , legend.background = element_rect(color = "white")
+  , legend.title = element_text(size = 18)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 1, l = 1, r = 1, b = 1)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+
+# apa.stats.caption theme
+apa.stats.caption_theme <- theme(
+  plot.margin = margin(t = 15, b = 5, l =15, r = 15)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 20, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.caption = element_text(size = 14, face = "italic", hjust = 0, margin = margin(t = 10, b = 10, l = 10, r = 10), lineheight = 1)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 18, color = "black", face = "bold")
+  , axis.title.y = element_text(face = "bold", margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 16, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid.major.y = element_line(colour = "white")
+  , panel.grid.major.x = element_line(colour = "white")
+  , axis.line.x.bottom = element_line(colour = "black", size = .7)
+  , axis.line.y.left = element_line(colour = "black", size = .7)
+  , legend.position = "top" #c(0.20, 0.8)
+  , legend.background = element_blank()#element_rect(color = "gray", fill = "white", linetype = "solid" )
+  , legend.title = element_blank() #element_text(size = 16)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 2, l = 3, r = 3, b = 2)
+  , legend.key = element_rect(color = NA, fill = NA)
+)
+
+# my_theme.title.sub.y.x.caption.legend
+my_theme.title.sub.y.x.caption <- theme(plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.margin = margin(t = 15, b = 5, l = 15, r = 15)
+  , plot.title = element_text(size = 22, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l = 5, r = 5))
+  , plot.subtitle = element_text(size = 14, color = "gray30", margin = margin(t = 10, b = 10))
+  , axis.title.x = element_text(size = 16, color = "gray30", face = "bold", margin = margin(t = 15, b = 10))
+  , axis.title.y = element_text(size = 14, color = "gray30", margin = margin(t = 10, b = 10, r = 10, l = 5))
+  , axis.text.x = element_text(size = 18, margin = margin(t = 10))
+  , axis.text.y = element_text(size = 16, margin = margin(l = 10))
+  , plot.caption = element_text(size = 14, face = "italic", color = "gray30", hjust = 1, margin = margin(t = 5, b = 15, l = 5, r = 10), lineheight = 1)
+  , axis.line = element_line(color = "black", size = .5)
+  # , axis.title = element_text(size = 18, face = "bold")
+  , axis.ticks = element_line(size = 0.5)
+  , axis.ticks.length = unit(.15, "cm")
+  , panel.grid.major.y = element_line(colour = "white")
+  , panel.grid.major.x = element_line(colour = "white")
+  , axis.line.x.bottom = element_line(colour = "black", size = .7)
+  , axis.line.y.left = element_line(colour = "black", size = .7)
+  , legend.position = "top" #c(0.20, 0.8)
+  , legend.background = element_blank()#element_rect(color = "gray", fill = "white", linetype = "solid" )
+  , legend.title = element_blank() #element_text(size = 16)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 2, l = 3, r = 3, b = 2)
+  , legend.key = element_rect(color = NA, fill = NA)
+)
+
+# plottheme_caption_brackets # use in halfplot
+plottheme_caption_brackets <- theme(
+    plot.margin = margin(t = 15, b = 5, l =15, r = 15)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 22, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.subtitle = element_text(size = 14, color = "gray40", hjust = 0.5, margin = margin(t = 5, b = 10))
+  , plot.caption = element_text(size = 15, color = "gray40", hjust = 1, margin = margin(t = 15, b = 10, l = 10, r = 10), lineheight = 1)
+  # , axis.title = element_text(size = 18, face = "bold")
+  , axis.title.x = element_text(size = 14, color = "gray40", margin = margin(t = 15, b = 10))
+  , axis.title.y = element_text(size = 15, color = "gray40", hjust = 0.3, margin = margin(t = 5, b = 5, r = 10, l = 5))
+  , axis.text.x = element_text(size = 16, face = "bold", color = "black", margin = margin(t = 10))
+  , axis.text.y = element_text(size = 14, color = "black", margin = margin(l = 5, r = 5))
+  , axis.line = element_line(color = "black", size = .5)
+  # , axis.ticks.y = element_line(size = 0.5)
+  # , axis.ticks.length.y = unit(.15, "cm")
+  , axis.ticks = element_blank()
+  , panel.grid.major.y = element_line(colour = "gray90")
+  , panel.grid.major.x = element_line(colour = "white")
+  , axis.line.x.bottom = element_line(colour = "black", size = .7)
+  , axis.line.y.left = element_line(colour = "black", size = .7)
+  , legend.position = "top" #c(0.20, 0.8)
+  , legend.background = element_blank()#element_rect(color = "gray", fill = "white", linetype = "solid" )
+  , legend.title = element_blank() #element_text(size = 16)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 2, l = 3, r = 3, b = 2)
+  , legend.key = element_rect(color = NA, fill = NA)
+)
+
+# apa interaction theme with legend 
+apa.int_theme <- theme(
+  plot.margin = margin(t = 15, b = 5, l =5, r = 15)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+#  , plot.title = element_text(size = 18, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.caption = element_text(size = 12, face = "italic", hjust = 0, margin = margin(t = 10, b = 10, l = 10, r = 10), lineheight = 1)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 18, color = "black", face = "bold")
+  , axis.title.y = element_text(margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 16, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid.major.y = element_line(colour = "white")
+  , panel.grid.major.x = element_line(colour = "white")
+  , axis.line.x.bottom = element_line(colour = "black", size = .7)
+  , axis.line.y.left = element_line(colour = "black", size = .7)
+  , legend.position = "top" #c(0.20, 0.8)
+  , legend.background = element_blank()#element_rect(color = "gray", fill = "white", linetype = "solid" )
+  , legend.title = element_blank() #element_text(size = 16)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 2, l = 3, r = 3, b = 2)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+
+# apa.dist theme (for vizualizing distributions)
+apa.dist_theme <- theme(
+  plot.margin = margin(t = 5, b = 5, l = 5, r = 5)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 16, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.caption = element_text(size = 11, hjust = 0, margin = margin(t = 10, b = 10), lineheight = 1.5)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 12, color = "black")
+  , axis.title.y = element_text(margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 12, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid = element_blank()
+  , legend.position = "right" #c(0.20, 0.8)
+  , legend.background = element_rect(color = "white")
+  , legend.title = element_text(size = 12)
+  , legend.text = element_text(size = 10)
+  , legend.margin = margin(t = 3, l = 3, r = 3, b = 3)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+
+# apa theme for side by side plots
+apa.double_theme <- theme(
+  plot.margin = unit(c(.15, .15, .15, .15), "cm")
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_blank()
+  , plot.caption = element_text(size = 16, hjust = 0, margin = margin(t = 10, b = 10), lineheight = 1.5)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 18, color = "black", face = "bold")
+  , axis.title.y = element_text(margin = margin(r = 15, l = 20))
+  , axis.title.x = element_text(margin = margin(t = 15))
+  , axis.text = element_text(size = 16, color = "black")
+  , axis.text.y = element_text(margin = margin(r = 10))
+  , axis.text.x = element_text(margin = margin(t = 10))
+  , axis.ticks = element_line(size = .5)
+  , panel.grid = element_blank()
+  , legend.position = "right" #c(0.20, 0.8)
+  , legend.background = element_rect(color = "white")
+  , legend.title = element_text(size = 18)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 5, l = 5, r = 5, b = 5)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+
+# apa plot theme with angled x axis labels
+apa.angle_theme <- theme(
+  plot.margin = margin(t = 10, b = 10, l =10, r = 10)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 18, face = "bold", hjust = 0.5, margin = margin(t = 10, b = 10))
+  , plot.caption = element_text(size = 12, hjust = 0, margin = margin(t = 10, b = 10), lineheight = 1.5)
+  , axis.line = element_line(color = "black", size = .5)
+  , axis.title = element_text(size = 14, color = "black", face = "bold")
+  , axis.title.y = element_text(margin = margin(r = 10, l = 10))
+  , axis.title.x = element_text(margin = margin(t = 10, b = 10))
+  , axis.text = element_text(size = 13, color = "black")
+  , axis.text.x = element_text(margin = margin(t = 10), angle = 45, hjust = 1)
+  , axis.ticks = element_line(size = .5)
+  , panel.grid = element_blank()
+  , legend.position = "right" #c(0.20, 0.8)
+  , legend.background = element_rect(color = "white")
+  , legend.title = element_text(size = 14)
+  , legend.text = element_text(size = 13)
+  , legend.margin = margin(t = 5, l = 5, r = 5, b = 5)
+  , legend.key = element_rect(color = NA, fill = NA)
+  )
+```
+
+```{r keys-labels, eval = TRUE}
+# Set labels with variable response ranges
+
+# GENERAL  ---------------------------
+# IVs
+political7 <- "1 = Extremley liberal, 4 = Moderate, 7 = Extremely conservative"
+political7.labels <- c("extremely liberal", "moderately liberal", "slightly liberal", "moderate", "slightly conservative", "moderately conservative", "extremely conservative")
+
+political3 <- "1 = Liberal, 2 = Moderate, 3 = Conservative"
+political3.labels <- c("Liberal", "Moderate", "Conservative")
+
+gender5 <- "1 = Female, 2 = Male, 3 = Non-binary, 4 = Other, 5 = Prefer not to say"
+gender5.labels <- c("female", "male", "non-binary", "other", "prefer not to say")
+
+edu10.labels <- c("less than high school degree",	"high school graduate",	"some college but no degree",	"associate degree in college",	"bachelor's degree in college",	"master's degree",	"doctoral degree",	"professional degree",	"vocational degree", "other")
+
+edu3 <- "1 = No college degree, 2 = College degree, 3 = Graduate degree"
+edu3.labels <- c("no college degree", "college degree", "grad degree")
+
+income12.labels <- c("Less than $10,000", "$10,000 to $19,999", "$20,000 to $29,999", "$30,000 to $39,999", "$40,000 to $49,999", "$50,000 to $59,999", "$60,000 to $69,999", "$70,000 to $79,999", "$80,000 to $89,999", "$90,000 to $99,999", "$100,000 to $149,999", "$150,000 or more")
+
+race9.labels <- c("White", "Latino", "Black", "Native American", "Asian", "Middle Eastern", "Pacific Islander", "Other race", "Multiracial")
+
+# DVs
+agree7 <- "1 = Strongly disagree; 7 = Strongly agree"
+agree7.labels <- c("strongly disagree", "disagree","somewhat disagree", "neither agree nor disagree", "somewhat agree", "agree", "strongly agree")
+
+favor <- "Strongly oppose to Strongly favor"
+favor.c <- "Strongly oppose to Strongly favor (std)"
+
+# s1  ---------------------------
+favor4 <- "1 = Strongly oppose; 4 = Strongly favor"
+favor4.labels <- c("strongly oppose", "oppose", "favor", "strongly favor")
+
+amount5 <- "1 = None at all; 5 = A great deal" # sr_change, sr_discrim_r, sr_tension
+amount5.labels <- c("none at all", "a little", "a moderate amount", "a lot", "a great deal")
+
+# s2  ---------------------------
+favor7 <- "1 = Oppose a great deal; 7 = Favor a great deal"
+favor7.labels <- c("Oppose a great deal", "Oppose a lot", "Oppose a moderate amount", "Neither oppose nor favor", "Favor a moderate amount", "Favor a lot", "Favor a great deal")
+
+favor7_r <- "1 = Favor a great deal; 7 = Oppose a great deal"
+favor7_r.labels <- c("Favor a great deal", "Favor a lot", "Favor a moderate amount", "Neither oppose nor favor", "Oppose a moderate amount", "Oppose a lot", "Oppose a great deal")
+
+support5 <- "1 = Not at all well-supported; 5 = Extremely well-supported"
+support5.labels <- c("not at all well-supported", "slightly well-supported", "somewhat well-supported", "very well-supported", "extremely well-supported")
+
+trust7 <- "1 = Extremely untrustworthy; 7 = Extremely trustworthy" # police_trust, policy_trust
+trust7.labels <- c("extremely untrustworthy", "moderately untrustworthy", "slightly untrustworthy", "neither untrustworthy nor trustworthy", "slightly trustworthy", "moderately trustworthy", "extremely trustworthy")
+
+qualify7 <- "1 = Extremely unqualified; 7 = Extremely qualified"
+qualify7.labels <- c("extremely unqualified", "moderately unqualified", "slightly unqualified", "neither unqualified nor qualified", "slightly qualified", "moderately qualified", "extremely qualified")
+
+convince5.labels <- "1 = Extremely convincing"; "Very convincing"
+convince5.labels <- c("extremely convincing", "not at all convincing", "slightly convincing", "somewhat convincing", "very convincing")
+
+amount5.nfc.labels <- c("not at all", "slightly", "somewhat", "almost completely", "a great deal") # nfc_simple, nfc_resp, nfc_notfun, nfc_nochallenge
+amount5.nfc_r.keys <- c("'Not at all'='Almost completely'; 'Slightly'='A great deal'; 'A great deal'='Slightly'; 'Almost completely'='Not at all'")
+
+factor5 <- "Not at all (1) to Extremely important factor (5)"
+factor5.labels <- c("Not at all an important factor", "Slightly important factor", "Somewhat an important factor", "Very important factor", "Extremely important factor")
+
+
+factor5_r <- "Extremely important (1) to Not at all an important factor (5)"
+factor5_r.labels <- c("Extremely important factor", "Very important factor", "Somewhat an important factor", "Slightly important factor", "Not at all an important factor")
+
+likely11 <- "1 = absolutely impossible; 11 = absolutely possible"
+
+# s3  ---------------------------
+likely7 <- "1 = Extremely unlikely; 7 = Extremely likely"
+likely7.labels <- c("Extremely unlikely", "Moderately unlikely", "Slightly lightly", "Neither likely nor unlikely", "Slightly likely", "Moderately likely", "Extremely likely")
+```
+
+```{r keys-colors, eval = TRUE}
+# see encycolorpedia.com for colors
+# POLITICAL ---------------------------
+# assign colors
+fill_liberal1 <-  "#00a4ff"
+fill_liberal2 <- "#0063ff" 
+fill_liberal3 <- "#4E26E2" 
+fill_moderate4 <- "#63009E"
+fill_conservative5 <- "#A1015D"
+fill_conservative6 <- "#D80027" 
+fill_conservative7 <- "red"
+
+# group colors
+colors_political3 <- c("#00a4ff","#63009E", "red")
+colors_political7 <- c("#00a4ff", "#0063ff", "#4E26E2", "#63009E", "#A1015D", "#D80027", "red")
+
+# CONDITION ---------------------------
+# assign colors 
+color_control <- "#BA9500"   #Gold or goldenrod (html)
+color_naive <- "#48326B" #darkslateblue (html)
+color_individual <- "#007780" #Teal (html)
+color_critical <- "#7E2703" # darkred (html)
+
+fill_control <- "#E7B800" #Gold (html)
+fill_naive <- "#9064D6" #DarkOrchid or mediumpurple (html)
+fill_individual <- "#00AFBB" #lightseagreen (html)
+fill_critical <- "#FC4E07" #orangered or tomato (html)
+
+# group colors
+# s1
+colors_s1 <- c(color_critical, color_control, color_individual)
+colors_s1.icrit <- c(color_critical, color_individual)
+colors_s1.ccrit <- c(color_critical, color_control)
+
+fills_s1 <- c(fill_critical, fill_control, fill_individual)
+fills_s1.icrit <- c(fill_critical, fill_individual)
+fills_s1.ccrit <- c(fill_critical, fill_control)
+
+# s1.pass
+colors_s1.pass <- c(color_critical, color_control, color_individual)
+colors_s1.pass.icrit <- c(color_critical, color_individual)
+colors_s1.pass.ccrit <- c(color_critical, color_control)
+
+fills_s1.pass <- c(fill_critical, fill_control, fill_individual)
+fills_s1.pass.icrit <- c(fill_critical, fill_individual)
+fills_s1.pass.ccrit <- c(fill_critical, fill_control)
+
+# s1.all
+colors_s1.all <- c(color_critical, color_control, color_individual)
+colors_s1.all.icrit <- c(color_critical, color_individual)
+colors_s1.all.ccrit <- c(color_critical, color_control)
+
+fills_s1.all <- c(fill_critical, fill_control, fill_individual)
+fills_s1.all.icrit <- c(fill_critical, fill_individual)
+fills_s1.all.ccrit <- c(fill_critical, fill_control)
+
+# s2
+colors_s2 <- c(color_critical, color_naive)
+colors_s2.ncrit <- c(color_critical, color_naive)
+
+fills_s2 <-c(fill_critical, fill_naive)
+fills_s2.ncrit <-c(fill_critical, fill_naive)
+
+# s2.pass
+colors_s2.pass <- c(color_critical, color_naive)
+colors_s2.pass.ncrit <- c(color_critical, color_naive)
+
+fills_s2.pass <-c(fill_critical, fill_naive)
+fills_s2.pass.ncrit <-c(fill_critical, fill_naive)
+
+# s2.all
+colors_s2.all <- c(color_critical, color_naive)
+colors_s2.all.ncrit <- c(color_critical, color_naive)
+
+fills_s2.all <-c(fill_critical, fill_naive)
+fills_s2.all.ncrit <-c(fill_critical, fill_naive)
+
+# s3
+colors_s3 <- c(color_critical, color_control, color_individual, color_naive) 
+colors_s3.ccrit <- c(color_critical, color_control)
+colors_s3.icrit <- c(color_critical, color_individual)
+colors_s3.ncrit <-c(color_critical, color_naive)
+
+fills_s3 <-c(fill_critical, fill_control, fill_individual, fill_naive)
+fills_s3.ccrit <- c(fill_critical, fill_control)
+fills_s3.icrit <- c(fill_critical, fill_individual)
+fills_s3.ncrit <-c(fill_critical, fill_naive)
+```
+
+```{r keys-compare, eval = TRUE}
+# COMPARISON GROUPS ---------------------------
+# s1 ---------------------------
+compare_s1 <- list(c("Critical", "Control"), c("Critical", "Individual")) # planned comparisons
+compare_s1.all <- list(c("Critical", "Control"), c("Critical", "Individual"), c("Control", "Individual")) # all comparisons
+compare_s1.ccrit <- c("Critical", "Control") # pairwise comparison
+compare_s1.icrit <- c("Critical", "Individual") # pairwise comparison
+
+# s1.pass ---------------------------
+compare_s1.pass <- list(c("Critical", "Control"), c("Critical", "Individual")) # planned comparisons
+compare_s1.pass.all <- list(c("Critical", "Control"), c("Critical", "Individual"), c("Control", "Individual")) # all comparisons
+compare_s1.pass.ccrit <- c("Critical", "Control") # pairwise comparison
+compare_s1.pass.icrit <- c("Critical", "Individual") # pairwise comparison
+
+# s1.all ---------------------------
+compare_s1.all <- list(c("Critical", "Control"), c("Critical", "Individual")) # planned comparisons
+compare_s1.all.all <- list(c("Critical", "Control"), c("Critical", "Individual"), c("Control", "Individual")) # all comparisons
+compare_s1.all.ccrit <- c("Critical", "Control") # pairwise comparison
+compare_s1.all.icrit <- c("Critical", "Individual") # pairwise comparison
+
+# s2 ---------------------------
+compare_s2 <- list(c("Critical", "Naive")) 
+compare_s2.all <- c("Critical", "Naive") # all comparisons
+compare_s2.ncrit <-c("Critical", "Naive") # pairwise comparison
+
+# s2.pass ---------------------------
+compare_s2.pass <- list(c("Critical", "Naive")) 
+compare_s2.pass.all <- c("Critical", "Naive") # all comparisons
+compare_s2.pass.ncrit <-c("Critical", "Naive") # pairwise comparison
+
+# s3 ---------------------------
+compare_s3 <- list(c("Critical", "Control"), c("Critical", "Individual"), c("Critical", "Naive")) # planned comparisons
+compare_s3.all <- list(c("Critical", "Control"), c("Critical", "Individual"), c("Critical", "Naive"), c("Control", "Individual"),  c("Control", "Naive"), c("Individual", "Naive"))  # all comparisons
+compare_s3.ccrit <- c("Critical", "Control") # pairwise comparison
+compare_s3.icrit <- c("Critical", "Individual") # pairwise comparison
+compare_s3.ncrit <-c("Critical", "Naive") # pairwise comparison
+```
+
+```{r keys-contrasts-s1, eval = TRUE}
+# FACTOR CONTRASTS --------------
+# s1 %>%
+#   contrasts(condition.f) <- contr.sum
+#   contrasts(political3.f) <- contr.sum
+#   contrasts(race.f) <- contr.sum
+#   contrasts(edu3.f) <- contr.sum
+
+# CONTRASTS FOR EMMEANS()
+# CONDITIONS ---------------------------
+# critical, control, individual
+# orthogonal contrasts rules: 0 = excluded, <0 = baseline, >0, treatment; sum must == 0
+
+critical.control_contrast_s1 = c(-1, 1, 0)
+critical.individual_contrast_s1 = c(-1, 0, 1)
+individual.control_contrast_s1 = c(0, -1, 1) # not planned
+
+# contrasts (used in VAR_emm_s1)
+critical_contrast_s1 <- c(1, 0, 0)
+control_contrast_s1 <- c(0, 1, 0)
+individual_contrast_s1 <- c(0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR_emm_s1.pass) 
+contrast_s1 <-list(
+  "Critical - Control" = critical_contrast_s1-control_contrast_s1
+, "Critical - Individual" = critical_contrast_s1-individual_contrast_s1
+)
+
+# POLITICAL ---------------------------
+# lib, mod, cons
+# contrasts (used in VAR.pol3_contrast_s1)
+critical.lib_contrast_s1 <-     c(1, 0, 0, 0, 0, 0, 0, 0, 0)
+critical.mod_contrast_s1 <-     c(0, 1, 0, 0, 0, 0, 0, 0, 0)
+critical.cons_contrast_s1 <-    c(0, 0, 1, 0, 0, 0, 0, 0, 0)
+control.lib_contrast_s1 <-  c(0, 0, 0, 1, 0, 0, 0, 0, 0)
+control.mod_contrast_s1 <-  c(0, 0, 0, 0, 1, 0, 0, 0, 0)
+control.cons_contrast_s1 <- c(0, 0, 0, 0, 0, 1, 0, 0, 0)
+individual.lib_contrast_s1 <-    c(0, 0, 0, 0, 0, 0, 1, 0, 0)
+individual.mod_contrast_s1 <-    c(0, 0, 0, 0, 0, 0, 0, 1, 0)
+individual.cons_contrast_s1 <-   c(0, 0, 0, 0, 0, 0, 0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR.pol3_emm_s1) 
+lib_contrast_s1 <-list(
+  "Critical - Control" = critical.lib_contrast_s1-control.lib_contrast_s1
+  , "Critical - Individual" = critical.lib_contrast_s1-individual.lib_contrast_s1
+#  , "Individual - Control" = individual.lib_contrast_s1-control.lib_contrast_s1
+  )
+
+mod_contrast_s1 <-list(
+  "Critical - Control" = critical.mod_contrast_s1-control.mod_contrast_s1
+  , "Critical - Individual" = critical.mod_contrast_s1-individual.mod_contrast_s1
+#  , "Individual - Control" = individual.mod_contrast_s1-control.mod_contrast_s1
+  )
+
+cons_contrast_s1 <-list(
+  "Critical - Control" = critical.cons_contrast_s1-control.cons_contrast_s1
+  , "Critical - Individual" = critical.cons_contrast_s1-individual.cons_contrast_s1
+#  , "Individual - Control" = individual.cons_contrast_s1-control.cons_contrast_s1
+  )
+```
+
+```{r keys-contrasts-s1.pass, eval = TRUE}
+# FACTOR CONTRASTS --------------
+# s1.pass %>%
+#   contrasts(condition.f) <- contr.sum
+#   contrasts(political3.f) <- contr.sum
+#   contrasts(race.f) <- contr.sum
+#   contrasts(edu3.f) <- contr.sum
+
+# CONTRASTS FOR EMMEANS()
+# CONDITIONS ---------------------------
+# critical, control, individual
+# orthogonal contrasts rules: 0 = excluded, <0 = baseline, >0, treatment; sum must == 0
+
+critical.control_contrast_s1.pass = c(-1, 1, 0)
+critical.individual_contrast_s1.pass = c(-1, 0, 1)
+individual.control_contrast_s1.pass = c(0, -1, 1) # not planned
+
+# contrasts (used in VAR_emm_s1.pass)
+critical_contrast_s1.pass <- c(1, 0, 0)
+control_contrast_s1.pass <- c(0, 1, 0)
+individual_contrast_s1.pass <- c(0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR_emm_s1.pass.pass) 
+contrast_s1.pass <-list(
+  "Critical - Control" = critical_contrast_s1.pass-control_contrast_s1.pass
+, "Critical - Individual" = critical_contrast_s1.pass-individual_contrast_s1.pass
+)
+
+# POLITICAL ---------------------------
+# lib, mod, cons
+# contrasts (used in VAR.pol3_contrast_s1.pass)
+critical.lib_contrast_s1.pass <-     c(1, 0, 0, 0, 0, 0, 0, 0, 0)
+critical.mod_contrast_s1.pass <-     c(0, 1, 0, 0, 0, 0, 0, 0, 0)
+critical.cons_contrast_s1.pass <-    c(0, 0, 1, 0, 0, 0, 0, 0, 0)
+control.lib_contrast_s1.pass <-  c(0, 0, 0, 1, 0, 0, 0, 0, 0)
+control.mod_contrast_s1.pass <-  c(0, 0, 0, 0, 1, 0, 0, 0, 0)
+control.cons_contrast_s1.pass <- c(0, 0, 0, 0, 0, 1, 0, 0, 0)
+individual.lib_contrast_s1.pass <-    c(0, 0, 0, 0, 0, 0, 1, 0, 0)
+individual.mod_contrast_s1.pass <-    c(0, 0, 0, 0, 0, 0, 0, 1, 0)
+individual.cons_contrast_s1.pass <-   c(0, 0, 0, 0, 0, 0, 0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR.pol3_emm_s1.pass) 
+lib_contrast_s1.pass <-list(
+  "Critical - Control" = critical.lib_contrast_s1.pass-control.lib_contrast_s1.pass
+  , "Critical - Individual" = critical.lib_contrast_s1.pass-individual.lib_contrast_s1.pass
+#  , "Individual - Control" = individual.lib_contrast_s1.pass-control.lib_contrast_s1.pass
+  )
+
+mod_contrast_s1.pass <-list(
+  "Critical - Control" = critical.mod_contrast_s1.pass-control.mod_contrast_s1.pass
+  , "Critical - Individual" = critical.mod_contrast_s1.pass-individual.mod_contrast_s1.pass
+#  , "Individual - Control" = individual.mod_contrast_s1.pass-control.mod_contrast_s1.pass
+  )
+
+cons_contrast_s1.pass <-list(
+  "Critical - Control" = critical.cons_contrast_s1.pass-control.cons_contrast_s1.pass
+  , "Critical - Individual" = critical.cons_contrast_s1.pass-individual.cons_contrast_s1.pass
+#  , "Individual - Control" = individual.cons_contrast_s1.pass-control.cons_contrast_s1.pass
+  )
+```
+
+```{r keys-contrasts-s2, eval = TRUE}
+# FACTOR CONTRASTS --------------
+# s2 %>%
+#   contrasts(condition.f) <- contr.sum
+#   contrasts(political3.f) <- contr.sum
+#   contrasts(race.f) <- contr.sum
+#   contrasts(edu3.f) <- contr.sum
+
+# CONTRASTS FOR EMMEANS()
+# POLITICAL ---------------------------
+# lib, mod, cons
+# contrasts (used in VAR.pol3_contrast_s2)
+critical.lib_contrast_s2 <- c(1, 0, 0, 0, 0, 0)
+critical.mod_contrast_s2 <- c(0, 1, 0, 0, 0, 0)
+critical.cons_contrast_s2 <- c(0, 0, 1, 0, 0, 0)
+naive.lib_contrast_s2 <-  c(0, 0, 0, 1, 0, 0)
+naive.mod_contrast_s2 <-  c(0, 0, 0, 0, 1, 0)
+naive.cons_contrast_s2 <- c(0, 0, 0, 0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR.pol3_emm_s2) 
+lib_contrast_s2 <-list(
+  "Critical - Naive" = critical.lib_contrast_s2-naive.lib_contrast_s2
+  )
+
+mod_contrast_s2 <-list(
+  "Critical - Naive" = critical.mod_contrast_s2-naive.mod_contrast_s2
+  )
+
+cons_contrast_s2 <-list(
+  "Critical - Naive" = critical.cons_contrast_s2-naive.cons_contrast_s2
+  )
+```
+
+```{r keys-contrasts-s3, eval = TRUE}
+# FACTOR CONTRASTS --------------
+# s1 %>%
+#   contrasts(condition.f) <- contr.sum
+#   contrasts(political3.f) <- contr.sum
+#   contrasts(race.f) <- contr.sum
+#   contrasts(edu3.f) <- contr.sum
+
+# contrasts for emmeans()
+# CONDITIONS ---------------------------
+# orthogonal contrasts rules: 0 = excluded, <0 = baseline, >0, treatment; sum must == 0
+# critical, control, individual, naive
+
+# planned
+critical.control_contrast_s3 = c(-1, 1, 0, 0)
+critical.individual_contrast_s3 = c(-1, 0, 1, 0)
+critical.naive_contrast_s3 = c(-1, 0, 0, 1)
+
+# not planned
+control.individual_contrast_s3 = c(0, -1, 1, 0)
+control.naive_contrast_s3 = c(0, -1, 0, 1)
+individual.naive_contrast_s3 = c(0, 0, -1, 1)
+
+# contrasts (used in VAR_emm_s3)
+critical_contrast_s3 <- c(1, 0, 0, 0)
+control_contrast_s3 <- c(0, 1, 0, 0)
+individual_contrast_s3 <- c(0, 0, 1, 0)
+naive_contrast_s3 <- c(0, 0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR_emm_s3) 
+contrast_s3 <-list(
+  "critical - control" = critical_contrast_s3-control_contrast_s3
+  , "critical - individual" = critical_contrast_s3-individual_contrast_s3
+  , "critical - naive" = critical_contrast_s3-naive_contrast_s3
+  )
+
+# POLITICAL ---------------------------
+# lib, mod, cons
+# contrasts (used in VAR.pol3_contrast_s3)
+critical.lib_contrast_s3 <- c(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+critical.mod_contrast_s3 <- c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+critical.cons_contrast_s3 <- c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+control.lib_contrast_s3 <-  c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+control.mod_contrast_s3 <-  c(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+control.cons_contrast_s3 <- c(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
+individual.lib_contrast_s3 <-   c(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+individual.mod_contrast_s3 <-   c(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+individual.cons_contrast_s3 <-  c(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
+naive.lib_contrast_s3 <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0)
+naive.mod_contrast_s3 <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0)
+naive.cons_contrast_s3 <- c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+
+# list of contrasts (used as emmeans method for VAR.pol3_emm_s3)
+pol3_contrast_s3 <- list(
+  "critical - control" = critical.lib_contrast_s3-control.lib_contrast_s3
+  , "critical - individual" = critical.lib_contrast_s3-individual.lib_contrast_s3
+  , "critical - naive" = critical.lib_contrast_s3-naive.lib_contrast_s3
+  ,  "critical - control" = critical.mod_contrast_s3-control.mod_contrast_s3
+  , "critical - individual" = critical.mod_contrast_s3-individual.mod_contrast_s3
+  , "critical - naive" = critical.mod_contrast_s3-naive.mod_contrast_s3
+  , "critical - control" = critical.cons_contrast_s3-control.cons_contrast_s3
+  , "critical - individual" = critical.cons_contrast_s3-individual.cons_contrast_s3
+  , "critical - naive" = critical.cons_contrast_s3-naive.cons_contrast_s3
+)
+
+lib_contrast_s3 <-list(
+  "critical - control" = critical.lib_contrast_s3-control.lib_contrast_s3
+  , "critical - individual" = critical.lib_contrast_s3-individual.lib_contrast_s3
+  , "critical - naive" = critical.lib_contrast_s3-naive.lib_contrast_s3
+  )
+
+mod_contrast_s3 <-list(
+  "critical - control" = critical.mod_contrast_s3-control.mod_contrast_s3
+  , "critical - individual" = critical.mod_contrast_s3-individual.mod_contrast_s3
+  , "critical - naive" = critical.mod_contrast_s3-naive.mod_contrast_s3
+  )
+
+cons_contrast_s3 <-list(
+  "critical - control" = critical.cons_contrast_s3-control.cons_contrast_s3
+  , "critical - individual" = critical.cons_contrast_s3-individual.cons_contrast_s3
+  , "critical - naive" = critical.cons_contrast_s3-naive.cons_contrast_s3
+  )
+```
+
+```{r keys-save, eval = FALSE}
+# SAVE KEYS IN WORKSPACE ---------------------------
+# save.image(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-keys.RData")
+```
+
+## CODE {.unnumbered .unlisted}
+
+```{r setup-unused, include = FALSE, echo = FALSE, eval = FALSE}
+
+# Other currently unused but potentially useful knitr options ----
+
+# knitr::opts_chunk$set(cache.extra = knitr::rand_seed
+  # , t.tabcolsep = 0
+  # , ft.latex.float = "none"
+# )
+
+  # , knitr.table.format = function() {
+  # if (knitr::is_latex_output()) 'latex' else 'pandoc'
+  #   }
+
+# options(max.print="100") # default is 75
+
+# opts_knit$set(width = 120) # default is 75
+
+# knitr::read_chunk('libraries.R')
+
+# for paged table (but for all bookdown multi-format tables, you need to specify new_session: true in the _bookdown.yml file.) ----
+# %>% scroll_box(width = "100%", box_css = "border: 0px;")
+```
+
+```{r diagnostics, eval = FALSE}
+# LINEARITY --------------
+# check for linearity between the covariate and outcome variable at each level of the grouping variable
+# ggpubr::ggscatter (
+#   s1.wide, x = "AttWhiteP1", y = "punitive.c",
+#   color = "COND", add = "reg.line"
+# )+
+#   ggpubr::stat_regline_equation(
+#     aes(label =  paste(..eq.label.., ..rr.label.., sep = "~~~~"), color = COND)
+#     )
+
+# HOMOGENEITY --------------
+# Levene's test to check that variance of the residuals is equal for all groups. The plotted regression slopes should be parallel
+# s1.wide %>% rstatix::anova_test(punitive.c ~ COND*AttWhiteP1) 
+
+# NORMAL RESIDUALS --------------
+# WhCov_mod.metrics <- broom::augment(WhCov_mod)
+#shows the first three rows of the UEcon_model.metrics
+# head(WhCov_mod.metrics,3) 
+# rstatix::shapiro_test(WhCov_mod.metrics$.resid)
+
+# OUTLIERS --------------
+# identify outliers by examining the standardized residual(. This is the (residual divided by its estimated standard error). Standardized residuals are interpreted as the number of standard errors away from the regression line.
+# WhCov_mod.metrics %>%
+#   filter(abs(.std.resid)>3)%>%
+#   as.data.frame()
+
+# OMNIBUS ANOVA
+# WhCov_ANCOVA <- s1.wide %>%
+#   rstatix::anova_test(punitive.c ~ AttWhiteP1 + COND)
+# rstatix::get_anova_table(WhCov_ANCOVA)
+
+# POSTHOC PAIRWISE W/COVARIATES
+# pwc_cond <- s1.wide %>%
+#   rstatix::emmeans_test(
+#     punitive.c ~ COND, covariate = AttWhiteP1,
+#     p.adjust.method = "none"
+#   )
+# pwc_cond
+
+# emmeans_cond <- rstatix::get_emmeans(pwc_cond)
+# emmeans_cond
+
+# get raw means
+# descripts_cond <- psych::describeBy(punitive.c ~ COND, data = s1.wide, mat = TRUE)
+# descripts_cond
+
+# APA TABLE
+# apaTables::apa.cor.table(s1.wide[c("punitive.c", "AttWhiteP1")], table.number = 2 )
+
+# PLOT
+# pwc_cond <- pwc_cond %>% rstatix::add_xy_position(x = "COND", fun = "mean_se")
+# ggpubr::ggline(rstatix::get_emmeans(pwc_B), x = "COND", y = "emmean") +
+#   geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) + 
+#   ggpubr::stat_pvalue_manual(pwc_B, hide.ns = TRUE, tip.length = FALSE) +
+#   labs(
+#     subtitle = rstatix::get_test_label(WhCov_ANCOVA, detailed = TRUE),
+#     caption = rstatix::get_pwc_label(pwc_cond)
+#   )
+```
+
+```{r code-compareGroups, eval = FALSE}
+library(compareGroups)
+#https://cran.r-project.org/web/packages/compareGroups/vignettes/compareGroups_vignette.html#performing-the-descritive-table
+res <- compareGroups::compareGroups(condition ~ punitive + pun_cops + pun_jailtime + pun_penalty + pun_prisons, data = s1.pass)
+restab <- compareGroups::createTable(res, type=1)
+
+compareGroups::export2md(restab, width="250px")
+```
+
+```{r code-pun-comp, eval = FALSE, fig.cap = "Descriptive Statistics of Punitive Policy Support by Condition in Study 1."}
+# summary table by condition # compareGroups::
+pun_comp_s1 <- compareGroups::descrTable(condition.f ~ punitive + pun_cops + pun_jailtime + pun_penalty + pun_prisons, data = s1, subset = pass==1)
+pun_comp_s1 # print
+
+compareGroups::export2md(pun_comp_s1, width = "250px", format = "html") # print to markdown/html
+```
+
+```{r code-pun-comp-vars, results = 'asis', eval = FALSE, fig.cap = "Descriptive Statistics of Punitive Policy Support by Condition in Study 1"}
+# descriptives of each variable by condition # compareGroups::
+pun_comp.tab_s1 <- compareGroups(condition.f ~ punitive + pun_cops + pun_jailtime + pun_penalty + pun_prisons, data = s1, subset = pass==1)
+summary(pun_comp.tab_s1, digits = 3)
+```
+
+
+```{r code-pun-half, eval = FALSE}
+pun_half_s1 <-  s1 %>% subset(pass==1) %>% ggplot(aes(x = condition.f, y = punitive.c, fill = condition.f)) +
+  ggdist::stat_halfeye(expand = FALSE, position = "dodgejust",
+    adjust = .4, width = .3, alpha = 0
+    # , .width = 0, point_colour = NA ## remove slab interval
+    ) +
+    ggdist::stat_dots(aes(fill = condition.f, color = condition.f), side = "right", dotsize = 2, layout = "swarm", scale = .4
+                      #, binwidth = .25
+    ) +
+  gghalves::geom_half_violin(color = NA, scale = "area", alpha = 0.6, trim = FALSE) + 
+  geom_boxplot(width = .25) + #, outlier.shape = NA
+  labs(x = NULL
+       , y = "Strongly Oppose to Strongly Favor"
+       , title = wrap.labels(sjlabelled::get_label(s1$punitive.c), 40)
+       , subtitle = NULL
+       , caption = rstatix::get_test_label(pun_aov.test_s1, detailed = TRUE, row = 1)
+    ) +
+  scale_fill_manual(values = fills_s1) + scale_color_manual(values = fills_s1) + 
+  plottheme_caption_brackets + theme(legend.position = "none") + 
+  ggsignif::geom_signif(comparisons = compare_s1
+                        , position = "identity"
+                        , test = "t.test"
+                        , map_signif_level = TRUE
+                        , y_position = 3  
+                        , step_increase = 0.15
+                        , margin_top = 0.09
+                        , vjust = -0.09
+                        , textsize = 5
+                        ) +
+  scale_y_continuous(breaks = c(-3:3), label = c("", "-2", "-1", "0", "1", "2", ""), expand = expansion(add = c(0.2, 0.7)))  +
+  coord_cartesian(xlim = c(NA, 3))
+
+# ggsave(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_half_s1.png", pun_half_s1, width = 7, height = 7, dpi = 300)
+
+# with exclusions ---------------------------
+pun_half_s1.all <-  s1.all %>% ggplot(aes(x = condition.f, y = punitive.c, fill = condition.f)) +
+  ggdist::stat_halfeye(expand = FALSE, position = "dodgejust",
+    adjust = .4, width = .3, alpha = 0
+    # , .width = 0, point_colour = NA ## remove slab interval
+    ) +
+    ggdist::stat_dots(aes(fill = condition.f, color = condition.f), side = "right", dotsize = 2, layout = "swarm", scale = .4
+                      #, binwidth = .25
+    ) +
+  gghalves::geom_half_violin(color = NA, scale = "area", alpha = 0.6, trim = FALSE) + 
+  geom_boxplot(width = .25) + #, outlier.shape = NA
+  labs(x = NULL
+       , y = "Strongly Oppose to Strongly Favor"
+       , title = wrap.labels(sjlabelled::get_label(s1.all$punitive.c), 40)
+       , subtitle = "with exclusions"
+       , caption = rstatix::get_test_label(pun_aov.test_s1.all, detailed = TRUE, row = 1)
+    ) +
+  scale_fill_manual(values = fills_s1.all) + scale_color_manual(values = fills_s1.all) + 
+  plottheme_caption_brackets + theme(legend.position = "none") + 
+  ggsignif::geom_signif(comparisons = compare_s1.all
+                        , position = "identity"
+                        , test = "t.test"
+                        , map_signif_level = TRUE
+                        , y_position = 3  
+                        , step_increase = 0.15
+                        , margin_top = 0.09
+                        , vjust = -0.09
+                        , textsize = 5
+                        ) +
+  scale_y_continuous(breaks = c(-3:3), label = c("", "-2", "-1", "0", "1", "2", ""), expand = expansion(add = c(0.2, 0.7)))  +
+  coord_cartesian(xlim = c(NA, 3))
+
+# ggsave(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_half_s1.all.png", pun_half_s1.all, width = 7, height = 7, dpi = 300)
+```
+
+```{r code-pun-half-stats, eval = FALSE}
+pun_half.stats_s1 <-  s1 %>% subset(pass==1) %>% ggplot(aes(x = condition.f, y = punitive, fill = condition.f)) +
+  ggdist::stat_halfeye(expand = FALSE, position = "dodgejust",
+    adjust = .4, width = .3, alpha = 0
+    # , .width = 0, point_colour = NA ## remove slab interval
+    ) +
+    ggdist::stat_dots(aes(fill = condition.f, color = condition.f), side = "right", dotsize = 2, layout = "swarm", scale = .4
+                      #, binwidth = .25, size = 2, 
+    ) +
+  gghalves::geom_half_violin(color = NA, scale = "area", alpha = 0.6, trim = FALSE) + 
+  geom_boxplot(width = .25) + #, outlier.shape = NA
+  labs(x = NULL
+       , y = "Strongly Oppose to Strongly Favor"
+       , title = wrap.labels(sjlabelled::get_label(s1$punitive), 40)
+       , subtitle = NULL
+       , caption = rstatix::get_test_label(pun_aov.test_s1, detailed = TRUE, row = 1)
+    ) +
+  scale_fill_manual(values = fills_s1) + scale_color_manual(values = fills_s1) + 
+  plottheme_caption_brackets + theme(legend.position = "none") + 
+  ggsignif::geom_signif(comparisons = compare_s1.all
+                        , position = "identity"
+                        , test = "t.test"
+                        , map_signif_level = function(p) sprintf("p = %.3f", p)
+                        , y_position = 4.75
+                        , step_increase = 0.22
+                        , vjust = -0.3
+                        , textsize = 5
+                        ) +
+  scale_y_continuous(breaks = c(1:4), expand = expansion(add = c(0.6, 0.7)))  +
+  coord_cartesian(xlim = c(NA, 3)) + 
+  EnvStats::stat_mean_sd_text(geom = "text"
+                              , size = 5
+                              , text.box = TRUE
+                              , y.pos = -0.12
+                              , digits = 2
+                              , digit.type = "round"
+                              , color = "gray40")
+
+# ggsave(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_half.stats_s1.png", pun_half.stats_s1, width = 7, height = 7, dpi = 300)
+
+# with exclusions ---------------------------
+pun_half.stats_s1.all <-  s1.all %>% ggplot(aes(x = condition.f, y = punitive, fill = condition.f)) +
+  ggdist::stat_halfeye(expand = FALSE, position = "dodgejust",
+    adjust = .4, width = .3, alpha = 0
+    # , .width = 0, point_colour = NA ## remove slab interval
+    ) +
+    ggdist::stat_dots(aes(fill = condition.f, color = condition.f), side = "right", dotsize = 2, layout = "swarm", scale = .4
+                      #, binwidth = .25, size = 2, 
+    ) +
+  gghalves::geom_half_violin(color = NA, scale = "area", alpha = 0.6, trim = FALSE) + 
+  geom_boxplot(width = .25) + #, outlier.shape = NA
+  labs(x = NULL
+       , y = "Strongly Oppose to Strongly Favor"
+       , title = wrap.labels(sjlabelled::get_label(s1.all$punitive), 40)
+       , subtitle = "with exclusions"
+       , caption = rstatix::get_test_label(pun_aov.test_s1.all, detailed = TRUE, row = 1)
+    ) +
+  scale_fill_manual(values = fills_s1.all) + scale_color_manual(values = fills_s1.all) + 
+  plottheme_caption_brackets + theme(legend.position = "none") + 
+  ggsignif::geom_signif(comparisons = compare_s1.all.all
+                        , position = "identity"
+                        , test = "t.test"
+                        , map_signif_level = function(p) sprintf("p = %.3f", p)
+                        , y_position = 4.75
+                        , step_increase = 0.22
+                        , vjust = -0.3
+                        , textsize = 5
+                        ) +
+  scale_y_continuous(breaks = c(1:4), expand = expansion(add = c(0.6, 0.7)))  +
+  coord_cartesian(xlim = c(NA, 3)) + 
+  EnvStats::stat_mean_sd_text(geom = "text"
+                              , size = 5
+                              , text.box = TRUE
+                              , y.pos = -0.12
+                              , digits = 2
+                              , digit.type = "round"
+                              , color = "gray40")
+
+# ggsave(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_half.stats_s1.all.png", pun_half.stats_s1.all, width = 7, height = 7, dpi = 300)
+```
+
+```{r halfplot-example-index}
+# plottheme_caption_brackets (used in half plot) ----
+plottheme_caption_brackets <- theme(
+    plot.margin = margin(t = 15, b = 5, l =15, r = 15)
+  , plot.background = element_rect(fill = "white", color = "white")
+  , panel.background = element_rect(fill = "white", color = "white")
+  , plot.title = element_text(size = 22, face = "bold", hjust = 0.5, margin = margin(t = 15, b = 10, l =10, r = 10))
+  , plot.subtitle = element_text(size = 14, color = "gray40", margin = margin(t = 15, b = 10))
+  , plot.caption = element_text(size = 15, color = "gray40", hjust = 1, margin = margin(t = 15, b = 10, l = 10, r = 10), lineheight = 1)
+  # , axis.title = element_text(size = 18, face = "bold")
+  , axis.title.x = element_text(size = 14, color = "gray40", margin = margin(t = 15, b = 10))
+  , axis.title.y = element_text(size = 15, color = "gray40", hjust = 0.3, margin = margin(t = 5, b = 5, r = 10, l = 5))
+  , axis.text.x = element_text(size = 16, face = "bold", color = "black", margin = margin(t = 10))
+  , axis.text.y = element_text(size = 14, color = "black", margin = margin(l = 5, r = 5))
+  , axis.line = element_line(color = "black", size = .5)
+  # , axis.ticks.y = element_line(size = 0.5)
+  # , axis.ticks.length.y = unit(.15, "cm")
+  , axis.ticks = element_blank()
+  , panel.grid.major.y = element_line(colour = "gray90")
+  , panel.grid.major.x = element_line(colour = "white")
+  , axis.line.x.bottom = element_line(colour = "black", size = .7)
+  , axis.line.y.left = element_line(colour = "black", size = .7)
+  , legend.position = "top" #c(0.20, 0.8)
+  , legend.background = element_blank()#element_rect(color = "gray", fill = "white", linetype = "solid" )
+  , legend.title = element_blank() #element_text(size = 16)
+  , legend.text = element_text(size = 16)
+  , legend.margin = margin(t = 2, l = 3, r = 3, b = 2)
+  , legend.key = element_rect(color = NA, fill = NA)
+)
+
+# half plot ----
+pun_halfplot_s1 <-  s1 %>% ggplot(aes(x = condition.f, y = punitive.c, fill = condition.f)) +
+  ggdist::stat_halfeye( ## add half-violin from {ggdist} package
+    expand = FALSE, position = "dodgejust",
+    adjust = .4, ## custom bandwidth
+    width = .3, ## adjust height
+    alpha = 0, ## adjust transparency
+    .width = 0, point_colour = NA ## remove slab interval
+    ) +
+    ggdist::stat_dots(aes(fill = condition.f, color = condition.f), side = "right", dotsize = 1, layout = "weave", scale = .5 #, position = "dodgejust"#, binwidth = .25
+    ) +
+  gghalves::geom_half_violin(color = NA, scale = "area", alpha = 0.6, trim = FALSE) + #
+  geom_boxplot(width = .2) + #, outlier.shape = NA
+  labs(y = "Strongly Oppose to Strongly Favor"
+       , x = NULL
+       , title = wrap.labels(sjlabelled::get_label(s1$punitive.c), 40)
+       , subtitle = NULL
+       , caption = rstatix::get_test_label(pun_aov.test_s1, detailed = TRUE)
+    ) +
+  scale_fill_manual(values = fills_s1) + scale_color_manual(values = fills_s1) + 
+  plottheme_caption_brackets + theme(legend.position = "none") + 
+  ggsignif::geom_signif(comparisons = compare_s1
+                        , position = "identity"
+                        , test = "t.test"
+                        , map_signif_level = TRUE
+                        , y_position = 3  
+                        , step_increase = 0.15
+                        , margin_top = 0.09
+                        , vjust = -0.09
+                        , textsize = 5
+                        ) +
+  scale_y_continuous(breaks = c(-3:3), label = c("", "-2", "-1", "0", "1", "2", ""), expand = expansion(add = c(0.2, 0.7)))  +
+  coord_cartesian(xlim = c(NA, 3))
+# ggsave(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_halfplot_s1.png", pun_halfplot_s1, width = 7, height = 7, dpi = 300)
+```
+
+
+```{js, echo = FALSE}
+<!-- add details drop down content -->
+(function() {
+  var codes = document.querySelectorAll('pre:not([class])');
+  var code, i, d, s, p;
+  for (i = 0; i < codes.length; i++) {
+    code = codes[i];
+    p = code.parentNode;
+    d = document.createElement('details');
+    s = document.createElement('summary');
+    s.innerText = 'Details';
+    // <details><summary>Details</summary></details>
+    d.appendChild(s);
+    // move the code into <details>
+    p.replaceChild(d, code);
+    d.appendChild(code);
+  }
+})();
+```
+

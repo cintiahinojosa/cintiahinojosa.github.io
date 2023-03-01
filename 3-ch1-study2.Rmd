@@ -1,0 +1,311 @@
+# Study 2: Causal explanations of racial disparities drive critical narrative effects on violence prevention policies and underlying anti-Black attitudes {#ch1study2}
+
+In Study 2, I test whether providing the causal explanation of how structural racism impacts current gun violence is a key to the main effects on policy preferences found in Study 1 by comparing the critical condition to a naïve anti-racist condition. 
+Compared to a critical narrative, a naïve narratives (A) describe marginalized group experiences and (B) proclaim the importance of being against structural racism, but fails to (C) explain the critical history behind it. 
+<!-- Study 2 also further explores the extent to which the critical narrative can persuade participants who hold beliefs that are predictive of greater punitive policy support and less support for restorative policies. To this end, I added a scale measuring *critical consciousness*, operationalized as the level of perceived societal inequality and egalitarian values [@Freire1970; @Freire1974; @Diemer2016].  -->
+I also designed Study 2 to rule out the possibility that the conditional differences were due found in Study 1 are due to the critical narrative including recommendations for restorative policies, while the individual and control conditions did not. 
+This study is a two-group randomized, between-subject experiment that presents varying narratives about CGV that conclude with the same set of policy recommendations. 
+The main hypotheses are: 
+
+```{texpreview, echo = FALSE}
+\begin{enumerate}
+\small
+\item[H1a.] Participants in the critical condition will report reduced support for punitive policies. This main effect will emerge across levels of political ideology (b). \
+\item[H2a.] Participants in the critical condition will report increased support for restorative policies. This main effect will emerge across levels of political ideology (b). \
+\item[H3a.] Participants in the critical condition will score lower on a modern racism scale (b). \
+\item[H4.] Reduced modern racism will partially mediate the critical main effects on reduced punitive policy support (a) and increased restorative policy support (b). \
+\end{enumerate}
+```
+
+## Methods 
+
+### Participants
+
+<details><summary>**Table of Participant Characteristics**</summary>
+```{r demos-comp-study2, eval = TRUE, fig.cap = "Descriptive Statistics of Participant Characteristics by Condition in Study 2."}
+# summary table by condition # compareGroups::
+demos_comp_s2 <- compareGroups::descrTable(condition.f ~ gender.f + race.f + political3.f + age + edu3.f + adj_income, data = s2)
+# demos_comp_s2 # print
+
+compareGroups::export2md(demos_comp_s2, width = "300px", format = "html") # print to markdown/html
+```
+</details>
+
+### Materials
+
+See [Study 2 Appendix](#ch1study2-si) for full materials.
+ 
+After consenting to participate in a study about information evaluation, the survey randomly assigned participants to read a news article associated with the critical or naïve condition. <!-- The news articles in both conditions shared similar introductory and concluding paragraphs. As in Study 1, the article introduced the issue of gun violence by pointing out the lack of attention on community gun violence that disproportionately impacts youth of color. In addition, the critical and naïve narratives point out how mass shootings and gun control topics dominate national conversations on gun violence. However, these points are brought up and structured differently between the two articles for the sake of flow. -->
+
+#### Critical narrative
+
+I revised the critical narrative used in Study 1 to end with new paragraphs that contrast recommendations for both punitive and restorative violence reduction approach (see [Study 2 Appendix](#ch1study2-si) for complete materials.) In the penultimate paragraph, the author quotes police experts who recommend investing in policing and prisons to reduce crime. Specific recommendations include investments in surveillance technology, more patrol officers, and equipment. The final paragraph counters this perspective with policy experts who say that policing does not the root cause of violence and then recommends investing in community infrastructure and support services, such as public education, youth programs, and affordable housing. <!-- These perspectives are loosely modeled after countering approaches toward violence reduction in current journalism, policymaking, and academic discourse [@Cook2019].  -->
+ 
+#### Naïve anti-racist narrative
+
+This narrative was designed to satisfy liberals' social desirability to be "against racism" while provoking reactance from conservatives. The naïve narrative blames gun violence on systemic racism but does not explain how historical patterns of systemic racism contributed to gun violence at any point. I substituted the causal information delivered in the critical narrative with statistics such as the specific number of homicides per year. The naïve narrative then reports that the nature of gun violence has changed over the years, but our policies and approaches have not. The article then explains how the culture surrounding urban gun violence has changed over the years. Using language from news outlets, the article describes the culture of "Chicago's many informal, neighborhood groups, or cliques, of young, African-American men follow a deadly code: perceived slights and past slayings of friends by rivals must be avenged through the barrel of a gun…[and] live in their own, isolated culture that glorifies gun violence and warps how they see themselves as black men," ([Science News, 2019](https://www.sciencenews.org/article/neighborhood-outreach-can-reduce-inner-city-gun-violence)).
+
+## Results
+
+<details><summary>**Descriptive Statistics of Main Dependent Variables**</summary>
+```{texpreview, echo = FALSE}
+\begin{table}[!b]
+\caption{\label{tab:si-main-table-study2}Descriptive Statistics of Main Variables by Condition in Study 2}
+\small
+\begin{tabular}[t]{lllll}
+\toprule
+  & Control & Treat & P-value & Total\\
+\midrule
+ & (N=481) & (N=453) &   & (N=934)\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Punitive policy support}}\\
+\hspace{1em}Mean (SD) & 4.72 (1.41) & 4.17 (1.44) & 0.001 & 4.46 (1.45)\\
+\hspace{1em}Median [Min, Max] & 4.75 [1.00, 7.00] & 4.25 [1.00, 7.00] &  & 4.50 [1.00, 7.00]\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Restorative policy support}}\\
+\hspace{1em}Mean (SD) & 4.83 (1.18) & 5.04 (1.24) & 0.01 & 4.93 (1.21)\\
+\hspace{1em}Median [Min, Max] & 5.00 [1.00, 7.00] & 5.25 [1.00, 7.00] &  & 5.00 [1.00, 7.00]\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Symbolic Racism}}\\
+\hspace{1em}Mean (SD) & 0.934 (0.245) & 0.886 (0.258) & 0.004 & 0.911 (0.252)\\
+\hspace{1em}Median [Min, Max] & 0.949 [0.367, 1.49] & 0.908 [0.367, 1.49] &  & 0.924 [0.367, 1.49]\\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+</details>
+
+
+<details><summary>**Correlations**</summary>
+```{r fig-main-corr-study2, eval = TRUE, out.width = "100%", fig.cap = "Correlation matrix of main variables in Study 2.", fig.show='hold', fig.align='center'}
+knitr::include_graphics("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/main_corrgram_s2.png")
+```
+</details>
+
+\newpage
+
+### H1a. Punitive support {-}
+
+```{r pun-aov-table-study2, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s2$condition.f) <- contr.sum
+# contrasts(s2$race.f) <- contr.sum
+# contrasts(s2$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+pun_aov_s2 <- lm(punitive.c ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+pun_aov.summ_s2 <- car::Anova(pun_aov_s2)  %>% 
+  tidy(pun_aov.summ_s2) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+pun_aov.summ_s2 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Punitive Policy Support by Condition in Study 2"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F)
+```
+
+### H2b. Punitive support by political orientation {-}
+
+```{r pun-pol-aov-table-study2, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s2$condition.f) <- contr.sum
+# contrasts(s2$race.f) <- contr.sum
+# contrasts(s2$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+pun.pol_aov_s2 <- lm(punitive.c ~ condition.f * political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+pun.pol_aov.summ_s2 <- car::Anova(pun.pol_aov_s2)  %>% 
+  tidy(pun.pol_aov.summ_s2) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+pun.pol_aov.summ_s2 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Punitive Policy Support by Condition in Study 2"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F)
+```
+
+<details><summary>**Contrasts**</summary>
+```{r pun.pol3-contrast-study2, fig.cap = "Contrasts of Punitive Policy Support by Political Orientation in Study 2", eval = TRUE}
+pun.pol3_ols_s2 <- lm(punitive.c ~ critical.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+pun.pol3_emm_s2 <- emmeans(pun.pol3_ols_s2, ~ political3.f * critical.f, at = list(s2$critical.f, s2$political3.f))
+
+pun.pol3_contrast_s2 <- contrast(pun.pol3_emm_s2, adjust = "mvt", at = list(s2$critical.f, s2$political3.f))
+
+pun.pol3_contrast_s2[4:6,] %>%
+  kable(booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Punitive Policy Support by Political Orientation in Study 2"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1:3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+</details>
+
+```{r figs-punitive-study2, eval = TRUE, out.width = "70%", fig.cap="Support for Punitive Policies by Condition in Study 2", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_half.stats_s2.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun.c.pol3_int.apa_s2.png"))
+```
+
+\newpage
+
+### H2a. Restorative support {-}
+
+```{r rest-aov-table-study2, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s2$condition.f) <- contr.sum
+# contrasts(s2$race.f) <- contr.sum
+# contrasts(s2$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+rest_aov_s2 <- lm(restorative.c ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+rest_aov.summ_s2 <- car::Anova(rest_aov_s2)  %>% 
+  tidy(rest_aov.summ_s2) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+rest_aov.summ_s2 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Restorative Policy Support by Condition in Study 2"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F)
+```
+
+### H2b. Restorative support by political orientation {-}
+
+```{r rest-pol-aov-table-study2, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s2$condition.f) <- contr.sum
+# contrasts(s2$race.f) <- contr.sum
+# contrasts(s2$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+rest.pol_aov_s2 <- lm(restorative.c ~ condition.f * political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+rest.pol_aov.summ_s2 <- car::Anova(rest.pol_aov_s2)  %>% 
+  tidy(rest.pol_aov.summ_s2) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+rest.pol_aov.summ_s2 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Restorative Policy Support by Condition in Study 2"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F)
+```
+
+<details><summary**Contrasts**</summary>
+```{r rest.pol3-contrast-study2, fig.cap = "Contrasts of Restorative Policy Support by Political Orientation in Study 2", eval = TRUE}
+rest.pol3_ols_s2 <- lm(restorative.c ~ critical.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+rest.pol3_emm_s2 <- emmeans(rest.pol3_ols_s2, ~ political3.f * critical.f, at = list(s2$critical.f, s2$political3.f))
+
+rest.pol3_contrast_s2 <- contrast(rest.pol3_emm_s2, adjust = "mvt", at = list(s2$critical.f, s2$political3.f))
+
+rest.pol3_contrast_s2[4:6,] %>%
+kable(booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Restorative Policy Support by Political Orientation in Study 2"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1,3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+</details>
+
+```{r figs-restorative-study2, eval = TRUE, out.width = "70%", fig.cap="Restorative Policy Support by Condition and Political Orientation in Study 2.", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/rest_half.stats_s2.png","/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/rest.c.pol3_int.apa_s2.png"))
+```
+
+### H3a. Symbolic racism {-}
+
+```{r sr-aov-table-study2, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s2$condition.f) <- contr.sum
+# contrasts(s2$race.f) <- contr.sum
+# contrasts(s2$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+sr_aov_s2 <- lm(sr.s ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+sr_aov.summ_s2 <- car::Anova(sr_aov_s2)  %>% 
+  tidy(sr_aov.summ_s2) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+sr_aov.summ_s2 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Symbolic Racism by Condition in Study 2"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F)
+```
+
+### H3b. Symbolic racism by political orientation {-}
+
+```{r figs-sr-study2, eval = TRUE, out.width = "70%", fig.cap="Symbolic Racism by Condition and Political Orientation in Study 2.", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sr_half.stats_s2.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sr.s.pol3_int.apa_s2.png"))
+```
+
+
+```{r sr-pol-aov-table-study2, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s2$condition.f) <- contr.sum
+# contrasts(s2$race.f) <- contr.sum
+# contrasts(s2$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+sr.pol_aov_s2 <- lm(sr.s ~ condition.f * political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+sr.pol_aov.summ_s2 <- car::Anova(sr.pol_aov_s2)  %>% 
+  tidy(sr.pol_aov.summ_s2) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+sr.pol_aov.summ_s2 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Symbolic Racism by Condition in Study 2"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F)
+```
+
+<details><summary>**Contrasts**</summary>
+```{r sr.pol3-contrast-study2, fig.cap = "Contrasts of Symbolic Racism by Political Orientation in Study 2", eval = TRUE}
+sr.pol3_ols_s2 <- lm(sr.s ~ critical.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s2)
+
+sr.pol3_emm_s2 <- emmeans(sr.pol3_ols_s2, ~ political3.f * critical.f, at = list(s2$critical.f, s2$political3.f))
+
+sr.pol3_contrast_s2 <- contrast(sr.pol3_emm_s2, adjust = "mvt", at = list(s2$critical.f, s2$political3.f))
+
+sr.pol3_contrast_s2[4:6,] %>% 
+  kable(booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Symbolic Racism by Political Orientation in Study 2"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1:3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+</details>
+
+### H4a. Mediation by symbolic racism {-}
+
+#### Punitive {-}
+
+```{r figs-pun-sr-med-study2, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation diagrams of the critical effect on punitive policy support through symbolic racism in Study 2.", fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sr_med.pun.cov.chart_s2.pass.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sr_med.pun.cov.plot_s2.pass.png"))
+```
+
+#### Restorative {-}
+
+```{r figs-rest-sr-med-study2, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation diagrams of the critical effect on restorative policy support through symbolic racism in Study 2.", fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sr_med.rest.cov.chart_s2.pass.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sr_med.rest.cov.plot_s2.pass.png"))
+```
+
+## Discussion
+
+Regression analyses controlling for demographic variables revealed that, compared to the latter two conditions, participants in the critical condition reported less support for punitive policies to address gun violence and greater support for restorative policies. 
+The critical effect on restorative support was weaker compared to  punitive support. 
+The critical narrative also reduced agreement with modern anti-Black statements compared to the naïve condition. 
+This result along with the reduction in symbolic racism suggests that critical narrative can lower anti-Black affect as it relates to the specific context discussed (i.e., CGV) and as it relates to more general anti-Black attitudes. 
+The results suggest that naïve attempts to signal anti-racist values by just blaming problems on structural racism is insufficient to shift attitudes across the political spectrum, merely calling out systemic racism is not sufficient to replicate the main effects on punitive policy support, restorative policy support, or racial attitudes. 

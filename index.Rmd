@@ -1,0 +1,287 @@
+--- 
+title: "Critical Racial Narratives Counter Psychological and Structural Barriers to Equity"
+author: "Cintia P. Hinojosa"
+date: "Last compiled on `r format(Sys.time(), '%b %d, %Y')`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [dissertation-book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+cover-image: images/dissertation-titleslide.png
+description: |
+  Narratives on politically contentious topics, such as racism and gun violence, trigger polarizing attitudes that impede equitable policy solutions while exacerbating patterns of systemic harm against historically-marginalized communities. This dissertation adopts community gun violence as a problem space for conducting a mixed-methods investigation of how to leverage the power of critical consciousness (i.e., understanding how intersecting systems of power influence behavior and societal outcomes) to increase public support for responses seeking to repair inequities and empower affected youth to engage with protective, prosocial behaviors. In Chapter 1, a series of online experimental studies examine how critical narratives on gun violence in some \"poor communities of color\" can shift racial attitudes and policy preferences across political orientation. Chapter 2 presents the development and proposed experimental evaluation of a critical narrative on youth violence prevention using design-thinking and participatory methods. Compared to traditional youth behavior change narratives, the critical narrative seeks to promote protective behaviors by reframing gun carrying as playing into racist narratives and scaffolding civic engagement as an empowering path to fight back.
+link-citations: yes
+biblio-style: apalike
+csl: apa7.csl
+always_allow_html: true
+# github-repo: rstudio/bookdown-demo
+# header-includes:
+  # - \definecolor{honeydew}{HTML}{F0FFF0}
+  # - \definecolor{mistyrose}{HTML}{FFE4E1}
+output:
+  rmdformats::robobook:  
+    self_contained: true
+    toc_depth: 2
+    toc_float: 
+      collapsed: FALSE
+    lightbox: true
+    gallery: true
+    highight: tango
+    code_folding: true
+    fig_caption: true
+    code_download: true
+    use_bookdown: true
+    css: style.css
+    download: ["pdf", "epub"]
+  pdf_document: default
+  bookdown::gitbook: 
+    css: style.css
+    split_by: section
+    config:
+      self_contained: true
+      download: ["pdf"]
+      search:
+        engine: lunr # or fuse
+      sharing:
+        facebook: false
+        github: false
+        twitter: false
+        linkedin: false
+        weibo: false
+        instapaper: false
+        vk: false
+        whatsapp: false
+      info: true
+---
+
+# DISSERTATION {-}
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'),}
+knitr::include_graphics('images/dissertation-titleslide.png', dpi = NA)
+```
+
+
+## Abstract {-}
+
+Narratives on politically contentious topics, such as racism and gun violence, trigger polarizing attitudes that impede equitable policy solutions while exacerbating patterns of systemic harm against historically-marginalized communities. This dissertation adopts community gun violence as a problem space for conducting a mixed-methods investigation of how to leverage the power of critical consciousness (i.e., understanding how intersecting systems of power influence behavior and societal outcomes) to increase public support for responses seeking to repair inequities and empower affected youth to engage with protective, prosocial behaviors. In Chapter 1, a series of online experimental studies examine how critical narratives on gun violence in some \"poor communities of color\" can shift racial attitudes and policy preferences across political orientation. Chapter 2 presents the development and proposed experimental evaluation of a critical narrative on youth violence prevention using design-thinking and participatory methods. Compared to traditional youth behavior change narratives, the critical narrative seeks to promote protective behaviors by reframing gun carrying as playing into racist narratives and scaffolding civic engagement as an empowering path to fight back.
+
+<details>
+```{r setup-index, eval = TRUE}
+# setup knitr options (documentation here: https://yihui.org/knitr/options/)
+library(knitr)
+library(rmdformats)
+
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed
+                      , eval = FALSE # T if running code from scratch; F if rendering output from saved workspace
+                      , echo = FALSE
+                      , message = FALSE
+                      , warning = FALSE
+                      , fig.show = 'hold'
+                      , fig.align = 'center'
+                      , fig.path = '/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/fig-'
+                      , dev = "png"
+                      )
+
+options(
+        knitr.duplicate.label = "allow" # use if rendering Merge-Knit
+        , knitr.graphics.auto_pdf = FALSE # better images
+        , scipen = 999 # eliminates scientific notation
+        , digits = 3
+        )
+```
+
+
+```{r image-link-function, eval = TRUE}
+# create function to make an image with a hyperlink
+library(htmltools)
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image, target="_blank",...)
+    )
+} # image_link(image_file, url, width = "49%")
+
+# alternative inline code ----
+# Formula: ![Alt text](Web link or path)
+# Example: ![Image name](img/image.png)
+# Example: ![Image name](http://www.host.com/image.png)
+```
+
+```{r libraries-index, eval = TRUE}
+## BASICS ----
+pacman::p_load(knitr
+  , tidyverse, tidyr, magrittr
+  , dplyr # names() dplyr# as_tibble()
+  , broom # data cleaning
+  , ggplot2 # foundational graphs package
+  , psych, psychTools # useful basic commands for analysis/output
+  , ltm # ltm() cronbach.alpha()
+  , interactions # for interaction graphs
+  , kableExtra # format kable tables
+  , papaja # APA style output command and PDF render option
+  , sjPlot # view_df()
+  , caret, afex, tufte, car # I forget what these do
+  , rmdfiltr
+)
+
+## READING IN DATA ---- 
+pacman::p_load(
+  qualtRics # read_survey()
+  , haven # read_spss(), labelled(), as_factor()
+  , utils # read.csv()  write.csv()
+  # , foreign # read.dta(), read.spss()
+  # , readstata13, readxl, read_excel
+  # , rtiffs
+  # , viewenhance
+  # , DataEditR
+)
+
+## LABEL ----
+pacman::p_load(
+  sjlabelled, labelled
+  # , surveytoolbox
+  # , tinylabels
+)
+
+## ANALYZE ----
+pacman::p_load(
+  apastats # outputs in APA format
+  , rstatix # useful for tweaking analyses/output commands
+  , emmeans # calculate estimated marginal means and contrasts
+  , ggExtra, ggfortify, ggeffects, ggsci, ggsignif # 
+  , Metrics # eval models
+  # , finalfit
+  # , bwrappers # Mike Kardas's package for basic analyses/output
+)
+
+## ---- PLOTS
+pacman::p_load(
+  ggExtra, ggfortify, ggcorrplot, ggeffects, ggsci, ggsignif, ggstatsplot
+  # , gghalves, gginference, ggiraph, ggiraphExtra, ggpmisc, ggrepel
+  # , sjPlot # loaded in basics
+  , sjmisc
+  , grid, gridExtra
+  , corrgram # nice correlation plots
+  # , introdataviz
+  # , DiagrammeR
+  # , flexdashboard
+  # , lattice, latticeExtra
+  # , latex2exp
+  # , patchwork
+) 
+
+## ---- OUTPUT
+pacman::p_load(
+  codebook
+  # , DT
+  , rempsyc # ggsave()
+  # , summarytools # loaded in BASICS
+  # , frequency # loaded in BASICS
+  , descr, DescTools
+  , compareGroups, arsenal, rstatix
+  # , apaTables # loaded in BASICS
+  , table1
+  , flextable
+  , flexplot
+  , xtable
+  # , htmlTable
+  # , gtsummary
+  # , epiDisplay # tab1 for pretty, easy frequency tables,
+  # , papeR
+  # , reactable, visualize
+  # , corx
+)
+
+## ---- MEDIATION
+pacman::p_load(
+  mediation
+  # , psych, psychtools # loaded in BASIC
+  # , jtools # get_
+  # , lavaan, mma
+  # , lme4
+  # , nlme, rstanarm
+  # , robmed
+  # , processr
+  # , QuantPsyc
+)
+
+## ---- PCA
+# pacman::p_load(VIF, GPArotation, FactoMineR, factoextra, Factoshiny, nFactors)
+require(factoextra)
+
+## ---- TEXTANALYSIS
+# pacman::p_load(
+# SADCAT, quanteda, stringr
+# )
+
+## ---- PUBLISH
+pacman::p_load(
+  tinytex
+  , citr
+  , texPreview # print latex to HTML with ```{texpreview, echo = FALSE}
+  # , printr  # prints latex tables for table1() (?)
+  # , tippy
+)
+library("pandocfilters")
+# papaja::r_refs("r-references.bib")
+# papaja::r_refs("dissertation-proposal-bib.bib")
+# library(bookdown)
+# library(rticles)
+# library(pagedown)
+# library(thesisdown)
+# library(magick)
+
+## ---- WRITING
+#install.packages("hunspell")
+#devtools::install_github("nevrome/wellspell.addin") # spellcheck() gramcheck()
+#devtools::install_github("nevrome/LanguageToolR")
+#LanguageToolR::lato_quick_setup()
+
+## ---- OTHER
+#pacman::p_load(formatR, esquisse, beepr, webshot, moderndive)
+```
+
+```{r load-index, eval = TRUE, echo = FALSE}
+# 1-KEYS & FUNCTIONS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-keys.RData")
+
+# 2-CLEANED DATASETS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/s1.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/s2.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/s3.RData")
+
+# 3-CLEANED STUDY WORKSPACES ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s1.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s2.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s3.RData")
+
+# 4-COMBINED CLEANED WORKSAPCE FOR ANALYSES & PLOTS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-starter.RData") # use to start chstudy1-si code
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-workspace.RData") # to be updated up to chstudy3-si
+
+# 5-CLEANED DATA SAVED AFTER ANALYSES & PLOTS ---------------------------
+load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-workspace.RData")
+
+# ROUND NUMERIC VARS
+# s1 <- s1 %>% mutate_if(is.numeric, round, digits = 3)
+```
+</details>
+
+```{js, echo = FALSE}
+(function() {
+  var codes = document.querySelectorAll('pre:not([class])');
+  var code, i, d, s, p;
+  for (i = 0; i < codes.length; i++) {
+    code = codes[i];
+    p = code.parentNode;
+    d = document.createElement('details');
+    s = document.createElement('summary');
+    s.innerText = 'Details';
+    // <details><summary>Details</summary></details>
+    d.appendChild(s);
+    // move the code into <details>
+    p.replaceChild(d, code);
+    d.appendChild(code);
+  }
+})();
+```
+

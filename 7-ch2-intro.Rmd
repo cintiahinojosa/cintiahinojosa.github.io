@@ -1,0 +1,104 @@
+# (PART) CHAPTER 2 {-}
+
+# Using Critical Narratives to Engage Youth in Engage Youth in Violence Prevention {-}
+
+## Introduction {-}
+
+A critical approach can compliment youth violence intervention programs that offer individual support services by increasing the appeal of prosocial engagement by using narratives that are (1) critically-conscious and (2) tailored to youths' experiences. 
+Specifically, I expect a critical narrative to change how societal problems, like poverty and CGV, are understood by the youth living in affected neighborhoods. 
+A narrative that can increase critical consciousness and the appeal of community engagement as a means to address the system-level risk factors for violence. 
+I propose to test the effect of a critical narrative that exposes how gun violence is a product of structural racism and a tool of oppression against communities of color. I plan to do this by (a) aligning the narrative with adolescent values, (b) promoting critical consciousness to address the overlooked structural contributors to CGV, (c) developing skills that empower youth to navigate these structures, and (d) inviting youth to join the present research project as intellectual contributors. The following section describes the assumptions behind the present approach.
+
+### Critical components for adolescent behavior change {-}
+
+#### Alignment with adolescent values {-}
+
+Traditional approaches to youth behavior change tend to be effective for children but fail to persuade adolescents [@Hardy2002; @Yeager2018]. 
+A common approach to dissuade risky behavior among teens is to appeal to self-interest by reminding them to make smart choices that will pay off in the future. 
+This approach conflicts with the values associated with adolescence as a developmental stage, such as asserting autonomy, gaining respect from peers, and having a purpose that is greater than oneself, like social justice [@Yeager2018; @Dahl2018; @DamonMenonBronk2003]. Developing a sense of purpose that fuels social justice-oriented actions is a promising approach to behavior change. 
+Adopting prosocial behavior to fight against unfair problems satisfies adolescent desires to cultivate a sense of purpose in a way that takes a stand against unfair societal conditions, which is also likely to earn respect from other like-minded peers [@Bryan2016; @Bryan2019; @DamonMenonBronk2003].
+<!-- Developing a sense of purpose that fuels social justice-oriented actions is a promising approach to behavior change because it satisfies adolescent desires to cultivate a sense of purpose in a way that takes a stand against unfair societal conditions, which is also likely to earn respect from other like-minded peers [@Bryan2016; @Bryan2019; @DamonMenonBronk2003].  --><!-- There is also neurodevelopmental support for the idea of leveraging developmentally-primed dispositions to positive risk taking in adolescence [@Duell2019; @Telzer2017].  -->
+
+#### Promote critical consciousness {-}
+
+Recent political campaigns to ban CRT in classrooms advocate for colorblind curricula, arguing that discussing racial inequality upsets youth and is irrelevant.
+Educational and psychological research investigating the impact of critical education, however, has found many benefits for youth. 
+Although racism is upsetting, critical consciousness prepares youth to understand how society is structured, fosters adaptive coping skills in response, and motivates prosocial action towards social justice [@Freire1970; @Freire1974]. 
+Critical consciousness has also been connected to greater academic engagement and career aspirations among youth with low socioeconomic status, which suggests that developing critical sociopolitical analysis skills may be a potential pathway towards greater socioeconomic mobility [@Diemer2006; @Diemer2008; @Kenny2018 ; @Rapa2018]. 
+<!-- Although awareness of racial inequality has been linked with negative consequences for youth of color, colorblind narratives that limit education about racial issues are not an appropriate answer.  --><!-- An alternative approach to colorblind narratives on inequality is to equip young people to understand and challenge this reality through critical reflection and social engagement.  --><!-- Developing critical consciousness in at an early age can foster adaptive skills for coping with racial inequality and its downstream psychological effects [@Diemer2016; @Freire1970; @Hope2016; @Hope2017; @HopeBanales2019; @Watts2011]. These skills are intended to prepare members of marginalized groups to understand how society is structured, reflect on the underlying causes of current conditions, and to inspire a sense of individual and collective responsibility for citizens to take action towards social justice [@Freire1970; @Freire1974].  --><!-- Past research has found that using critical consciousness as an empowerment strategy heightens adolescents' sense of social responsibility, self-efficacy, and academic engagement [@Banales2018; @Diemer2016; @Ginwright2002; @HopeBanales2019; @Kozan2017; @Rapa2018; @Watts2007].  --><!-- Critical consciousness has also been connected to greater career aspirations among youth with low socioeconomic status, which suggests that developing critical sociopolitical analysis skills may be a potential pathway towards greater socioeconomic mobility [@Diemer2006; @Diemer2008; @Kenny2018 ; @Rapa2018].  -->
+
+#### Harness benefits of civic engagement {-}
+
+A critical narrative that promotes civic engagement through raising critical consciousness has multiple benefits: (1) it offers a constructive path for youth to feel empowered and respected, (2) it is an adaptive psychological coping mechanism for facing community violence and racial discrimination, and (3) foster social and physical protective factors against CGV. 
+Civic engagement is an ideal example of positive-risk taking because it provides an array of positive developmental supports, such as a strong social network with positive role models, structured activities, skill-building opportunities, and the pursuit of goals that are personally meaningful. 
+When adolescents participate in goal-oriented, collective action, they experience a sense of belonging and social support that bolsters self-esteem and positive adjustment to challenging experiences [@Galatzer-Levy1993; @Hope2016; @Lozada2016]. 
+In addition, a prominent risk factor for exposure to violence is how much time youth spend unsupervised. Increased participation in community organizations will widen youth’s social support network to include prosocial role models. 
+
+#### Reframe the construal of guns and respect {-}
+
+<!-- Guns are often regarded as a protective tool and symbol of power by young boys who must navigate dangerous neighborhoods where those who are unarmed can feel vulnerable [@Fontaine2018; @Stewart2011; @Wilkinson2003].  --><!-- Unfortunately, gun carrying and the presence of guns significantly increases the likelihood of becoming a victim of gun violence.  --><!-- I intend the critical narrative to reframe gun carrying from a sign of respect to a sign of playing into an unjust power structure built to subvert the collective power within communities of color.  --><!-- This framing is expected to be powerful because it casts guns in opposition to adolescents' strong developmentally-heightened drive for autonomy from external control and the pursuit of prosocial purpose [@DamonMenonBronk2003; @Yeager2017].  -->
+Guns are often regarded as a protective tool and symbol of power by young boys who must navigate dangerous neighborhoods where those who are unarmed can feel vulnerable [@Fontaine2018; @Stewart2011; @Wilkinson2003]. 
+Unfortunately, gun carrying and the presence of guns significantly increase the likelihood of becoming a victim of gun violence [@Lu2019]. 
+I intend the critical narrative to reframe gun carrying from a sign of respect to a sign of playing into an unjust power structure built to subvert the collective power within communities of color. 
+Rather than viewing guns as a symbol of power, the critical narrative encourages adolescents to question how gun violence and gun carrying feed into systems of white supremacy. 
+This framing is expected to be powerful because it casts guns in opposition to adolescents' strong developmentally-heightened drive for autonomy from external control and the pursuit of prosocial purpose [@DamonMenonBronk2003; @Yeager2017]. 
+I expect this new construal will reduce the appeal of gun carrying to avoid signaling that they are playing into a racist power structure and increase the appeal of engaging with community organizing as a path to power. 
+Although gun carrying increases the risks of harm, they fill an immediate need for physical and psychological safety associated with living among CGV. 
+We offer civic engagement as a potential path to fill this need, given its psychological benefits and behavioral benefits. 
+The critical message is also designed to redirect frustration from confronting racial inequality to motivation to challenge it through prosocial, civic engagement. 
+
+
+## A mixed-methods approach to intervention research {-}
+
+<!-- Qualitative methods uncover insights are invaluable considering the general ineffectiveness of adolescent behavior change programs [@Suleiman2017; @Walton2019].  -->
+I discuss how the use of design-thinking and youth participatory action research (hereafter YPAR) allow marginalized stakeholders to meaningfully contribute to the design, implementation, and impact of research programs. <!-- It is essential to engage in equitable partnerships with existing community organizations.  -->
+<!-- A compelling and meaningful evaluations of behavioral programs is built on maintaining connections with members of the affected communities.  -->
+
+#### Participatory research methods {-}
+
+I will also use participatory methods to develop the critical narrative materials to meet this goal. 
+Participatory research invite members of the intended participant population to offer valuable expertise in their  experience of the world in which researchers study. 
+Participatory research methods give members of the relevant population greater control over the research process to ensure that the research processes and products provide benefits as defined by the community. 
+Collective engagement and theory-building between researchers and group members with relevant lived experiences help to bring about insights that would otherwise be washed out in traditional approaches that were developed in an inequitable context [@Lewin1958].
+This approach also facilitates a full cycle of research that can reveal evidence-based insights for designing appropriate programs and policies. 
+<!-- Participatory knowledge creation improves intervention development because it's wise to the contextual factors surrounding the issue.  -->Through the use of youth-led participatory group discussions, this research would provide evidence for an authentic, multi-dimensional view of participants' experiences with CGV. <!-- This added element [holds researchers accountable/pushes us as researchers] to situate our theories of change and study designs within the [socioecological/historical, political, socioeconomic, cultural] context. --> This inclusive approach can be especially powerful when the problem being investigated uniquely impacts certain groups, such as adolescents who are traditionally denied opportunities to participate in meaningful decisions. <!-- As a developmental stage, adolescence heightens desires for independent thought and exploration.  --><!-- This developmental stage also affords adolescents with fresh insights that are often dismissed or bogged down as one assimilates into the dominant cultural norms of adulthood in the U.S. -->
+
+<!-- new 11/7/22 -->
+One challenge with conducing YPAR research as psychological researchers is that participatory research has been developed, explored, and applied in contexts that includes relationship building, such as schools or community programs.
+While I continue to strive to build relationships, I want to do so meaningfully and the constraints of my position in a graduate school program and my general disconnection from this problem space exacerbated this problem.
+So, I pulled from my background in designing wise psychological interventions to explore how I could scaffold youth-led research contributions through brief, iterative design sessions.
+One downside of this approach is that the full cycle of YPAR researchers engages youth as co-investigators starting with guiding them to identify the research problems they would like to investigate.
+Given our funding and established scope of the project, I seek to highlight YPAR goals and practices within these parameters to include youth in iterative cycles of interpreting and gathering data to build a the final intervention design.
+
+So, one strategy I'm using is to conduct workshops with youth who are 1) already interested in solving problems about community gun violence and racism, and 2) to supplement their ideation processes by providing an initial set of qualitative stimuli based on our a priori hypotheses about what would make for an effective youth violence prevention message.
+This stack of stimuli can also include real and crafted material from traditional youth violence prevention material to reduce the amount of researcher bias in how the youth build their representations of the problems and solutions to gun violence.
+
+#### Human-centered design-thinking methods {-}
+
+A key to creating long-term behavior change is to create a message that aligns with adolescents’ psychological motivations and connect it to their identity and surrounding sociocultural environment. 
+I intend to use design-thinking to develop an intervention approach that is wise to the lived experiences of youth exposed to CGV. 
+Design thinking methods are structured to suspend normative influences that restrain imaginative solutions [@IDEO2011]. 
+Psychologists have used design-thinking to create strategic interventions to target psychology in a way that catalyzes recursive psychological processes, which compounded into significant changes in the racial disparity in academic outcomes and in healthy eating behavior [@Bryan2016; @Bryan2019; @Yeager2013a; @Yeager2016; @Yeager2022; @IDEO2011]. 
+ 
+
+### Hypotheses {-}
+
+```{texpreview, echo = FALSE}
+\begin{enumerate}
+\small
+\item[H1.] Participants in the critical condition will report greater interest in joining youth community programs (a) and in attending a novel youth violence prevention program offered by the research team (b). \
+\item[H2.] Participants in the critical condition will show greater participation in local community programs (a) and in the novel youth program (b). \
+\item[H3.] Participants in the critical condition will report more negative attitudes towards guns as measured using self-reported surveys (a) and implicit affect using an affect misattribution procedure (b). \
+\item[H4.] Participants in the critical condition will report greater agreement with construals of a youth activist as an identity that is personally appealing (a), respected among peers (b), and a way to assert independence (c). \
+\end{enumerate}
+```
+
+
+```{=latex}
+\begin{enumerate}
+\item[H1.] Participants in the critical condition will report greater interest in joining youth community programs (a) and in attending a novel youth violence prevention program offered by the research team (b). \
+\item[H2.] Participants in the critical condition will show greater participation in local community programs (a) and in the novel youth program (b). \
+\item[H3.] Participants in the critical condition will report more negative attitudes towards guns as measured using self-reported surveys (a) and implicit affect using an affect misattribution procedure (b). \
+\item[H4.] Participants in the critical condition will report greater agreement with construals of a youth activist as an identity that is personally appealing (a), respected among peers (b), and a way to assert independence (c). \
+\end{enumerate}
+```

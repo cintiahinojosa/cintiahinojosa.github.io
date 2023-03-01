@@ -1,0 +1,27 @@
+delete_merged_file: false
+book_filename: "dissertation-hinojosa.Rmd"
+output_dir: "dissertation-hinojosa"
+#new_session: false
+language:
+  ui:
+    chapter_name: ""
+rmd_files: ["index.Rmd"
+# , "keys.Rmd"
+, "1-ch1-intro.Rmd"
+, "2-ch1-study1.Rmd"
+, "3-ch1-study2.Rmd"
+, "4-ch1-study3.Rmd"
+, "5-ch1-study4.Rmd"
+, "6-ch1-discussion.Rmd"
+, "7-ch2-intro.Rmd"
+, "8-ch2-study1.Rmd"
+, "10-ch2-study2.Rmd"
+, "11-ch2-discussion.Rmd"
+, "12-ch1-study1-si.Rmd"
+, "13-ch1-study2-si.Rmd"
+, "14-ch1-study3-si.Rmd"
+, "15-ch1-study4-si.Rmd"
+, "16-ch2-study1-si.Rmd"
+, "17-ch2-study2-si.Rmd"
+, "references.Rmd"
+]

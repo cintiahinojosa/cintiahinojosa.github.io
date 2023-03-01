@@ -1,0 +1,129 @@
+# Study 2: Experimental evaluation of a community-based critical youth violence prevention approach compared to standard practice {#ch2study2}
+
+<!---
+## Abstract 
+--->
+
+<!---
+## Introduction {#ch2study3-intro .unnumbered}
+
+### Benefits of SEL programs and how it increase its appeal
+[@Jagers2019]
+--->
+
+## Proposed study 
+
+Study 2 is a proposed pilot randomized controlled trial (N = 300) that will evaluate strategies for motivating youth to join a youth program that advocates for safety against gun violence and related attitudes. Youth participants will be asked to watch an information session describing the program using one of two narratives. The control condition will present a traditional violence prevention narrative that is naïve to youths' values and experiences with CGV. The treatment condition will present a critically-conscious narrative that was designed alongside youth exposed to CGV from [Study 1](#ch2study1). At the end of the information session, I will ask participants to complete a survey that includes related measures, including self-report attitudes, an implicit associations measure, and options to sign-up for the advertised youth program and related opportunities from partnering community organizations. 
+<!-- Study 2 evaluates the effectiveness of the intervention message compared with a more traditional gun violence prevention message. Using a randomized controlled trial, I will observe differences in participant attitudes and behaviors regarding the appeal of guns and civic engagement between the two programs. -->
+
+Compared to the control condition, I hypothesize that participants who receive the critical narrative will have (H1) greater interest in joining youth community programs (a) and in attending a novel youth violence prevention program offered by the research team (b); (H2) have greater participation in local community programs (a) and in the novel youth program (b); (H3) report more negative attitudes towards guns as measured using self-reported surveys (a) and implicit affect using an affect misattribution procedure (b); and (H4) report greater agreement with construals of a youth activist as an identity that is personally appealing (a), respected among peers (b), and a way to assert independence (c).
+<!-- I also expect that (H3) the critical narrative participants will be more likely to construe community activism as an appealing behavior that is respected among their peers and a path to assert independence.  -->
+<!-- Pending IRB approval and grant funding, I am also considering tracking participant outcomes for 5 or more years after the study through public records and relationships with partnering community organizations. -->
+<!-- ## Research design  --> 
+
+## Procedures 
+
+<!-- #### Participants -->
+Youth ages 11 to 15 currently residing in Chicago neighborhoods with high rates of gun violence will be asked to participate in a 1-hr study about community safety and offered a $35 e-gift card for compensation. 
+<!-- The study announcement will shared through our partnering organizations and will offer participants a $35 e-gift card after the study.  -->
+<!-- Decisions for eligible neighborhoods were made based off of recommendations from partnering youth-serving organizations and reports of shootings from the Chicago Police Department public database. The age bracket is subject to change based off of qualitative insights from [Study 1](#ch2study1) and access to participant pools through partnering local organizations and schools.  -->
+<!-- Participants will be recruited to join a 1-hr study about community safety and violence prevention.  -->
+<!---I will ask for parent/guardian and participant consent (at least two weeks in advance of the first survey. If possible, the first survey round will be presented through the partnering organization, to create a more familiar environment without researcher involvement.---><!-- Before starting the experimental information session, letters and in-person explanations will be given to inform participants and their parents of the study and explain that students may withdraw at any time without penalty.  -->
+<!-- This study will use an informational video to deliver the experimental intervention messages that are designed to motivate participation in positive youth engagement programs.  -->
+After collecting parental consent and adolescent assent, participants will be given pre-survey questions to measure baseline attitudes before viewing the randomly-assigned material. Participants will be randomized on an individual level through the survey logic to view the critical or control version of the video using an iPad with headphones. 
+<!-- The research team will be introduced special guests who are asking local youth for their expert, yet often overlooked, opinions on what a kinds of violence prevention programs will best support young Chicagoans.  -->
+The survey will then present a 20-minute video that encourages youth to get involved in prosocial, community-based programs related to violence prevention, civic engagement, employment-seeking support, and personal development.
+After viewing the video, the survey will ask students to <!-- write about why they think the quoted individuals reacted in that manner to have them indirectly consider the underlying motivations.  --><!-- It will then ask students to  -->think and write about behaviors that could help reduce gun violence in their communities, with the critical material highlighting prosocial civic behaviors and the control material highlighting traditional violence prevention strategies. 
+<!-- This writing exercise will help leverage any motivation to “do something” while the feeling is still fresh and solidify a potential plan for action.  -->After the writing exercises, the survey will ask all participants if they would like to participate in the youth violence prevention program shown in the video. Then, the survey will ask participants to answer the survey measures described below and conclude with the AMP task. 
+
+I will send participants invitations to the youth program at least one week after they complete the first survey. The youth program will be scheduled in advance and will provide multiple opportunities for participants to join in-person and online. I will track participants' attendance at the youth program along with self-reported behaviors and attitudes through bi-weekly follow-up surveys.
+
+## Materials  
+
+Feedback from focus group participants will be used to ensure the language used in the material is communicated properly, at the appropriate reading level, and engaging. The control materials will be based on traditional gun violence prevention programs that focus on individual reasons and consequences of using guns. Research assistants and focus group participants will pre-test the reading material in both programs to be similar in length, appearance, and reading level.
+
+#### Critical narrative 
+
+We will use the treatment program developed from [Study 1](#ch2study1). To communicate that the new information is valued by like-minded peers, the reading material will be supplemented by positive, true reactions from participants collected in focus groups.
+
+```{r figs-treat, echo = FALSE, out.width = "33%", fig.cap = "Screenshots of the pilot material for the critical treatment condition.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+#"images/ch2study1-pilot-sep2022/Slide2.png" #young chicagoans
+#, "images/ch2study1-pilot-sep2022/Slide3.png" 
+#, "images/ch2study1-pilot-sep2022/Slide5.png" 
+ "images/ch2study1-pilot-sep2022/Slide6.png" #title
+#, "images/ch2study1-pilot-sep2022/Slide7.png" #racism
+#, "images/ch2study1-pilot-sep2022/Slide8.png"
+#, "images/ch2study1-pilot-sep2022/Slide16.png" #redlining
+, "images/ch2study1-pilot-sep2022/Slide31.png" #news 
+, "images/ch2study1-pilot-sep2022/Slide38.png" #take power back
+#, "images/ch2study1-pilot-sep2022/Slide44.png" #muscle
+#, "images/ch2study1-pilot-sep2022/Slide45.png" #no parks
+#, "images/ch2study1-pilot-sep2022/Slide50.png" #indigo
+))
+```
+
+#### Traditional narrative
+
+The control program video is modeled after traditional youth violence prevention approaches that use moral- and fear-based appeals that emphasize the importance of practicing non-violence to avoid negative life outcomes. 
+<!-- This approach encourages youth to avoid socializing with peers who are in gangs or carry guns and to avoid clothing choices that may signal gang affiliations. It includes tips to adopt safe habits, such as thinking before reacting, traveling in groups, staying in well-lit areas, and to contact police and trusted adults when feeling threatened or witnesses a threat to others' safety (i.e., "see something, say something".)  -->
+The video will end with quotes from parents, teachers, and police officers about how youth are overreacting to disrespect and need to think about their futures. 
+<!-- The control version will not include language or messages that overlap with themes of the critical narrative. The critical edge of the youth engagement program will not be shown to participants who view the program video for the control condition. -->
+
+```{r figs-control, echo = FALSE, out.width = "33%", fig.cap = "Screenshots of the pilot material for the control treatment condition.", fig.show='hold', fig.align='left'}
+knitr::include_graphics(c(
+"images/ch2study3-control/Slide2.png" #title
+, "images/ch2study3-control/Slide8.png" #causes
+#, "images/ch2study3-control/Slide15.png" #violence prev
+#, "images/ch2study3-control/Slide20.png" #strategies
+#, "images/ch2study3-control/Slide24.png" #community
+, "images/ch2study3-control/Slide28.png" #whitecop
+#, "images/ch2study3-control/Slide29.png" #speaking out
+))
+```
+
+#### Critical youth engagement program
+
+The youth program will consist of educational content and lessons from local community organizers and individuals who have youth-focused skill-building lessons to impart. This may include:
+
+ -  critical history lessons
+ -  mutual aid and community organizing
+ -  youth participatory action research methods
+ -  leadership and group facilitation
+ -  Socioemotional development and conflict resolution
+
+## Measures 
+
+#### Interest and participation in prosocial activities 
+   
+*Critical youth engagement program.* Participants will be asked to rate their interest in joining the youth program described in the experimental information session on a scale from 1 (not at all) to 5 (extremely). I will contact all participants after the study to invite them to join the program, assist in scheduling, and track their attendance rates.
+
+*Local community-based programs.* The survey will ask about participants' interest in participating in structured youth programs that offer opportunities related to community organizing, leadership training, job-related support, conflict mediation, socioemotional development, and other positive activities. Local partnering organizations presented to participants will assist in tracking participant attendance and related behaviors of interest.
+
+#### Construal of guns and gun carrying
+
+Seven questions will be combined to measure participants’ construal of gun carrying as an appealing signal of respect. These questions will explore if participants will perceive avoiding guns as asserting their autonomy or falling in line with social norms.
+<!-- Three questions will ask how negative or positive participants feel towards being around guns, having family or friends carrying guns, and personally carrying a gun in the future on a scale from 1 (extremely negative) to 5 (extremely positive). Two questions will ask how much participants respect people who carry guns and how much they think their peers respect people who carry guns on a scale from 1 (not at all) to 5 (very much). Two questions will measure how strongly participants perceive avoiding gun use as an assertion of autonomy.  -->
+
+#### Attitudes towards violence
+A composite of items adapted from [@Dahlberg2005] will measure participants' beliefs about (a) aggressive behavior and (b) use of non-violent strategies in response to a hypothetical fight. Alternatively, I could work with youth participants in [Study 1](#ch2study1) to develop an engaging, visual “pick your own path” story that records participants’ decisions in a scenario that offers opportunities to choose whether to join peers who are engaged with community activism versus peers who carry guns. 
+
+#### Attitudes towards civic engagement
+
+Five questions from the Civic Attitudes Scale will be used to measure participant attitudes towards civic engagement [@Voight2013]. 
+
+#### Affect misattribution procedure (AMP)
+
+The affect misattribution procedure is an implicit measure of positive and negative associations between visual stimuli [@Payne2005]. Pending participant feedback when developing materials from [Study 1](#ch2study1), the AMP will measure positive and negative feelings associated with images of weapons and control images of neutral everyday items like a toothbrush [@Nosek2007]. The AMP will be loaded on tablets and ask participants to tap whether they feel "pleasant" or "unpleasant" towards images of symbols for 150 trials. Each trial will consist of 4 stages: the target priming image (weapon vs. neutral item), a blank image, an image of a Chinese character, and a mask that remained until a response was entered. This procedure takes less than 5 minutes to complete and has been shown to be reliable and valid under many conditions, including when the participants don’t believe the cover story [@Payne2014]. 
+<!-- The AMP will first flash the target image (weapon vs. neutral item) for 75 milliseconds, followed by a black screen for 125ms, the symbol for 300ms, and a masking image of random noise until the participants respond.  -->
+<!-- ### Self-reported attitudes  -->
+<!-- Measures of related construals such as gun carrying, activism, volunteering, speaking out against violence -->
+
+<!-- ### Demographics.  -->
+<!-- I will ask parents and guardians to answer demographic questions about the participants' age, racial/ethnic identity, gender identity, household size, family income, and perceived social status.--->
+<!---
+## Analyses & Expected Results 
+An ANOVA will be used to compare the size of the difference between pre- and post-survey results between participants randomly assigned to either the treatment program or control program. In comparison to the standard approach, we expect participants in the experimental condition to score lower on the attitudes towards guns measure, indicating that they perceive gun ownership and gun use as less appealing and less associated with respect. 
+--->
+
+\clearpage

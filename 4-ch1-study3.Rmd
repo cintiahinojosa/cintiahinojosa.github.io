@@ -1,0 +1,1025 @@
+# Study 3: Critical narrative effects on neighborhood violence attributions and a zero-sum policy budget allocations {#ch1study3}
+
+<!-- 
+absolute support ignores zero sum realities of the budgeting and policymaking process. So I think you need to introduce like, there are a couple new DVDs that you that are introduced in this study that are cool DVDs, and that you can make a bigger deal out of the incremental value or getting out of the study
+Okay, we've answered this question, but like, how does it play out in a more realistic context? Where like, adding to one thing, almost always been taking away from something else? You know? And how do and how do we think about the relationship to these other outcomes? Right, just say, like, one sentence about in kind of abstract feeling language about the larger point you're trying to get at for each of those. And now you're building a strong justification for the study. 
+how are people going to think about it when like, they might support a restorative policy, but what if then the conservative politician comes along and says like, okay, but the only way to do that is cutting the cops. Like, we need to know, How committed are they to this, right, like, are they going to be like, Yeah, and we should do that, or they're going to be like, Whoa, I didn't realize that, you know, and then willingness to share. It's like, social media has a and you can easily find sites on this site has has a huge effect on people's it's like the single biggest source of news for most people's political news. So like, people's willingness to share perspective, can be really important medium by which these ideas can be diffused throughout the society and have a major influence. -->
+
+Calls for adopting restorative approaches have increasingly emphasized the need to divest from policing to minimize harm against communities of color and criticized gun violence reduction plans for prioritizing police investments as the primary response to reducing gun violence [@TheWhiteHouse2022]. Although there is wide general support for restorative approaches, some policy experts stress that policing and imprisonment are still necessary levers for violence reduction, arguing that it incapacitates repeat offenders and reduces the likelihood of sparking a cycle of violent retribution from vigilante justice [@Cook2019]. 
+To better understand how people prioritize punitive versus restorative policies, Study 3 tests how critical narratives impact policy preferences when placed in a zero-sum budget allocation task about reducing CGV. 
+Study 3 also further explores what is driving the conditional effect on policy support by examining causal attributions that do not invoke racial stereotypes. Study 3 tests whether a critical narrative on gun violence impacts policy preferences by changing whether readers attribute the cause of urban gun violence to dispositional factors (e.g., lack of work ethic, poor values) versus structural societal factors (e.g., fewer job opportunities and underfunded schools). Lastly, this study explores whether the critical narrative may impact behaviors by measuring participants' willingness to share their assigned narrative on social media and their engagement with an online petition in support of a real, community-led campaign for restorative violence prevention. I ran a 4 x 1 between-subjects study (N = `r nrow(s3)`) that compared the impact of reading a policy memo about "inner-city gun violence" through a critical narrative,  individualized narrative, a naive anti-racist narrative, and a control.
+
+
+```{texpreview, echo = FALSE}
+\begin{enumerate}
+\small
+\item[H1.] Participants in the critical condition will report reduced support for punitive policies (a). This main effect will emerge across levels of political ideology (b). \
+\item[H2.] Participants in the critical condition will report increased support for restorative policies (a). This main effect will emerge across levels of political ideology (b). \
+\item[H3.] Participants in the critical condition will express behaviors and intentions for policy support in terms of budget allocation (a), engagement with a related petition (b), and willingness to share the gun violence narrative on social media (c). \
+\item[H4.] The critical condition will increase the extent to which attribute gun violence to structural factors (a) and decrease attributions to dispositional factors (b). 
+\item[H5.] Structural attributions for CGV will partially mediate the critical main effects on reduced punitive policy (a) support and increased restorative policy support (b). \
+\end{enumerate}
+```
+
+```{=latex}
+\begin{enumerate}
+\item[H1.] Participants in the critical condition will report reduced support for punitive policies. This main effect will emerge across levels of political ideology (a). \
+\item[H2.] Participants in the critical condition will report increased support for restorative policies. This main effect will emerge across levels of political ideology (a). \
+\item[H3.] Participants in the critical condition will express behaviors and intentions for policy support in terms of budget allocation (a), engagement with a related petition (b), and willingness to share the gun violence narrative on social media (c). \
+\item[H4.] The critical condition will increase the extent to which attribute gun violence to structural factors (a) and decrease attributions to dispositional factors (b). 
+\item[H5.] Structural attributions for CGV will partially mediate the critical main effects on reduced punitive policy (a) support and increased restorative policy support (b). \
+\end{enumerate}
+```
+
+## Methods
+
+### Participants
+
+<details><summary>**Table of Participant Characteristics**</summary>
+
+```{r demos-comp-study3, eval = TRUE, fig.cap = "Descriptive Statistics of Participant Characteristics by Condition in Study 3."}
+# summary table by condition # compareGroups::
+demos_comp_s3 <- compareGroups::descrTable(condition.f ~ gender.f + race.f + political3.f + age + edu3.f + adj_income, data = s3)
+# demos_comp_s3 # print
+
+compareGroups::export2md(demos_comp_s3, width = "300px", format = "html") # print to markdown/html
+```
+</details>
+
+### Materials
+
+The manipulations for Study 3 were presented as policy memos from the University of Chicago Harris School of Public Policy. The subject line read: “Gun Violence in America’s Poor Neighborhoods of Color” and included the same fake author name used in previous manipulations. See [Study 3 Appendix](#ch1study3-si) for full materials.
+
+#### Control narrative
+
+The control memo only includes the introductory and closing paragraphs matched across conditions. The introductory paragraph explicitly sidesteps the dominant topics discussed concerning gun violence (i.e., gun control and mass shootings) to introduce the problem of gun violence in poor neighborhoods of color in major cities. The closing paragraphs present two policy approaches for reducing gun violence: a punitive approach (e.g., increased law enforcement, policing technology, harsher punishments) and a restorative approach (e.g., affordable housing regulations, funding public education, and local businesses).
+
+#### Critical narrative
+
+After the introductory paragraph, the critical memo questions why there exists a racial pattern in gun homicides and what can be done about it. It then explains how historical patterns of systemic racism contributed to this problem.
+This content of the present critical narrative differs slightly from the past iterations. I revised the paragraph discussing how policing targeted black communities for drug-related offenses to avoid triggering threats to conservative, white identities. 
+<!-- I clarified that political campaigns pressured police to over-police black communities rather than simply naming the police. This change was also made to center corrupt political systems as the driver of systemic discrimination rather than individual police officers. This change from “police” to “politicians” may still imply individual agency on the part of politicians more so than “political systems” would, for example. I stuck with “politicians” since “political systems” felt too abstract and because I think it is understood that politicians have responsibilities as architectural agents with power to shape political systems, more so than individual police officers are to policing systems. -->
+
+#### Individual narrative
+The policy memo associated with the individual condition was adapted from the news article stimuli used in Study 1. The memo content describes the “psychological roots” of gun violence and provides a social analysis, a style similar to the critical policy memo. The memo included quotes about how young boys living in violent neighborhoods are socialized to “look tough and act fast” as a defensive mechanism. The memo focuses on the individual-level behavioral risk factors of youth gun violence without explaining the structural contributors to gun violence. 
+<!-- The individual narrative was designed to be structurally similar to the critical narrative. So, I added related content about socioemotional skills and the impact of programs that provide socioemotional skills to young boys in poor neighborhoods of color. I also added sources to match the number of citations included in the critical narrative. -->
+
+#### Naïve anti-racist narrative
+
+The naïve memo amplifies the anti-racist tone of the naïve news article in Study 2 while continuing to leave out explanations of structural racism. This narrative was designed to prompt reactance against equity-oriented information by heavily signaling liberal values through the rise in "anti-racist" declarations. 
+The naive memo follows the introduction with a paragraph citing how experts have identified systemic racism as a cause of racial inequities, including gun homicides. It includes quotes calling for legislators to “acknowledge the root causes of racial inequity…[and address] racist policies that have wreaked havoc on our Black and Latinx communities”  ([Chicago Mayoral Press Release, 2021](https://www.chicago.gov/city/en/depts/mayor/press_room/press_releases/2021/june/RacismPublicHealthCrisis.html)). 
+It also describes a growing consensus among officials, institutions, and professional organizations that have called for actions “to dismantle systemic racism, racial injustice, and police brutality” ([AMA, 2020](https://www.ama-assn.org/press-center/press-releases/new-ama-policy-recognizes-racism-public-health-threat)). 
+The article includes a statement that invokes the importance of diversity, equity, and inclusion to properly understand gun violence” to amplify the anti-racist rhetoric ([Everytown, 2021](https://www.everytown.org/about-everytown/dei-antiracism-statement/)). Rather than include filler content that could introduce potential confounds, I did not attempt to match the length of the critical narrative.
+
+After reading their respective memos, the survey asked participants to summarize the policy memo in their own words and presented bullet points of key points from the reading for reference. This open-ended question was used as an attention and manipulation check. No participants were excluded based on their summaries. After summarizing, they answered a series of survey questions. After answering the main survey questions described below, participants answered sociodemographic questions, were debriefed, and compensated through Prolific.
+
+### Measures
+
+#### Violence prevention policy support 
+
+I asked participants to rate the extent to which they oppose or favor policies on a scale from 1 (strongly oppose) to 7 (strongly favor). Half of the items were punitive, and the other half were restorative.  
+Composite scores were created for each participant by averaging their responses to the items within the respective punitive and restorative policy categories.
+The punitive items included items: more police on the street to arrest criminals, longer prison sentences and fewer opportunities for parole, an increase in the severity of criminal penalties and fines, invest in technology to identify and target criminals, investment in police-community programs to increase crime tips, and seize property from suspected gang members (*a* =
+`r papaja::printnum(punitive_alpha_s3$alpha)`). The restorative items included: more afterschool programs to keep at-risk youth out of trouble, more mental health services and socioemotional support programs, more economic development programs to create jobs, invest in community-led peacekeeping organizations, greater financial investment to revitalize poor neighborhoods, and more affordable housing options (*a* = `r papaja::printnum(restorative_alpha_s3$alpha)`). 
+<!-- I also included two questions about gun control unrelated to punitive or restorative policy approaches. The items included “tighter restrictions on gun ownership and purchases” and “allow open carry of legally purchased firearms.” Each policy was presented on a separate page.  -->
+
+#### Zero sum budget allocation task
+
+I asked participants to allocate a percentage of a budget across two proposals: “Fund community-led programs to revitalize neighborhoods affected by gun violence by investing in jobs, affordable housing, mental health services, education, and crisis response teams,” and “Fund law enforcement programs such as officer training, gang intelligence units, and police patrols to get more violent criminals off of the streets in neighborhoods affected by gun violence.” The presentation order of the options was counterbalanced.
+
+#### Willingness to share policy memo
+
+Participants were shown a screenshot of the policy memo with social media icons and asked, “If you had the opportunity, how likely would you be to share this memo with your friends?” on a scale of 1 (extremely unlikely) to 7 (extremely likely).
+
+```{r fig-share-dv, eval = TRUE, out.width = "100%", fig.cap = "Image of the willingness to share measure presented to participants in Study 3.", fig.show='hold', fig.align='center'}
+knitr::include_graphics("/Users/cintiahinojosa/Box/Dissertation-Proposal/Materials/ch1study3/share-policy-dv-icons.png")
+```
+
+#### Petition engagement
+
+I offered participants an opportunity to sign a petition that calls for Chicago to invest in community-led support structures as a violence prevention strategy. I asked participants to rate their interest in signing the petition on a scale of 1 = “definitely not” to 5 = “definitely yes.” Participants who rated a 3 or higher were then shown the link to sign the petition, which opened as a new tab in the background. 
+<!-- The survey informed them that the petition website would open in a new window and to return to the survey page to complete the study.  -->
+On the next page, I then asked the group of participants who viewed the link to answer if they had signed the petition (1=“yes, I signed it,” 2=“not yet,” 3=“no, I do not plan to sign it.”)
+
+```{r fig-petition-dv-study3, eval = TRUE, out.width = "70%", fig.cap = "Image of the budget allocation task and the community-led petition question presented in Study 3.", fig.show='hold', fig.align='center'}
+
+knitr::include_graphics("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/petition-dv.png")
+```
+
+#### Attributions for urban gun violence
+
+Participants were asked to rate the importance of various factors in explaining gun violence on a scale of 1 (not at all an important factor) to 5 (extremely important factor).
+The list included six dispositional causes relating to personal character and invoked essentialism, such as “some people have a criminal nature” and “some people are just more aggressive.” They also included historically anti-Black stereotypes of individual deficiencies such as poor parenting, low moral character, and “cultures that glorify violence.” The structural causes included items that reflected societal institutions and socioeconomic landscape issues. These included recognition of structural racism, such as “a history of racial discrimination in policy-making,” “less access to good quality schools,” and “damage to families from mass incarceration.”
+
+<details>
+Two additional causes, “a lack of knowledge about gun safety” and “weak gun control laws,” were presented to participants in this survey section to throw off participant inferences about the study design and were not included in the composite.
+</details>
+
+## Results
+
+<details><summary>**Descriptive Statistics of Main Dependent Variables**</summary>
+```{texpreview, echo = FALSE}
+\begingroup
+\begin{singlespacing}
+\begin{table}[b]
+\caption{\label{tab:maindvs-table-s3}Descriptive Statistics of Main Dependent Variables by Condition in Study 3}
+\centering
+\begin{tabular}[t]{llllll}
+\toprule
+  & Control & Critical & Individual & Naive & Overall\\
+\midrule
+ & (N=385) & (N=367) & (N=366) & (N=374) & (N=1492)\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Punitive policy support}}\\
+\hspace{1em}Mean (SD) & 4.08 (1.68) & 3.55 (1.48) & 3.85 (1.58) & 4.04 (1.65) & 3.88 (1.61)\\
+\hspace{1em}Median [Min, Max] & 4.33 [1.00, 7.00] & 3.50 [1.00, 7.00] & 3.83 [1.00, 7.00] & 4.17 [1.00, 7.00] & 4.00 [1.00, 7.00]\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Restorative policy support}}\\
+\hspace{1em}Mean (SD) & 6.01 (0.961) & 6.18 (0.883) & 6.08 (0.988) & 6.05 (0.952) & 6.08 (0.948)\\
+\hspace{1em}Median [Min, Max] & 6.33 [2.33, 7.00] & 6.33 [1.50, 7.00] & 6.33 [1.00, 7.00] & 6.33 [1.00, 7.00] & 6.33 [1.00, 7.00]\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Police investment budget allocation}}\\
+\hspace{1em}Mean (SD) & 32.6 (24.9) & 26.5 (22.1) & 28.0 (22.0) & 29.3 (23.7) & 29.2 (23.3)\\
+\hspace{1em}Median [Min, Max] & 30.0 [0, 100] & 25.0 [0, 100] & 25.0 [0, 100] & 25.0 [0, 100] & 25.0 [0, 100]\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Dispositional attributions}}\\
+\hspace{1em}Mean (SD) & 2.81 (1.11) & 2.56 (1.05) & 2.83 (1.03) & 2.76 (1.10) & 2.74 (1.08)\\
+\hspace{1em}Median [Min, Max] & 2.70 [1.00, 5.00] & 2.50 [1.00, 5.00] & 2.70 [1.00, 5.00] & 2.60 [1.00, 5.00] & 2.60 [1.00, 5.00]\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Structural attributions}}\\
+\hspace{1em}Mean (SD) & 3.87 (0.967) & 4.14 (0.880) & 3.96 (0.916) & 3.97 (0.945) & 3.98 (0.932)\\
+\hspace{1em}Median [Min, Max] & 4.00 [1.00, 5.00] & 4.40 [1.00, 5.00] & 4.20 [1.00, 5.00] & 4.20 [1.00, 5.00] & 4.20 [1.00, 5.00]\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{singlespacing}
+\endgroup
+```
+</details>
+
+<details><summary>**Table of Main Regression Analyses**</summary>
+```{texpreview, echo = FALSE}
+\begingroup
+\begin{singlespacing}
+\begin{table}[H] \centering 
+  \caption{\label{tab:si-maindvs-ols-star-study3}Regression Analyses Predicting Main Dependent Variables in Study 3} 
+\footnotesize 
+\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{5}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-6} 
+\\[-1.8ex] & Punitive & Restorative & Police Budget & Attrib: Disp & Attrib: Struct \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5)\\ 
+\hline \\[-1.8ex] 
+ Intercept & 1.75$^{***}$ (0.15) & 7.05$^{***}$ (0.09) & $-$2.39 (2.09) & 1.55$^{***}$ (0.10) & 4.99$^{***}$ (0.08) \\ 
+  Condition: Individual & $-$0.16 (0.10) & 0.01 (0.06) & $-$3.39$^{*}$ (1.33) & 0.08 (0.06) & 0.03 (0.05) \\ 
+  Condition: Naive & $-$0.06 (0.10) & 0.06 (0.06) & $-$3.80$^{**}$ (1.32) & $-$0.06 (0.06) & 0.11$^{*}$ (0.05) \\ 
+  Condition: Critical & $-$0.48$^{***}$ (0.10) & 0.14$^{*}$ (0.06) & $-$5.11$^{***}$ (1.33) & $-$0.22$^{***}$ (0.06) & 0.22$^{***}$ (0.05) \\ 
+  Political Orientation & 0.48$^{***}$ (0.02) & $-$0.29$^{***}$ (0.01) & 7.78$^{***}$ (0.28) & 0.35$^{***}$ (0.01) & $-$0.31$^{***}$ (0.01) \\ 
+  Race: Latiné & 0.28 (0.16) & $-$0.06 (0.09) & 4.53$^{*}$ (2.16) & 0.23$^{*}$ (0.10) & 0.09 (0.09) \\ 
+  Race: Black & 0.21 (0.13) & 0.17$^{*}$ (0.08) & $-$2.00 (1.86) & 0.25$^{**}$ (0.09) & 0.21$^{**}$ (0.07) \\ 
+  Race: Native American & 0.55 (0.66) & $-$0.62 (0.39) & 7.56 (9.13) & 0.16 (0.43) & $-$0.58 (0.37) \\ 
+  Race: Asian & 0.43$^{**}$ (0.13) & $-$0.04 (0.08) & 2.72 (1.83) & 0.25$^{**}$ (0.09) & 0.04 (0.07) \\ 
+  Race: Middle Eastern & $-$0.38 (0.54) & 0.58 (0.32) & $-$8.68 (7.47) & $-$0.39 (0.35) & 0.69$^{*}$ (0.30) \\ 
+  Race: Other & $-$0.35 (0.54) & $-$0.83$^{**}$ (0.32) & $-$1.03 (7.46) & 0.52 (0.35) & $-$0.30 (0.30) \\ 
+  Race: Multi & $-$0.10 (0.13) & $-$0.08 (0.08) & $-$2.37 (1.75) & 0.17$^{*}$ (0.08) & 0.11 (0.07) \\ 
+  Female & 0.03 (0.07) & 0.13$^{**}$ (0.04) & $-$0.27 (0.96) & $-$0.07 (0.05) & 0.12$^{**}$ (0.04) \\ 
+  Age & 0.02$^{***}$ (0.003) & $-$0.001 (0.002) & 0.21$^{***}$ (0.04) & 0.01$^{***}$ (0.002) & $-$0.003$^{*}$ (0.001) \\ 
+  Adj. Income & 0.00$^{*}$ (0.00) & $-$0.00$^{**}$ (0.00) & 0.00$^{*}$ (0.00) & $-$0.00 (0.00) & $-$0.00$^{*}$ (0.00) \\ 
+  College degree & $-$0.06 (0.08) & $-$0.04 (0.05) & 0.68 (1.06) & $-$0.08 (0.05) & $-$0.05 (0.04) \\ 
+ \hline \\[-1.8ex] 
+Observations & 1,487 & 1,487 & 1,487 & 1,487 & 1,487 \\ 
+R$^{2}$ & 0.34 & 0.32 & 0.40 & 0.36 & 0.39 \\ 
+Adjusted R$^{2}$ & 0.33 & 0.32 & 0.39 & 0.36 & 0.39 \\ 
+Residual Std. Error (df = 1471) & 1.32 & 0.78 & 18.18 & 0.86 & 0.73 \\ 
+F Statistic (df = 15; 1471) & 50.66$^{***}$ & 47.00$^{***}$ & 65.28$^{***}$ & 55.53$^{***}$ & 63.63$^{***}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{5}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ 
+\end{tabular}
+\end{table} 
+\end{singlespacing}
+\endgroup
+```
+
+```{=latex}
+\begingroup
+\begin{singlespacing}
+\begin{table}[H] \centering 
+  \caption{\label{tab:si-maindvs-ols-star-study3}Regression Analyses Predicting Main Dependent Variables in Study 3} 
+\footnotesize 
+\begin{NiceTabular}{@{\extracolsep{5pt}}lccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{5}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-6} 
+\\[-1.8ex] & Punitive & Restorative & Police Budget & Attrib: Disp & Attrib: Struct \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5)\\ 
+\hline \\[-1.8ex] 
+ Intercept & 1.75$^{***}$ (0.15) & 7.05$^{***}$ (0.09) & $-$2.39 (2.09) & 1.55$^{***}$ (0.10) & 4.99$^{***}$ (0.08) \\ 
+  Condition: Individual & $-$0.16 (0.10) & 0.01 (0.06) & $-$3.39$^{*}$ (1.33) & 0.08 (0.06) & 0.03 (0.05) \\ 
+  Condition: Naive & $-$0.06 (0.10) & 0.06 (0.06) & $-$3.80$^{**}$ (1.32) & $-$0.06 (0.06) & 0.11$^{*}$ (0.05) \\ 
+  \RowStyle[bold]{}Condition: Critical & $-$0.48$^{***}$ (0.10) & 0.14$^{*}$ (0.06) & $-$5.11$^{***}$ (1.33) & $-$0.22$^{***}$ (0.06) & 0.22$^{***}$ (0.05) \\ 
+  Political Orientation & 0.48$^{***}$ (0.02) & $-$0.29$^{***}$ (0.01) & 7.78$^{***}$ (0.28) & 0.35$^{***}$ (0.01) & $-$0.31$^{***}$ (0.01) \\ 
+  Race: Latiné & 0.28 (0.16) & $-$0.06 (0.09) & 4.53$^{*}$ (2.16) & 0.23$^{*}$ (0.10) & 0.09 (0.09) \\ 
+  Race: Black & 0.21 (0.13) & 0.17$^{*}$ (0.08) & $-$2.00 (1.86) & 0.25$^{**}$ (0.09) & 0.21$^{**}$ (0.07) \\ 
+  Race: Native American & 0.55 (0.66) & $-$0.62 (0.39) & 7.56 (9.13) & 0.16 (0.43) & $-$0.58 (0.37) \\ 
+  Race: Asian & 0.43$^{**}$ (0.13) & $-$0.04 (0.08) & 2.72 (1.83) & 0.25$^{**}$ (0.09) & 0.04 (0.07) \\ 
+  Race: Middle Eastern & $-$0.38 (0.54) & 0.58 (0.32) & $-$8.68 (7.47) & $-$0.39 (0.35) & 0.69$^{*}$ (0.30) \\ 
+  Race: Other & $-$0.35 (0.54) & $-$0.83$^{**}$ (0.32) & $-$1.03 (7.46) & 0.52 (0.35) & $-$0.30 (0.30) \\ 
+  Race: Multi & $-$0.10 (0.13) & $-$0.08 (0.08) & $-$2.37 (1.75) & 0.17$^{*}$ (0.08) & 0.11 (0.07) \\ 
+  Female & 0.03 (0.07) & 0.13$^{**}$ (0.04) & $-$0.27 (0.96) & $-$0.07 (0.05) & 0.12$^{**}$ (0.04) \\ 
+  Age & 0.02$^{***}$ (0.003) & $-$0.001 (0.002) & 0.21$^{***}$ (0.04) & 0.01$^{***}$ (0.002) & $-$0.003$^{*}$ (0.001) \\ 
+  Adj. Income & 0.00$^{*}$ (0.00) & $-$0.00$^{**}$ (0.00) & 0.00$^{*}$ (0.00) & $-$0.00 (0.00) & $-$0.00$^{*}$ (0.00) \\ 
+  College degree & $-$0.06 (0.08) & $-$0.04 (0.05) & 0.68 (1.06) & $-$0.08 (0.05) & $-$0.05 (0.04) \\ 
+ \hline \\[-1.8ex] 
+Observations & 1,487 & 1,487 & 1,487 & 1,487 & 1,487 \\ 
+R$^{2}$ & 0.34 & 0.32 & 0.40 & 0.36 & 0.39 \\ 
+Adjusted R$^{2}$ & 0.33 & 0.32 & 0.39 & 0.36 & 0.39 \\ 
+Residual Std. Error (df = 1471) & 1.32 & 0.78 & 18.18 & 0.86 & 0.73 \\ 
+F Statistic (df = 15; 1471) & 50.66$^{***}$ & 47.00$^{***}$ & 65.28$^{***}$ & 55.53$^{***}$ & 63.63$^{***}$ \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{5}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ 
+\end{NiceTabular}
+\end{table} 
+\end{singlespacing}
+\endgroup
+```
+</details>
+
+
+<details><summary>**Correlations of Main Dependent Variables**</summary>
+```{r fig-main-corr-study3, eval = TRUE, out.width = "100%", fig.cap = "Correlation matrix of main variables in Study 3.", fig.show='hold', fig.align='center'}
+knitr::include_graphics("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/main_corrgram_s3.png")
+```
+</details>
+
+### H1a. Punitive support {-}
+
+Compared to both the individual and control narratives, the critical narrative decreased support for punitive policies.
+
+```{r pun-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+pun_aov_s3 <- lm(punitive.c ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+pun_aov.summ_s3 <- car::Anova(pun_aov_s3)  %>% 
+  tidy(pun_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# ANCOVA TABLE --------------
+pun_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Punitive Policy Support by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r pun-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+pun_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(punitive.c ~ condition.f, ref.group = "Critical", covariate = condition.f, model = pun_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# POST-HOC TABLE --------------
+pun_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Punitive Policy Support by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{texpreview, echo = FALSE}
+\begingroup
+\begin{singlespacing}
+\begin{table}[H] \centering 
+\caption{\label{tab:pun-ols-star-study3}Regression Analyses Predicting Punitive Policy Support in Study 3}
+\footnotesize 
+\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-4} 
+\\[-1.8ex] & \multicolumn{3}{c}{Punitive policy support} \\ 
+\\[-1.8ex] & (1) & (2) & (3)\\ 
+\hline \\[-1.8ex] 
+ Intercept & 4.08$^{***}$ (0.08) & 1.75$^{***}$ (0.15) & 1.62$^{***}$ (0.18) \\ 
+  Condition: Individual & $-$0.23$^{*}$ (0.12) & $-$0.16 (0.10) & 0.02 (0.19) \\ 
+  Condition: Naive & $-$0.03 (0.12) & $-$0.06 (0.10) & 0.01 (0.20) \\ 
+   Condition: Critical & $-$0.52$^{***}$ (0.12) & $-$0.48$^{***}$ (0.10) & $-$0.22 (0.19) \\ 
+  Political Orientation &  & 0.48$^{***}$ (0.02) & 0.52$^{***}$ (0.04) \\ 
+  Race: Latiné &  & 0.28 (0.16) & 0.29 (0.16) \\ 
+  Race: Black &  & 0.21 (0.13) & 0.21 (0.13) \\ 
+  Race: Native American &  & 0.55 (0.66) & 0.54 (0.66) \\ 
+  Race: Asian &  & 0.43$^{**}$ (0.13) & 0.43$^{**}$ (0.13) \\ 
+  Race: Middle Eastern &  & $-$0.38 (0.54) & $-$0.35 (0.54) \\ 
+  Race: Other &  & $-$0.35 (0.54) & $-$0.35 (0.54) \\ 
+  Race: Multi &  & $-$0.10 (0.13) & $-$0.10 (0.13) \\ 
+  Female &  & 0.03 (0.07) & 0.03 (0.07) \\ 
+  Age &  & 0.02$^{***}$ (0.003) & 0.02$^{***}$ (0.003) \\ 
+  Adj. Income &  & 0.0000$^{*}$ (0.0000) & 0.0000$^{*}$ (0.0000) \\ 
+  College degree &  & $-$0.06 (0.08) & $-$0.06 (0.08) \\ 
+  Individual x Political &  &  & $-$0.06 (0.05) \\ 
+  Naive x Political &  &  & $-$0.02 (0.05) \\ 
+  Critical x Political &  &  & $-$0.08 (0.05) \\ 
+ \hline \\[-1.8ex] 
+Observations & 1,492 & 1,487 & 1,487 \\ 
+R$^{2}$ & 0.02 & 0.34 & 0.34 \\ 
+Adjusted R$^{2}$ & 0.01 & 0.33 & 0.33 \\ 
+Residual Std. Error & 1.60 (df = 1488) & 1.32 (df = 1471) & 1.32 (df = 1468) \\ 
+F Statistic & 8.42$^{***}$ (df = 3; 1488) & 50.66$^{***}$ (df = 15; 1471) & 42.37$^{***}$ (df = 18; 1468) \\ \hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\
+\end{tabular} 
+\end{table}
+\end{singlespacing}
+\endgroup
+```
+
+### H1b. Punitive support by political orientation {-}
+
+```{r pun.pol3-contrast-study3, fig.cap = "Planned Contrasts of Punitive Policy Support by Political Orientation in Study 3", eval = TRUE}
+pun.pol3_ols_s3 <- lm(punitive.c ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+pun.pol3_emm_s3 <- emmeans(pun.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+
+# liberals
+pun.lib_contrast_s3 <- contrast(pun.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(pun.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  # , caption = "Planned Contrasts of Punitive Policy Support by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>% row_spec(c(1,3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# moderates
+pun.mod_contrast_s3 <- contrast(pun.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(pun.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 # , caption = "Planned Contrasts of Punitive Policy Support by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# conservatives
+pun.cons_contrast_s3 <- contrast(pun.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(pun.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 # , caption = "Planned Contrasts of Punitive Policy Support by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>% row_spec(c(1,3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r figs-punitive-study3, eval = TRUE, out.width = "70%", fig.cap="Support for Punitive Policies by Condition in Study 3", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun_half.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun.c.pol3_int.apa_s3.png"))
+```
+
+\newpage
+
+### H2a. Restorative support {-}
+
+```{r rest-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+rest_aov_s3 <- lm(restorative.c ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+rest_aov.summ_s3 <- car::Anova(rest_aov_s3)  %>% 
+  tidy(rest_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+rest_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Restorative Policy Support by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r rest-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+rest_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(restorative.c ~ condition.f, ref.group = "Critical", covariate = condition.f, model = rest_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+rest_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Restorative Policy Support by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1:2), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+### H2b. Restorative support by political orientation {-}
+
+```{r rest-pol3-contrast-study3, fig.cap = "Planned Contrasts of Restorative Policy Support by Political Orientation in Study 3", eval = TRUE}
+rest.pol3_ols_s3 <- lm(restorative ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+rest.pol3_emm_s3 <- emmeans(rest.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+# liberals
+rest.lib_contrast_s3 <- contrast(rest.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(rest.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Restorative Policy Support by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>% kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+
+# moderates
+rest.mod_contrast_s3 <- contrast(rest.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(rest.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Restorative Policy Support by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1:2), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# conservatives
+rest.cons_contrast_s3 <- contrast(rest.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(rest.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Restorative Policy Support by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>%  kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+```
+
+```{r figs-restorative-study3, eval = TRUE, out.width = "70%", fig.cap="Support for Restorative Policies by Condition in Study 3", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/rest_half.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/rest.c.pol3_int.apa_s3.png"))
+```
+
+### H3a. Zero sum budget allocation {-}
+
+```{r budgetpun-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+budgetpun_aov_s3 <- lm(budget.pun ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+budgetpun_aov.summ_s3 <- car::Anova(budgetpun_aov_s3)  %>% 
+  tidy(budgetpun_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+budgetpun_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Punitive Budget Allocation by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r budgetpun-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+budgetpun_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(budget.pun ~ condition.f, ref.group = "Critical", covariate = condition.f, model = budgetpun_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+budgetpun_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Punitive Budget Allocation by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+#### Zero sum budget allocation by political orientation {-}
+
+```{r figs-budgetpun-study3, eval = TRUE, out.width = "70%", fig.cap="Preferences for investing in policing versus communities in a zero-sum violence prevention budget allocation task by condition and political orientation.", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/budget.pun_half.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/budget.pun.pol3_int.apa_s3.png"))
+```
+
+<details>
+
+```{r budgetpun-pol3-contrast-study3, fig.cap = "Planned Contrasts of Zero Sum Punitive Budget Allocation by Political Orientation in Study 3", eval = TRUE}
+budgetpun.pol3_ols_s3 <- lm(budget.pun ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+budgetpun.pol3_emm_s3 <- emmeans(budgetpun.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+# liberals
+budgetpun.lib_contrast_s3 <- contrast(budgetpun.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(budgetpun.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Punitive Budget Allocation by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# moderates
+budgetpun.mod_contrast_s3 <- contrast(budgetpun.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(budgetpun.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Punitive Budget Allocation by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# conservatives
+budgetpun.cons_contrast_s3 <- contrast(budgetpun.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(budgetpun.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Punitive Budget Allocation by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+</details>
+
+### H3b. Willingness to share policy memo {-}
+
+```{r share-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+share_aov_s3 <- lm(share ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+share_aov.summ_s3 <- car::Anova(share_aov_s3)  %>% 
+  tidy(share_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+share_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Willingness to Share by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r share-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+share_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(share ~ condition.f, ref.group = "Critical", covariate = condition.f, model = share_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+share_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Willingness to Share by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1:3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+#### Willingness to share by political orientation {-}
+
+```{r figs-share-study3, eval = TRUE, out.width = "70%", fig.cap="Support for Restorative Policies by Condition in Study 3", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/share_violin.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/share.pol3_int.apa_s3.png"))
+```
+
+<details>
+
+```{r share-pol3-contrast-study3, fig.cap = "Planned Contrasts of Willingness to Share by Political Orientation in Study 3", eval = TRUE}
+share.pol3_ols_s3 <- lm(share ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+share.pol3_emm_s3 <- emmeans(share.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+# liberals
+share.lib_contrast_s3 <- contrast(share.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(share.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Willingness to Share by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1:3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# moderates
+share.mod_contrast_s3 <- contrast(share.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(share.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Willingness to Share by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1:3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# conservatives
+share.cons_contrast_s3 <- contrast(share.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(share.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Willingness to Share by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>%  kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+```
+
+</details>
+
+### H3c. Petition interest {-}
+
+```{r pet1-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+pet1_aov_s3 <- lm(petition.interest ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+pet1_aov.summ_s3 <- car::Anova(pet1_aov_s3)  %>% 
+  tidy(pet1_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+pet1_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Petition Interest by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r pet1-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+pet1_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(petition.interest ~ condition.f, ref.group = "Critical", covariate = condition.f, model = pet1_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+pet1_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Petition Interest by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+#### Petition interest by political orientation {-}
+
+<details>
+
+```{r pet1-pol3-contrast-study3, fig.cap = "Planned Contrasts of Petition Interest by Political Orientation in Study 3", eval = TRUE}
+pet1.pol3_ols_s3 <- lm(petition.interest ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+pet1.pol3_emm_s3 <- emmeans(pet1.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+# liberals
+pet1.lib_contrast_s3 <- contrast(pet1.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(pet1.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Petition Interest by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>% kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+
+# moderates
+pet1.mod_contrast_s3 <- contrast(pet1.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(pet1.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Petition Interest by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>%  kable_styling(font_size = 13)#row_spec(c(1:2), background = "#FFFACD")
+
+# conservatives
+pet1.cons_contrast_s3 <- contrast(pet1.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(pet1.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Petition Interest by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>%  kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+```
+
+```{r figs-petition-interest-study3, eval = TRUE, out.width = "70%", fig.cap="Support for Restorative Policies by Condition in Study 3", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pet1_violin.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pet1.pol3_int.apa_s3.png"))
+```
+
+</details>
+
+### H4a. Structural attributions {-}
+
+```{r sys-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+sys_aov_s3 <- lm(attrib.sys ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+sys_aov.summ_s3 <- car::Anova(sys_aov_s3)  %>% 
+  tidy(sys_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+sys_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Structural Attributions by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r sys-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+sys_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(attrib.sys ~ condition.f, ref.group = "Critical", covariate = condition.f, model = sys_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+sys_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Structural Attributions by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1:2), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+#### Structural attributions by political orientation {-}
+
+```{r figs-sys-study3, eval = TRUE, out.width = "70%", fig.cap="Support for Restorative Policies by Condition in Study 3", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_violin.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys.pol3_int.apa_s3.png"))
+```
+
+<details>
+
+```{r sys-pol3-contrast-study3, fig.cap = "Planned Contrasts of Structural Attributions by Political Orientation in Study 3", eval = TRUE}
+sys.pol3_ols_s3 <- lm(attrib.sys ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+sys.pol3_emm_s3 <- emmeans(sys.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+# liberals
+sys.lib_contrast_s3 <- contrast(sys.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(sys.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Structural Attributions by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# moderates
+sys.mod_contrast_s3 <- contrast(sys.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(sys.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Structural Attributions by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1:2), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# conservatives
+sys.cons_contrast_s3 <- contrast(sys.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(sys.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Structural Attributions by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>%  kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+```
+
+</details>
+
+### H4b. Dispositional attributions {-}
+
+```{r disp-aov-table-study3, eval = TRUE}
+# CONTRASTS --------------
+# contrasts(s3$condition.f) <- contr.sum
+# contrasts(s3$race.f) <- contr.sum
+# contrasts(s3$edu3.f) <- contr.sum
+
+# ANCOVA --------------
+disp_aov_s3 <- lm(attrib.disp ~ condition.f + political + female.f + race.f + age.c + edu3.f + adj_income.c, data = s3)
+
+disp_aov.summ_s3 <- car::Anova(disp_aov_s3)  %>% 
+  tidy(disp_aov.summ_s3) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+disp_aov.summ_s3 %>%
+kable(booktabs = TRUE, digits = 3, caption = "ANCOVA Table of Dispositional Attributions by Condition in Study 3"
+      , col.names = c("Term", "SS", "df", "Statistic", "p")
+      ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) # %>% row_spec(c(1), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+```{r disp-pwc-table-study3, eval = TRUE}
+# POST-HOC --------------
+disp_pwc_s3 <- s3 %>%
+  rstatix::emmeans_test(attrib.disp ~ condition.f, ref.group = "Critical", covariate = condition.f, model = disp_aov_s3, comparisons = compare_s3, detailed = TRUE
+    , p.adjust.method = "fdr"
+    ) %>% 
+  mutate_if(is.numeric, round, digits = 3)
+
+# TABLE
+disp_pwc_s3[, c(3:4, 6:14)] %>% 
+  kable(booktabs = TRUE, digits = 3, caption = "Contrasts of Dispositional Attributions by Condition in Study 3"
+         , col.names = c("Group 1", "Group 2", "Est.", "SE", "df", "CI Low", "CI High", "t", "p", "p-adj", "p-adj-sig")
+        ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% row_spec(c(1:3), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+```
+
+#### Dispositional attributions by political orientation {-}
+
+```{r figs-disp-study3, eval = TRUE, out.width = "70%", fig.cap="Support for Restorative Policies by Condition in Study 3", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_violin.stats_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp.pol3_int.apa_s3.png"))
+```
+
+<details>
+
+```{r disp-pol3-contrast-study3, fig.cap = "Planned Contrasts of Dispositional Attributions by Political Orientation in Study 3", eval = TRUE}
+disp.pol3_ols_s3 <- lm(attrib.disp ~ condition.f * political3.f + female + race.f + age.c + edu3.f + adj_income.c, data = s3)
+disp.pol3_emm_s3 <- emmeans(disp.pol3_ols_s3, ~ political3.f * condition.f, at = list(s3$political3.f, s3$condition.f))
+
+# liberals
+disp.lib_contrast_s3 <- contrast(disp.pol3_emm_s3, adjust = "mvt", method = lib_contrast_s3)
+
+kable(disp.lib_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                  , caption = "Planned Contrasts of Dispositional Attributions by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Liberals" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1,2), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# moderates
+disp.mod_contrast_s3 <- contrast(disp.pol3_emm_s3, adjust = "mvt", method = mod_contrast_s3)
+
+kable(disp.mod_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Dispositional Attributions by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Moderates" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) %>% row_spec(c(1:2), background = "#FFFACD") # %>% kable_styling(font_size = 14)
+
+# conservatives
+disp.cons_contrast_s3 <- contrast(disp.pol3_emm_s3, adjust = "mvt", method = cons_contrast_s3)
+
+kable(disp.cons_contrast_s3, booktabs = TRUE, digits = 3
+                  , col.names = c("Contrasts", "Est.", "SE", "df", "t", "p")
+                 , caption = "Planned Contrasts of Dispositional Attributions by Political Orientation in Study 3"
+                  ) %>%
+  kable_styling(bootstrap_options = c("condensed", "bordered"), full_width = F) %>% 
+  add_header_above(header = c("Political Conservatives" = 6), align = "l") %>%
+  row_spec(0, italic = TRUE) # %>%  kable_styling(font_size = 13)#row_spec(c(1,3), background = "#FFFACD")
+```
+
+</details>
+
+### H5. Mediation by attributions {-}
+
+#### H5a. Punitive {-}
+
+
+```{r pun.attribs-medtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(pun.attribs_medfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Attributions Mediating Punitive Support in Study 3")
+```
+
+```{r pun.attribs-revmedtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(pun.attribs_revmedfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Reverse Test of Attributions Mediating Punitive Support in Study 3")
+```
+
+```{r figs-attribs-pun-med-path-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation diagrams of the critical effect on punitive policy support through attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun.attribs_med.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/pun.attribs_med.path_s3.png"))
+```
+
+#### H5b. Restorative {-}
+
+
+```{r rest.attribs-medtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(rest.attribs_medfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Attributions Mediating Restorative Support in Study 3")
+```
+
+```{r rest.attribs-revmedtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(rest.attribs_revmedfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Reverse Test of Attributions Mediating Restorative Support in Study 3")
+```
+
+
+```{r figs-attribs-rest-med-plot-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on restorative policy support through attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/rest.attribs_med.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/rest.attribs_med.path_s3.png"))
+```
+
+#### H5c. Zero sum punitive budget
+
+```{r budgetpun.attribs-medtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(budgetpun.attribs_medfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Attributions Mediating Punitive Budget Allocation in Study 3")
+```
+
+```{r budgetpun.attribs-revmedtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(budgetpun.attribs_revmedfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Reverse Test of Attributions Mediating Punitive Budget Allocation in Study 3")
+```
+
+```{r figs-attribs-budget-pun-med-plot-study3, eval = TRUE, echo = FALSE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on punitive budget allocation through attributions in Study 3.", fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/budgetpun.attribs_med.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/budgetpun.attribs_med.path_s3.png"))
+```
+
+#### H5c. Willingness to Share
+
+```{r share.attribs_medtable_study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(share.attribs_medfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Attributions Mediating Willingness to Share in Study 3")
+```
+
+```{r share.attribs-revmedtable-study3, eval = TRUE}
+# PRINT TABLE -------
+kableExtra::kable(share.attribs_revmedfit.summary_s3, booktabs = TRUE, digits = 3
+                  , caption = "Reverse Test of Attributions Mediating Willingness to Share in Study 3")
+```
+
+```{r figs-attribs-share-med-plot-study3, eval = TRUE, echo = FALSE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on willingness to share through attributions in Study 3.", fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/share.attribs_med.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/share.attribs_med.path_s3.png"))
+```
+### H6. Mediation by structural attributions {-}
+
+#### H6a. Punitive {-}
+
+```{r figs-sys-pun-med-path-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation diagrams of the critical effect on willingness to share through structural attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_med.pun.cov.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_med.pun.cov.chart_s3.png"))
+```
+
+#### H6b. Restorative {-}
+
+```{r figs-sys-rest-med-plot-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on restorative policy support through structural attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_med.rest.cov.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_med.rest.cov.chart_s3.png"))
+```
+
+#### H6c. Zero sum punitive budget
+
+```{r figs-sys-budget-pun-med-plot-study3, eval = TRUE, echo = FALSE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on punitive budget allocation through structural attributions in Study 3.", fig.align='center'}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_med.budget.pun.cov.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/sys_med.budget.pun.cov.chart_s3.png"))
+```
+
+### H7. Mediation by dispositional attributions {-}
+
+#### H7a. Punitive {-}
+
+```{r figs-disp-pun-med-path-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation diagrams of the critical effect on punitive policy support through dispositional attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_med.pun.cov.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_med.pun.cov.chart_s3.png"))
+```
+
+#### H7b. Restorative
+
+```{r figs-disp-rest-med-plot-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on restorative policy support through dispositional attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_med.rest.cov.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_med.rest.cov.chart_s3.png"))
+```
+
+#### H7c. Zero sum punitive budget {-}
+
+```{r figs-disp-budget-pun-med-plot-study3, eval = TRUE, out.width = "49%", fig.show='hold', fig.cap="Mediation plot of the critical effect on punitive budget allocation through dispositional attributions in Study 3.", fig.align='center', eval = TRUE}
+knitr::include_graphics(c("/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_med.budget.pun.cov.plot_s3.png", "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/disp_med.budget.pun.cov.chart_s3.png"))
+```
+
+## Discussion

@@ -1,0 +1,15 @@
+---
+title: 'Behind the scenes: Translating community expertise to design equitable interventions'
+author: "Cintia Hinojosa"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Behind the Scenes
+
+1. Critical/radical change in how we think about knowledge and what we know about the world
+
+3. Examples:
+ - healthy eating: booster sessions but found out that it seemed like we were trying too hard
+ - gun violence: rise of suicide; liked historical examples even though it's text heavy; affirm issue of disrespect; essentialist beliefs about good and bad (makes sense developmentally, but compound with)
+

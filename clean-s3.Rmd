@@ -1,0 +1,2039 @@
+# Study 3 Data Processing
+
+```{r preferences-clean, eval = TRUE}
+set.seed(42) # Seed for random number generation
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed
+                      , echo = FALSE
+                      , message = FALSE
+                      , warning = FALSE
+                      , eval = TRUE # TRUE if re-running code from scratch; FALSE if output only
+#                      , fig.show = 'hold'
+#                      , fig.align = 'center'
+                      )
+
+options(
+  knitr.duplicate.label = "allow"
+  # , knitr.graphics.auto_pdf = TRUE
+  # , knitr.table.format = function() {
+  # if (knitr::is_latex_output()) 'latex' else 'pandoc'
+  #   }
+  )
+```
+
+```{r libraries-clean, eval = TRUE}
+#data readers ---------------------------
+pacman::p_load(haven, readstata13, readxl, foreign) # others: read_excel, rtiffs
+
+#basics ---------------------------
+library(knitr)
+library(magrittr)
+library(dplyr)
+library(janitor)
+
+#labels ---------------------------
+pacman::p_load(sjlabelled, labelled) #surveytoolbox, tinylabels) 
+
+#summary/output ---------------------------
+pacman::p_load(kableExtra, summarytools, table1) #papeR)
+
+#publish ---------------------------
+library(apastats)
+library(papaja)
+
+#plots ---------------------------
+library(ggplot2)
+library(corrgram)
+library(psych)
+```
+
+```{r load, eval = TRUE}
+# 1-KEYS & FUNCTIONS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-keys.RData")
+
+# 2-CLEANED DATASETS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/s1.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/s2.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/s3.RData")
+
+# 3-CLEANED STUDY WORKSPACES ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s1.RData")
+load(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s2.RData")
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s3.RData")
+
+# 4-COMBINED CLEANED WORKSAPCE FOR ANALYSES & PLOTS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-starter.RData") # use to start chstudy1-si code
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-workspace.RData")
+
+# ROUND NUMERIC VARS
+# s3 <- s3 %>% mutate_if(is.numeric, round, digits = 3)
+
+# 5-CLEANED DATA SAVED AFTER ANALYSES & PLOTS ---------------------------
+# load(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-workspace.RData")
+```
+
+```{r raw-s3}
+# LIBRARIES ---------------------------
+# library(qualtRics) # qualtRics::read_survey()
+# library(dplyr) #names() dplyr::as_tibble()
+# library(sjPlot) # sjPlot::view_df()
+# library(ltm) # ltm::cronbach.alpha()
+
+# LOAD RAW DATA ---------------------------
+# export qualtrics data as numeric and as text to cross-check
+# (do not check "Use internal IDs in header")
+s3.num <- qualtRics::read_survey("/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/Raw/Dissertation-Study3-NUMERIC.csv") # N = 1739
+
+s3.txt <- qualtRics::read_survey("/Users/cintiahinojosa/Box/Dissertation-Proposal/Data/Raw/Dissertation-Study3-TEXT.csv") # N = 1739
+
+# RAW CODEBOOK ---------------------------
+# sjPlot::view_df(s3.num, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE)
+
+# sjPlot::view_df(s3.txt, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE)
+
+# RENAME MAIN ---------------------------
+# lowercase 
+names(s3.num) <- tolower(names(s3.num))
+names(s3.txt) <- tolower(names(s3.txt))
+
+# META ---------------------------
+names(s3.num)[names(s3.num) == "responseid"] <- "id"
+names(s3.num)[names(s3.num) == "duration (in seconds)"] <- "duration"
+
+names(s3.txt)[names(s3.txt) == "responseid"] <- "id"
+names(s3.txt)[names(s3.txt) == "duration (in seconds)"] <- "duration"
+
+names(s3.txt)[names(s3.txt) == "finished...6"] <- "finished"
+names(s3.num)[names(s3.num) == "finished...6"] <- "finished"
+
+names(s3.txt)[names(s3.txt) == "reflect.control"] <- "refl.control"
+names(s3.num)[names(s3.num) == "reflect.control"] <- "refl.control"
+
+# POLICIES ---------------------------
+# rest_school	More after-school programs to keep at-risk youth out of trouble
+# rest_mental	More federal assistance to the poor # RENAME TO FEDAID
+# rest_jobs	More economic development programs to create jobs # RENAME TO JOBECON
+# rest_peace	Invest in community-led peacekeeping organizations
+# rest_public	Invest in public community resources to revitalize poor neighborhoods
+# rest_reentry	Invest in re-entry programs to support ex-prisoners transition to society
+# pun_police	More police on the street to arrest criminals
+# pun_prisons	Longer prison sentences and fewer opportunities for parole
+# pun_penalty	An increase in the severity of criminal penalties and fines
+# pun_tech	Invest in technology to identify and target criminals
+# pun_tips	Investment in police-community programs to increase crime tips
+# pun_seize	Seize property from suspected gang members
+
+names(s3.num)[names(s3.num) == "rest_mental"] <- "rest_fedaid"
+names(s3.txt)[names(s3.txt) == "rest_mental"] <- "rest_fedaid"
+
+names(s3.num)[names(s3.num) == "rest_jobs"] <- "rest_jobecon"
+names(s3.txt)[names(s3.txt) == "rest_jobs"] <- "rest_jobecon"
+
+names(s3.txt)[names(s3.txt) == "budget_1"] <- "budget.rest"
+names(s3.num)[names(s3.num) == "budget_1"] <- "budget.rest"
+
+names(s3.txt)[names(s3.txt) == "budget_2"] <- "budget.pun"
+names(s3.num)[names(s3.num) == "budget_2"] <- "budget.pun"
+
+names(s3.txt)[names(s3.txt) == "petitionclick"] <- "petition.click"
+names(s3.num)[names(s3.num) == "petitionclick"] <- "petition.click"
+
+names(s3.txt)[names(s3.txt) == "racism_indiv"] <- "racism.indiv"
+names(s3.num)[names(s3.num) == "racism_indiv"] <- "racism.indiv"
+
+names(s3.txt)[names(s3.txt) == "racism_society"] <- "racism.society"
+names(s3.num)[names(s3.num) == "racism_society"] <- "racism.society"
+
+# RACE ---------------------------
+names(s3.num)[names(s3.num) == "race_1"] <- "white"
+names(s3.num)[names(s3.num) == "race_2"] <- "latino"
+names(s3.num)[names(s3.num) == "race_3"] <- "black"
+names(s3.num)[names(s3.num) == "race_4"] <- "native"
+names(s3.num)[names(s3.num) == "race_5"] <- "asian"
+names(s3.num)[names(s3.num) == "race_6"] <- "mideastern"
+names(s3.num)[names(s3.num) == "race_7"] <- "islander"
+names(s3.num)[names(s3.num) == "race_8"] <- "race_other"
+names(s3.num)[names(s3.num) == "race_8_text"] <- "race_other_text"
+
+names(s3.txt)[names(s3.txt) == "race_1"] <- "white"
+names(s3.txt)[names(s3.txt) == "race_2"] <- "latino"
+names(s3.txt)[names(s3.txt) == "race_3"] <- "black"
+names(s3.txt)[names(s3.txt) == "race_4"] <- "native"
+names(s3.txt)[names(s3.txt) == "race_5"] <- "asian"
+names(s3.txt)[names(s3.txt) == "race_6"] <- "mideastern"
+names(s3.txt)[names(s3.txt) == "race_7"] <- "islander"
+names(s3.txt)[names(s3.txt) == "race_8"] <- "race_other"
+names(s3.txt)[names(s3.txt) == "race_8_text"] <- "race_other_text"
+
+# IVS ---------------------------
+names(s3.num)[names(s3.num) == "gender_4_text"] <- "gender_other_text"
+names(s3.num)[names(s3.num) == "party_4_text"] <- "party_other_text"
+names(s3.num)[names(s3.num) == "household_9_text"] <- "household_other_text"
+names(s3.num)[names(s3.num) == "edu_10_text"] <- "edu_other_text"
+
+names(s3.txt)[names(s3.txt) == "gender_4_text"] <- "gender_other_text"
+names(s3.txt)[names(s3.txt) == "party_4_text"] <- "party_other_text"
+names(s3.txt)[names(s3.txt) == "household_9_text"] <- "household_other_text"
+names(s3.txt)[names(s3.txt) == "edu_10_text"] <- "edu_other_text"
+
+# DROP NON-USABLE DATA ---------------------------
+# drop survey previews, tests, and spam # N = 1704
+table(s3.txt$status, s3.num$status)
+s3.num <- subset(s3.num, status == 0) # previews = 1, tests = 34, IP = 1704
+s3.txt <- subset(s3.txt, status == "IP Address")
+
+# drop non-consents # N = 
+table(s3.txt$consent, s3.num$consent)
+s3.num <- subset(s3.num, consent == 1) 
+s3.txt <- subset(s3.txt, consent == "Yes, I fit the above criteria and consent to participate in the study.") 
+
+# drop non-finished # N = 
+table(s3.txt$finished, s3.num$finished)
+s3.num <- subset(s3.num, s3.num$finished == 1) 
+s3.txt <- subset(s3.txt, s3.txt$finished == "TRUE")
+
+# SAVE PARTICIPANT DATA W/RENAMED COLUMNS ---------------------------
+write.csv(s3.num, file = "/Users/cintiahinojosa/Box/Dissertation/data/raw/s3-raw-num.csv")
+save(s3.num, file = "/Users/cintiahinojosa/Box/Dissertation/data/raw/s3-raw-num.RData")
+
+write.csv(s3.txt, file = "/Users/cintiahinojosa/Box/Dissertation/data/raw/s3-raw-txt.csv")
+save(s3.txt, file = "/Users/cintiahinojosa/Box/Dissertation/data/raw/s3-raw-txt.RData")
+
+# SET UP WORKING DATASETS ---------------------------
+# save numeric as working data file # N = 
+s3 <- as_tibble(s3.num)
+s3.num <- as_tibble(s3.num)
+s3.txt <- as_tibble(s3.txt)
+
+# save names of order variables # 
+names_do_s3 <- s3 %>% dplyr::select(contains('_do_')) %>% names()
+
+# save names of time variables # 
+names_time_s3 <- s3 %>% dplyr::select(contains('t_')) %>%  
+  dplyr::select(!starts_with('rest_')) %>%
+  dplyr::select(!contains('_do_')) %>% names()
+
+# save names of main variables # 
+names_s3  <- names(s3[,!(names(s3) %in% c(names_do_s3, names_time_s3))])
+
+# save working data with main variables only # 
+s3  <- s3[,!(names(s3) %in% c(names_do_s3, names_time_s3))]
+
+# SAVE WORKING DATASET ---------------------------
+# repeat this command after finishing recode chunk
+save(s3, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.RData")
+write.csv(s3, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.csv")
+```
+
+```{r codebook-s3}
+# WORKING DATASET CODEBOOK ---------------------------
+sjPlot::view_df(s3.num, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 60, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE)
+```
+
+```{r ivs-clean-s3}
+# DURATION  ---------------------------
+# transform seconds to minutes
+s3$duration <- (s3$duration/60)
+summary(s3$duration)
+
+# mark duration quantiles for outliers
+duration_q1_s3 <- quantile(s3$duration, .25) 
+duration_q3_s3 <- quantile(s3$duration, .75) 
+duration_iqr_s3 <- IQR(s3$duration) 
+
+# duration_out_s3 <- boxplot.stats(s3$duration)$out
+# duration_out_s3 <- which(s3$duration < duration_q1_s3 | s3$duration > duration_q3_s3)
+
+s3$duration_under <- 0
+s3$duration_under[s3$duration < 5] <- 1
+s3$duration_under[s3$duration == 5] <- 0
+s3$duration_under[s3$duration > 5] <- 0
+freq(s3$duration_under)
+
+# CONDITION  ---------------------------
+# check and recode if needed
+freq(s3$condition)
+
+# create factor variable 
+s3$condition.f <- factor(s3$condition, levels = c("critical", "control", "individual", "naive"), labels = c("Critical", "Control", "Individual", "Naive"), ordered = FALSE) 
+freq(s3$condition.f)
+
+# create numeric variable
+s3$condition.n <- as.numeric(s3$condition.f) 
+freq(s3$condition.n)
+
+# create binary variables
+s3$critical = 0
+s3$critical[s3$condition == "critical"] <- 1
+s3$critical[s3$condition == "control"] <- 0
+s3$critical[s3$condition == "individual"] <- 0
+s3$critical[s3$condition == "naive"] <- 0
+freq(s3$critical)
+s3$critical.f <- factor(s3$critical, levels = 0:1, labels = c("non-critical", "critical"), ordered = FALSE)
+freq(s3$critical.f)
+
+s3$control = 0
+s3$control[s3$condition == "critical"] <- 0
+s3$control[s3$condition == "control"] <- 1
+s3$control[s3$condition == "individual"] <- 0
+s3$critical[s3$condition == "naive"] <- 0
+freq(s3$control)
+s3$control.f <- factor(s3$control, levels = 0:1, labels = c("non-control", "control"), ordered = FALSE)
+freq(s3$control.f)
+
+s3$individual = 0
+s3$individual[s3$condition == "critical"] <- 0
+s3$individual[s3$condition == "control"] <- 0
+s3$individual[s3$condition == "individual"] <- 1
+s3$critical[s3$condition == "naive"] <- 0
+freq(s3$individual)
+s3$individual.f <- factor(s3$individual, levels = 0:1, labels = c("non-individual", "individual"), ordered = FALSE)
+freq(s3$individual.f)
+
+s3$naive = 0
+s3$naive[s3$condition == "critical"] <- 0
+s3$naive[s3$condition == "control"] <- 0
+s3$naive[s3$condition == "individual"] <- 0
+s3$critical[s3$condition == "naive"] <- 1
+freq(s3$naive)
+s3$naive.f <- factor(s3$naive, levels = 0:1, labels = c("non-naive", "naive"), ordered = FALSE)
+freq(s3$naive.f)
+
+# AGE  ---------------------------
+freq(s3$age)
+s3$age <- as.numeric(s3$age)
+
+# CENTER
+s3 <- s3 %>%
+  mutate(age.c = scale(age, center = TRUE, scale = TRUE))
+
+# POLITICAL ---------------------------
+freq(s3$political)
+s3$political.f <- factor(s3$political, levels = 1:7, labels = political7.labels, ordered = TRUE) 
+freq(s3$political.f)
+
+# POLITICAL3 ---------------------------
+s3$political3 = NA 
+s3$political3[s3$political.f == "extremely liberal"] <- 1 # liberal
+s3$political3[s3$political.f == "moderately liberal"] <- 1 # liberal
+s3$political3[s3$political.f == "slightly liberal"] <- 1 # liberal
+s3$political3[s3$political.f == "moderate"] <- 2 # moderate
+s3$political3[s3$political.f == "slightly conservative"] <- 3 # conservative
+s3$political3[s3$political.f == "moderately conservative"] <- 3 # conservative
+s3$political3[s3$political.f == "extremely conservative"] <- 3 # conservative
+freq(s3$political3)
+
+s3$political3.f <- factor(s3$political3, levels = 1:3, labels = political3.labels, ordered = TRUE)
+freq(s3$political3.f)
+
+# create binary variables 
+freq(s3$political3)
+
+s3$liberal = NA
+s3$liberal[s3$political3.f == "liberal"] <- 1
+s3$liberal[s3$political3.f == "moderate"] <- 0
+s3$liberal[s3$political3.f == "conservative"] <- 0
+freq(s3$liberal)
+s3$liberal.f <- factor(s3$liberal, levels = 0:1, labels = c("non-liberal", "liberal"), ordered = FALSE)
+freq(s3$liberal.f)
+
+s3$moderate = NA
+s3$moderate[s3$political3.f == "liberal"] <- 0
+s3$moderate[s3$political3.f == "moderate"] <- 1
+s3$moderate[s3$political3.f == "conservative"] <- 0
+freq(s3$moderate)
+s3$moderate.f <- factor(s3$moderate, levels = 0:1, labels = c("non-moderate", "moderate"), ordered = FALSE)
+freq(s3$moderate.f)
+
+s3$conservative = NA
+s3$conservative[s3$political3.f == "liberal"] <- 0
+s3$conservative[s3$political3 == "moderate"] <- 0
+s3$conservative[s3$political3 == "conservative"] <- 1
+freq(s3$conservative)
+s3$conservative.f <- factor(s3$conservative, levels = 0:1, labels = c("non-conservative", "conservative"), ordered = FALSE)
+freq(s3$conservative.f)
+
+# PARTY ---------------------------
+freq(s3$party)
+freq(s3.txt$party)
+freq(s3.txt$party_other_text)
+s3$party.f <- factor(s3$party, levels = 1:5, labels = c("democrat", "republican", "independent", "other", "none"), ordered = FALSE)
+freq(s3$party.f)
+
+s3$democrat = NA 
+s3$democrat[s3$party.f == "democrat"] <- 1
+s3$democrat[s3$party.f !=  "democrat"] <- 0
+freq(s3$democrat)
+s3$democrat.f <- factor(s3$democrat, levels = 0:1, labels = c("non-democrat", "democrat"), ordered = FALSE) 
+freq(s3$democrat.f)
+
+s3$republican = NA 
+s3$republican[s3$party.f == "republican"] <- 1
+s3$republican[s3$party.f !=  "republican"] <- 0
+freq(s3$republican)
+s3$republican.f <- factor(s3$republican, levels = 0:1, labels = c("non-republican", "republican"), ordered = FALSE) 
+freq(s3$republican.f)
+
+s3$independent = NA
+s3$independent[s3$party.f == "independent"] <- 1
+s3$independent[s3$party.f !=  "independent"] <- 0
+freq(s3$independent)
+s3$independent.f <- factor(s3$independent, levels = 0:1, labels = c("non-independent", "independent"), ordered = FALSE) 
+freq(s3$independent.f)
+
+# GENDER ---------------------------
+freq(s3$gender)
+freq(s3.txt$gender) 
+s3$gender.f <- factor(s3$gender, levels = 1:5, labels = gender5.labels, ordered = FALSE)
+freq(s3$gender.f) 
+
+# create binary variables
+s3$female = NA 
+s3$female[s3$gender.f == "female"] <- 1
+s3$female[s3$gender.f != "female"] <- 0
+freq(s3$female) 
+s3$female.f <- factor(s3$female, levels = 0:1, labels = c("non-female", "female"), ordered = FALSE) 
+freq(s3$female.f) 
+
+s3$male = NA 
+s3$male[s3$gender.f == "male"] <- 1
+s3$male[s3$gender.f != "male"] <- 0
+freq(s3$male) 
+s3$male.f <- factor(s3$male, levels = 0:1, labels = c("non-male", "male"), ordered = FALSE)
+freq(s3$male.f) 
+
+# EDU ---------------------------
+freq(s3.txt$edu) 
+freq(s3$edu) 
+unique(s3$edu_other_text)
+
+s3$edu.f <- factor(s3$edu, levels = 1:10, labels = edu10.labels, ordered = TRUE) 
+freq(s3$edu.f)
+
+# EDU3 --------------------------- 
+freq(s3$edu)
+s3$edu3 = s3$edu 
+s3$edu3[s3$edu == 1] <- 1 # no college degree
+s3$edu3[s3$edu == 2] <- 1 # no college degree
+s3$edu3[s3$edu == 3] <- 1 # no college degree
+s3$edu3[s3$edu == 4] <- 2 # college
+s3$edu3[s3$edu == 5] <- 2 # college
+s3$edu3[s3$edu == 6] <- 3 # grad
+s3$edu3[s3$edu == 7] <- 3 # grad
+s3$edu3[s3$edu == 8] <- 3 # grad
+s3$edu3[s3$edu == 9] <- 2 # college
+
+s3$edu3[s3$edu_other_text == "Vocational certification"] <- 2
+s3$edu3[s3$edu_other_text == "College certificate"] <- 2
+s3$edu3[s3$edu_other_text == "senior year at uni"] <- 1
+s3$edu3[s3$edu_other_text == "2 associate degrees:  AA Humanities, AS Nursing"] <- 2
+s3$edu3[s3$edu_other_text == "EdS"] <- 3
+# s3$edu[s3$edu_other_text == "OLDTEXT"] <- NEWCODE # recode 
+# [3] "Vocational certification"                       
+# [4] "College certificate"                            
+# [5] "senior year at uni"                             
+# [6] "2 associate degrees:  AA Humanities, AS Nursing"
+# [7] "EdS" 
+
+freq(s3$edu3)
+s3$edu3.f <- factor(s3$edu3, levels = 1:3, labels = edu3.labels, ordered = TRUE) 
+freq(s3$edu3.f)
+
+# create binary variables
+s3$nocollege = NA
+s3$nocollege[s3$edu3 == 1] <- 1
+s3$nocollege[s3$edu3 == 2] <- 0
+s3$nocollege[s3$edu3 == 3] <- 0
+freq(s3$nocollege) 
+s3$nocollege.f <- factor(s3$nocollege, levels = 0:1, labels = c("college degree or higher", "no college degree"), ordered = FALSE)
+freq(s3$nocollege.f)
+
+s3$college = NA
+s3$college[s3$edu3 == 1] <- 0
+s3$college[s3$edu3 == 2] <- 1
+s3$college[s3$edu3 == 3] <- 1
+freq(s3$college)
+s3$college.f <- factor(s3$college, levels = 0:1, labels = c("no college degree", "college degree or higher"), ordered = FALSE)
+freq(s3$college.f)
+
+s3$grad = NA
+s3$grad[s3$edu3 == 1] <- 0
+s3$grad[s3$edu3 == 2] <- 0
+s3$grad[s3$edu3 == 3] <- 1
+freq(s3$grad)
+s3$grad.f <- factor(s3$grad, levels = 0:1, labels = c("no graduate degree", "graduate degree"), ordered = FALSE)
+freq(s3$grad.f)
+
+# INCOME ---------------------------
+s3$income.f <- s3$income
+freq(s3$income)
+s3$income.f <- factor(s3$income, levels = 1:12, labels = income12.labels, ordered = TRUE)
+freq(s3$income.f)
+
+# ADJ_INCOME ---------------------------
+# median of income bin besides min/max; only use to calculate adjusted income
+s3$income.med <- NA
+s3$income.med[s3$income == 1] <- 10000
+s3$income.med[s3$income == 2] <- 15000
+s3$income.med[s3$income == 3] <- 25000
+s3$income.med[s3$income == 4] <- 35000
+s3$income.med[s3$income == 5] <- 45000 
+s3$income.med[s3$income == 6] <- 55000
+s3$income.med[s3$income == 7] <- 65000 
+s3$income.med[s3$income == 8] <- 75000 
+s3$income.med[s3$income == 9] <- 85000 
+s3$income.med[s3$income == 10] <- 95000 
+s3$income.med[s3$income == 11] <- 125000 
+s3$income.med[s3$income == 12] <- 150000
+
+# transform income to adjust for household size
+s3$adj_income <- (s3$income.med/sqrt(s3$household))
+s3$adj_income <- formattable::currency(s3$adj_income, digits = 2L) 
+summary(s3$adj_income)
+
+# CENTER
+s3 <- s3 %>%
+  mutate(adj_income.c = scale(adj_income, center = TRUE, scale = TRUE))
+
+# RACE STEP 1: RACE_OTHER ---------------------------
+# check race_other to recode accordingly # 
+unique(s3$race_other_text)
+#  [1] "test"                    
+#  [2] NA                        
+# NOT recoding: 
+#  [8] "prefer not to answer"    
+# [10] "no race, mixed, American"
+# [11] "Hatian"  
+
+# recoding:
+# s3$race_other[s3$race_other_text == "OLDTEXT"] <- NEWCODE
+#  [3] "mixed"                   
+#  [4] "Native American"         
+#  [5] "jewish"                  
+#  [6] "White American"          
+#  [7] "Multiracial"             
+#  [9] "multirace"               
+
+# RACE STEP 2: MULTIRACIAL ---------------------------
+s3$multiracial <- NA
+s3$multiracial <- rowSums(s3[, c("white", "black", "latino", "native", "asian", "mideastern", "islander", "race_other")])
+freq(s3$multiracial)
+s3$multiracial.f <- NA
+s3$multiracial.f[s3$multiracial == 1] <- 0
+s3$multiracial.f[s3$multiracial >= 2] <- 1
+freq(s3$multiracial.f)
+s3$multiracial <- s3$multiracial.f
+
+# recode race_others 
+freq(s3$multiracial)
+# s3$multiracial[s3$race_other_text == "OLDTEXT"] <- NEWCODE
+
+s3$multiracial.f <- factor(s3$multiracial, levels = 0:1, labels = c("monoracial", "multiracial"), ordered = FALSE)
+freq(s3$multiracial.f)
+
+# RACE STEP 4: RACE ---------------------------
+# create race variable 
+freq(s3.txt$race_other_text)
+s3$race = NA
+s3$race[s3$race_other == 1] <- "other"
+s3$race[s3$islander == 1] <- "pacific islander"
+s3$race[s3$mideastern == 1] <- "middle eastern"
+s3$race[s3$asian == 1] <- "asian"
+s3$race[s3$native == 1] <- "native american"
+s3$race[s3$black == 1] <- "black"
+s3$race[s3$latino == 1] <- "latino"
+s3$race[s3$white == 1] <- "white"
+s3$race[s3$multiracial == 1] <- "multiracial"
+freq(s3$race)
+
+s3$race.n = NA
+s3$race.n[s3$race_other == 1] <- 8
+s3$race.n[s3$islander == 1] <- 7
+s3$race.n[s3$mideastern == 1] <- 6
+s3$race.n[s3$asian == 1] <- 5
+s3$race.n[s3$native == 1] <- 4
+s3$race.n[s3$black == 1] <- 3
+s3$race.n[s3$latino == 1] <- 2
+s3$race.n[s3$white == 1] <- 1
+s3$race.n[s3$multiracial == 1] <- 9
+freq(s3$race.n)
+
+s3$race.f <- NA
+s3$race.f <- factor(s3$race.n, levels = 1:9, labels = race9.labels, ordered = FALSE) 
+freq(s3$race.f) 
+```
+
+```{r pun-clean-s3}
+# PUNITIVE
+# GROUP ITEMS ---------------------------
+punitive_vars_s3 <- dplyr::select(s3, pun_police, pun_penalty, pun_prisons, pun_seize, pun_tech, pun_tips)
+punitive_vars.names_s3 <- names(punitive_vars_s3)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+punitive_cormat_s3 <- cor(punitive_vars_s3, use = "complete.obs") 
+punitive_cormat_s3 <- round(punitive_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/punitive_corplot_s3.png", height = 700, width = 1000)
+psych::corPlot(punitive_vars_s3 # labels = punitive_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Punitive Policy Support Items in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/punitive_corrgram_s3.png", height = 700, width = 1000)
+corrgram::corrgram(punitive_vars_s3
+         , main = "Correlation Matrix of Punitive Policy Support Items in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# CREATE COMPOSITE ---------------------------
+freq(s3$pun_police)
+s3$punitive <- rowMeans(subset(s3, select = punitive_vars.names_s3), na.rm = TRUE)
+summary(s3$punitive)
+punitive_alpha_s3 <- ltm::cronbach.alpha(punitive_vars_s3)
+papaja::printnum(punitive_alpha_s3$alpha) # 
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(punitive.c = scale(punitive, center = TRUE, scale = TRUE)
+         , pun_police.c = scale(pun_police, center = TRUE, scale = TRUE)
+         , pun_prisons.c = scale(pun_prisons, center = TRUE, scale = TRUE)
+         , pun_penalty.c = scale(pun_penalty, center = TRUE, scale = TRUE)
+         , pun_seize.c = scale(pun_seize, center = TRUE, scale = TRUE)
+         , pun_tech.c = scale(pun_tech, center = TRUE, scale = TRUE)
+         , pun_tips.c = scale(pun_tips, center = TRUE, scale = TRUE)         )
+summary(s3$punitive.c)
+summary(s3$pun_prisons.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+punitive.c_vars_s3 <- dplyr::select(s3, pun_police.c, pun_penalty.c, pun_prisons.c, pun_seize.c, pun_tech.c, pun_tips.c)
+punitive.c_vars.names_s3 <- names(punitive.c_vars_s3)
+punitive.c_alpha_s3 <- ltm::cronbach.alpha(punitive.c_vars_s3)
+papaja::printnum(punitive.c_alpha_s3$alpha) # 
+
+# FACTOR VARS ---------------------------
+s3$pun_police.f <- factor(s3$pun_police, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$pun_penalty.f <- factor(s3$pun_penalty, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$pun_prisons.f <- factor(s3$pun_prisons, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$pun_seize.f <- factor(s3$pun_seize, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$pun_tech.f <- factor(s3$pun_tech, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$pun_tips.f <- factor(s3$pun_tips, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+
+punitive.f_vars_s3 <- dplyr::select(s3, pun_police.f, pun_penalty.f, pun_prisons.f, pun_seize.f, pun_tech.f, pun_tips.f)
+punitive.f_vars.names_s3 <- names(punitive.f_vars_s3)
+```
+
+```{r pun4-clean-s3}
+# PUNITIVE4
+# GROUP ITEMS ---------------------------
+punitive4_vars_s3 <- dplyr::select(s3, pun_police, pun_penalty, pun_prisons, pun_seize)
+punitive4_vars.names_s3 <- names(punitive4_vars_s3)
+
+# CREATE COMPOSITE ---------------------------
+freq(s3$pun_police)
+s3$punitive4 <- rowMeans(subset(s3, select = punitive4_vars.names_s3), na.rm = TRUE)
+summary(s3$punitive4)
+punitive4_alpha_s3 <- ltm::cronbach.alpha(punitive4_vars_s3)
+papaja::printnum(punitive4_alpha_s3$alpha) # 
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(punitive4.c = scale(punitive4, center = TRUE, scale = TRUE))
+summary(s3$punitive4.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+punitive4.c_vars_s3 <- dplyr::select(s3, pun_police.c, pun_penalty.c, pun_prisons.c, pun_seize.c)
+punitive4.c_vars.names_s3 <- names(punitive4.c_vars_s3)
+punitive4.c_alpha_s3 <- ltm::cronbach.alpha(punitive4.c_vars_s3)
+papaja::printnum(punitive4.c_alpha_s3$alpha) # 
+```
+
+```{r rest-clean-s3}
+# RESTORATIVE
+# GROUP ITEMS ---------------------------
+restorative_vars_s3 <- dplyr::select(s3, rest_school, rest_fedaid, rest_jobecon, rest_peace, rest_public, rest_reentry)
+restorative_vars.names_s3 <- names(restorative_vars_s3)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+restorative_cormat_s3 <- cor(restorative_vars_s3, use = "complete.obs") 
+restorative_cormat_s3 <- round(restorative_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Dissertation/images/restorative_corplot_s3.png", height = 700, width = 1000)
+psych::corPlot(restorative_vars_s3 # labels = restorative_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Restorative Policy Support Items in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Dissertation/images/restorative_corrgram_s3.png", height = 700, width = 1000)
+corrgram::corrgram(restorative_vars_s3
+         , main = "Correlation Matrix of Restorative Policy Support Items in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# CREATE COMPOSITE ---------------------------
+freq(s3$rest_school)
+s3$restorative <- rowMeans(subset(s3, select = restorative_vars.names_s3), na.rm = TRUE) 
+summary(s3$restorative)
+restorative_alpha_s3 <- ltm::cronbach.alpha(restorative_vars_s3)
+papaja::printnum(restorative_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(restorative.c = scale(restorative, center = TRUE, scale = TRUE)
+         , rest_school.c = scale(rest_school, center = TRUE, scale = TRUE)
+         , rest_fedaid.c = scale(rest_fedaid, center = TRUE, scale = TRUE)
+         , rest_jobecon.c = scale(rest_jobecon, center = TRUE, scale = TRUE)
+         , rest_peace.c = scale(rest_peace, center = TRUE, scale = TRUE)
+         , rest_public.c = scale(rest_public, center = TRUE, scale = TRUE)
+         , rest_reentry.c = scale(rest_reentry, center = TRUE, scale = TRUE)
+         ) 
+summary(s3$restorative.c) 
+summary(s3$rest_school.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+restorative.c_vars_s3 <- dplyr::select(s3, rest_school.c, rest_fedaid.c, rest_jobecon.c, rest_peace.c, rest_public.c, rest_reentry.c)
+restorative.c_vars.names_s3 <- names(restorative.c_vars_s3)
+restorative.c_alpha_s3 <- ltm::cronbach.alpha(restorative.c_vars_s3) 
+papaja::printnum(restorative.c_alpha_s3$alpha) #
+
+# FACTOR VARS ---------------------------
+s3$rest_school.f <- factor(s3$rest_school, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$rest_fedaid.f <- factor(s3$rest_fedaid, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$rest_jobecon.f <- factor(s3$rest_jobecon, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$rest_peace.f <- factor(s3$rest_peace, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$rest_public.f <- factor(s3$rest_public, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+s3$rest_reentry.f <- factor(s3$rest_reentry, levels = 1:7, labels = favor7.labels, ordered = TRUE)
+restorative.f_vars_s3 <- dplyr::select(s3, rest_school.f, rest_fedaid.f, rest_jobecon.f, rest_peace.f, rest_public.f, rest_reentry.f)
+restorative.f_vars.names_s3 <- names(restorative.f_vars_s3)
+```
+
+```{r rest4-clean-s3}
+# RESTORATIVE4
+# GROUP ITEMS ---------------------------
+restorative4_vars_s3 <- dplyr::select(s3, rest_fedaid, rest_jobecon, rest_public, rest_reentry)
+restorative4_vars.names_s3 <- names(restorative4_vars_s3)
+
+# CREATE COMPOSITE ---------------------------
+s3$restorative4 <- rowMeans(subset(s3, select = restorative4_vars.names_s3), na.rm = TRUE) 
+summary(s3$restorative4)
+restorative4_alpha_s3 <- ltm::cronbach.alpha(restorative4_vars_s3)
+papaja::printnum(restorative4_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(restorative4.c = scale(restorative4, center = TRUE, scale = TRUE))
+summary(s3$restorative4.c) 
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+restorative4.c_vars_s3 <- dplyr::select(s3, rest_fedaid.c, rest_jobecon.c, rest_public.c, rest_reentry.c)
+restorative4.c_vars.names_s3 <- names(restorative4.c_vars_s3)
+restorative4.c_alpha_s3 <- ltm::cronbach.alpha(restorative4.c_vars_s3) 
+papaja::printnum(restorative4.c_alpha_s3$alpha) #
+```
+
+```{r rest3-clean-s3}
+# RESTORATIVE3
+# GROUP ITEMS ---------------------------
+restorative3_vars_s3 <- dplyr::select(s3, rest_jobecon, rest_public, rest_reentry)
+restorative3_vars.names_s3 <- names(restorative3_vars_s3)
+
+# CREATE COMPOSITE ---------------------------
+s3$restorative3 <- rowMeans(subset(s3, select = restorative3_vars.names_s3), na.rm = TRUE) 
+summary(s3$restorative3)
+restorative3_alpha_s3 <- ltm::cronbach.alpha(restorative3_vars_s3)
+papaja::printnum(restorative3_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(restorative3.c = scale(restorative3, center = TRUE, scale = TRUE))
+summary(s3$restorative3.c) 
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+restorative3.c_vars_s3 <- dplyr::select(s3, rest_fedaid.c, rest_jobecon.c, rest_public.c, rest_reentry.c)
+restorative3.c_vars.names_s3 <- names(restorative3.c_vars_s3)
+restorative3.c_alpha_s3 <- ltm::cronbach.alpha(restorative3.c_vars_s3) 
+papaja::printnum(restorative3.c_alpha_s3$alpha) #
+```
+
+```{r gunpolicies-clean-s3}
+# gunpolicies
+
+# GROUP ITEMS ---------------------------
+gunpolicies_vars_s3 <- dplyr::select(s3, gun_carry, gun_control)
+gunpolicies_vars.names_s3 <- names(gunpolicies_vars_s3)
+
+# ADD REVERSED GUN_CONTROL VARS FOR COMPOSITE ------
+# table(s3$gun_carry, s3$gun_control)
+  #     1   2   3   4   5   6   7
+  # 1   4   2   5  15  14  49 392
+  # 2   0   5   1  11  38 109 124
+  # 3   2   5  10   8  39  61  56
+  # 4  10  10  17  42  44  49  54
+  # 5  11  17  18  17  16  22  20
+  # 6  27  18  11  11  13  13  10
+  # 7  52   8   7   4   5   7  17
+freq(s3$gun_carry) # 1 = 481; 7 = 100
+freq(s3$gun_control) # 1 = 106; 5 = 673
+
+# REVERSE IT  ------
+s3.revs <- s3 %>% 
+  mutate_at(vars(gunpolicies_vars.names_s3), car::recode, "1=7; 2=6; 3=5; 4=4; 5=3; 6=2; 7=1")
+# table(s3.revs$gun_carry, s3.revs$gun_control)
+  #     1   2   3   4   5   6   7
+  # 1  17   7   5   4   7   8  52
+  # 2  10  13  13  11  11  18  27
+  # 3  20  22  16  17  18  17  11
+  # 4  54  49  44  42  17  10  10
+  # 5  56  61  39   8  10   5   2
+  # 6 124 109  38  11   1   5   0
+  # 7 392  49  14  15   5   2   4
+
+# group reversed vars
+gunpolicies.r_vars_s3 <- dplyr::select(s3.revs, gunpolicies_vars.names_s3)
+
+# rename columns of grouped reversed vars
+colnames(gunpolicies.r_vars_s3) <- paste(colnames(gunpolicies.r_vars_s3), "r", sep = "_")
+
+# add group of reversed vars to main data
+s3 <- cbind(s3, gunpolicies.r_vars_s3)
+# cor(s3$gun_carry, s3$gun_carry_r) # -1
+# head(s3$gun_carry)
+# head(s3$gun_carry_r)
+
+# re-group reversed vars from main data with correct colnames
+gunpolicies.r_vars_s3 <- dplyr::select(s3, names(gunpolicies.r_vars_s3))
+gunpolicies.r_vars.names_s3 <- names(gunpolicies.r_vars_s3)
+
+# re-group vars in same direction from main data
+gunpolicies_vars_s3 <- dplyr::select(s3, gun_carry_r, gun_control)
+gunpolicies_vars.names_s3 <- names(gunpolicies_vars_s3)
+
+# CREATE COMPOSITE ---------------------------
+s3$gunpolicies <- rowMeans(subset(s3, select = c(gun_carry_r, gun_control), na.rm = TRUE))
+summary(s3$gunpolicies)
+gunpolicies_alpha_s3 <- ltm::cronbach.alpha(gunpolicies_vars_s3)
+papaja::printnum(gunpolicies_alpha_s3$alpha) # 0.77
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(gunpolicies.c = scale(gunpolicies, center = TRUE, scale = TRUE)
+         , gun_control.c = scale(gun_control, center = TRUE, scale = TRUE)
+         , gun_control_r.c = scale(gun_control_r, center = TRUE, scale = TRUE)
+         , gun_carry.c = scale(gun_carry, center = TRUE, scale = TRUE)
+         , gun_carry_r.c = scale(gun_carry_r, center = TRUE, scale = TRUE)
+         )
+summary(s3$gunpolicies.c) 
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+gunpolicies.c_vars_s3 <- dplyr::select(s3, gun_carry_r.c, gun_control.c)
+gunpolicies.c_vars.names_s3 <- names(gunpolicies.c_vars_s3)
+gunpolicies.c_alpha_s3 <- ltm::cronbach.alpha(gunpolicies.c_vars_s3) 
+papaja::printnum(gunpolicies.c_alpha_s3$alpha) # 0.77
+
+# FACTOR VARS ---------------------------
+s3$gun_carry.f <- factor(s3$gun_carry, levels =1:7, labels = favor7.labels, ordered = TRUE)
+s3$gun_control.f <- factor(s3$gun_control, levels =1:7, labels = favor7.labels, ordered = TRUE)
+s3$gun_carry_r.f <- factor(s3$gun_carry_r, levels =1:7, labels = favor7_r.labels, ordered = TRUE)
+s3$gun_control_r.f <- factor(s3$gun_control_r, levels =1:7, labels = favor7_r.labels, ordered = TRUE)
+
+# GROUP FACTORED ITEMS ---------------------------
+gunpolicies.f_vars_s3 <- dplyr::select(s3, gun_carry_r.f, gun_control.f)
+gunpolicies.f_vars.names_s3 <- names(gunpolicies.f_vars_s3)
+```
+
+```{r budgetpun-clean-s3}
+# ZERO SUM BUDGET ALLOCATION (PUNITIVE=REFERENCE)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+budget.pun_cormat_s3 <- cor(dplyr::select(s3, budget.pun, punitive.c, restorative.c), use = "complete.obs") 
+budget.pun_cormat_s3 <- round(budget.pun_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/budget.pun_corplot_s3.png", height = 700, width = 1000)
+psych::corPlot(budget.pun_cormat_s3 # labels = budget.pun_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Budget Allocation and Policy DVs in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/budget.pun_corrgram_s3.png", height = 700, width = 1000)
+corrgram::corrgram(budget.pun_cormat_s3
+         , main = "Correlation Matrix of Budget Allocation and Policy DVs in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(budget.pun.c = scale(budget.pun, center = TRUE, scale = TRUE))
+summary(s3$budget.pun.c)
+```
+
+```{r attrib.sys-clean-s3}
+# STRUCTURAL ATTRIBUTIONS
+# GROUP ITEMS ---------------------------
+attrib.sys_vars_s3 <- dplyr::select(s3, sys_policy, sys_school, sys_jobs, sys_mental, sys_police, sys_segregate, sys_housing, sys_poverty, sys_budget, sys_mass)
+attrib.sys_vars.names_s3 <- names(attrib.sys_vars_s3)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+attrib.sys_cormat_s3 <- cor(attrib.sys_vars_s3, use = "complete.obs") 
+attrib.sys_cormat_s3 <- round(attrib.sys_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images", height = 700, width = 1000)
+psych::corPlot(attrib.sys_vars_s3 # labels = attrib.sys_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Structural Attribution Items in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images", height = 700, width = 1000)
+corrgram::corrgram(attrib.sys_vars_s3
+         , main = "Correlation Matrix of Structural Attribution Items in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# CREATE COMPOSITE ---------------------------
+freq(s3$sys_policy)
+s3$attrib.sys <- rowMeans(subset(s3, select = attrib.sys_vars.names_s3), na.rm = TRUE) 
+summary(s3$attrib.sys)
+attrib.sys_alpha_s3 <- ltm::cronbach.alpha(attrib.sys_vars_s3)
+papaja::printnum(attrib.sys_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(attrib.sys.c = scale(attrib.sys, center = TRUE, scale = TRUE)
+         , sys_policy.c = scale(sys_policy, center = TRUE, scale = TRUE)
+         , sys_school.c = scale(sys_school, center = TRUE, scale = TRUE)
+         , sys_jobs.c = scale(sys_jobs, center = TRUE, scale = TRUE)
+         , sys_mental.c = scale(sys_mental, center = TRUE, scale = TRUE)
+         , sys_police.c = scale(sys_police, center = TRUE, scale = TRUE)
+         , sys_segregate.c = scale(sys_segregate, center = TRUE, scale = TRUE)
+         , sys_housing.c = scale(sys_housing, center = TRUE, scale = TRUE)
+         , sys_poverty.c = scale(sys_poverty, center = TRUE, scale = TRUE)
+         , sys_budget.c = scale(sys_budget, center = TRUE, scale = TRUE)
+         , sys_mass.c = scale(sys_mass, center = TRUE, scale = TRUE)
+         ) 
+summary(s3$attrib.sys.c) 
+summary(s3$sys_policy.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+attrib.sys.c_vars_s3 <- dplyr::select(s3, sys_policy.c, sys_school.c, sys_jobs.c, sys_mental.c, sys_police.c, sys_segregate.c, sys_housing.c, sys_poverty.c, sys_budget.c, sys_mass.c)
+attrib.sys.c_vars.names_s3 <- names(attrib.sys.c_vars_s3)
+attrib.sys.c_alpha_s3 <- ltm::cronbach.alpha(attrib.sys.c_vars_s3) 
+papaja::printnum(attrib.sys.c_alpha_s3$alpha) # 0.94
+
+# FACTOR VARS ---------------------------
+s3$sys_policy.f <- factor(s3$sys_policy, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_school.f <- factor(s3$sys_school, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_jobs.f <- factor(s3$sys_jobs, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_mental.f <- factor(s3$sys_mental, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_police.f <- factor(s3$sys_police, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_segregate.f <- factor(s3$sys_segregate, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_housing.f <- factor(s3$sys_housing, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_poverty.f <- factor(s3$sys_poverty, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_budget.f <- factor(s3$sys_budget, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$sys_mass.f <- factor(s3$sys_mass, levels =1:5, labels = factor5.labels, ordered = TRUE)
+# freq(s3$sys_mass.f)
+
+# GROUP FACTORED ITEMS ---------------------------
+attrib.sys.f_vars_s3 <- dplyr::select(s3, sys_policy.f, sys_school.f, sys_jobs.f, sys_mental.f, sys_police.f, sys_segregate.f, sys_housing.f, sys_poverty.f, sys_budget.f, sys_mass.f)
+attrib.sys.f_vars.names_s3 <- names(attrib.sys.f_vars_s3)
+```
+
+
+```{r attrib.disp-clean-s3}
+# DISPOSITIONAL ATTRIBUTIONS
+# GROUP ITEMS ---------------------------
+attrib.disp_vars_s3 <- dplyr::select(s3, disp_nature, disp_parent, disp_aggressive, disp_violence, disp_edu, disp_values, disp_moral, disp_uncaring, disp_easy, disp_selfcontrol)
+attrib.disp_vars.names_s3 <- names(attrib.disp_vars_s3)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+attrib.disp_cormat_s3 <- cor(attrib.disp_vars_s3, use = "complete.obs") 
+attrib.disp_cormat_s3 <- round(attrib.disp_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/attrib.disp_corplot_s3.png", height = 700, width = 1000)
+psych::corPlot(attrib.disp_vars_s3 # labels = attrib.disp_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Dispositional Attribution Items in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/attrib.disp_corrgram_s3.png", height = 700, width = 1000)
+corrgram::corrgram(attrib.disp_vars_s3
+         , main = "Correlation Matrix of Dispositional Attribution Items in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# CREATE COMPOSITE ---------------------------
+freq(s3$disp_nature)
+s3$attrib.disp <- rowMeans(subset(s3, select = attrib.disp_vars.names_s3), na.rm = TRUE) 
+summary(s3$attrib.disp)
+attrib.disp_alpha_s3 <- ltm::cronbach.alpha(attrib.disp_vars_s3)
+papaja::printnum(attrib.disp_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(attrib.disp.c = scale(attrib.disp, center = TRUE, scale = TRUE)
+         , disp_nature.c = scale(disp_nature, center = TRUE, scale = TRUE)
+         , disp_parent.c = scale(disp_parent, center = TRUE, scale = TRUE)
+         , disp_aggressive.c = scale(disp_aggressive, center = TRUE, scale = TRUE)
+         , disp_violence.c = scale(disp_violence, center = TRUE, scale = TRUE)
+         , disp_edu.c = scale(disp_edu, center = TRUE, scale = TRUE)
+         , disp_values.c = scale(disp_values, center = TRUE, scale = TRUE)
+         , disp_moral.c = scale(disp_moral, center = TRUE, scale = TRUE)
+         , disp_uncaring.c = scale(disp_uncaring, center = TRUE, scale = TRUE)
+         , disp_easy.c = scale(disp_easy, center = TRUE, scale = TRUE)
+         , disp_selfcontrol.c = scale(disp_selfcontrol, center = TRUE, scale = TRUE)
+         ) 
+summary(s3$attrib.disp.c) 
+summary(s3$disp_nature.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+attrib.disp.c_vars_s3 <- dplyr::select(s3, disp_nature.c, disp_parent.c, disp_aggressive.c, disp_violence.c, disp_edu.c, disp_values.c, disp_moral.c, disp_uncaring.c, disp_easy.c, disp_selfcontrol.c)
+attrib.disp.c_vars.names_s3 <- names(attrib.disp.c_vars_s3)
+attrib.disp.c_alpha_s3 <- ltm::cronbach.alpha(attrib.disp.c_vars_s3) 
+papaja::printnum(attrib.disp.c_alpha_s3$alpha) # 0.94
+
+# FACTOR VARS ---------------------------
+s3$disp_nature.f <- factor(s3$disp_nature, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_parent.f <- factor(s3$disp_parent, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_aggressive.f <- factor(s3$disp_aggressive, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_violence.f <- factor(s3$disp_violence, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_edu.f <- factor(s3$disp_edu, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_values.f <- factor(s3$disp_values, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_moral.f <- factor(s3$disp_moral, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_uncaring.f <- factor(s3$disp_uncaring, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_easy.f <- factor(s3$disp_easy, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$disp_selfcontrol.f <- factor(s3$disp_selfcontrol, levels =1:5, labels = factor5.labels, ordered = TRUE)
+freq(s3$disp_moral.f)
+
+# GROUP FACTORED ITEMS ---------------------------
+attrib.disp.f_vars_s3 <- dplyr::select(s3, disp_nature.f, disp_parent.f, disp_aggressive.f, disp_violence.f, disp_edu.f, disp_values.f, disp_moral.f, disp_uncaring.f, disp_easy.f, disp_selfcontrol.f)
+attrib.disp.f_vars.names_s3 <- names(attrib.disp.f_vars_s3)
+```
+
+```{r attrib.disp_r-clean-s3}
+# ADD REVERSED DISP VARS FOR ATTRIBS COMPOSITE ------
+# table(s3$disp_nature, s3$sys_school)
+  #     1   2   3   4   5
+  # 1  11  13  44 135 342
+  # 2   5  16  65 160 184
+  # 3   8  26  48  87  76
+  # 4   9  22  31  46  34
+  # 5  25  16  27  17  53
+freq(s3$disp_aggressive) # 1 = 523; 5 = 137
+freq(s3$sys_budget) # 1 = 59; 5 = 648
+
+# REVERSE IT  ------
+s3.revs <- s3 %>% 
+  mutate_at(vars(attrib.disp_vars.names_s3), car::recode, "1=5; 2=4; 4=2; 5=1")
+# table(s3.revs$disp_nature, s3.revs$sys_school)
+  #     1   2   3   4   5
+  # 1  25  16  27  17  53
+  # 2   9  22  31  46  34
+  # 3   8  26  48  87  76
+  # 4   5  16  65 160 184
+  # 5  11  13  44 135 342
+
+# group reversed vars
+attrib.disp.r_vars_s3 <- dplyr::select(s3.revs, attrib.disp_vars.names_s3)
+
+# rename columns of grouped reversed vars
+colnames(attrib.disp.r_vars_s3) <- paste(colnames(attrib.disp.r_vars_s3), "r", sep = "_")
+cor(s3$disp_aggressive, s3.revs$disp_aggressive) # -1
+
+# add group of reversed vars to main data
+s3 <- cbind(s3, attrib.disp.r_vars_s3)
+# cor(s3$disp_aggressive, s3$disp_aggressive_r) # -1
+# head(s3$disp_easy)
+# head(s3$disp_easy_r)
+
+# re-group reversed vars from main data with correct colnames
+attrib.disp.r_vars_s3 <- dplyr::select(s3, attrib.disp_vars.names_s3)
+
+attrib.disp.r_vars_s3 <- dplyr::select(s3, disp_nature_r, disp_parent_r, disp_aggressive_r, disp_violence_r, disp_edu_r, disp_values_r, disp_moral_r, disp_uncaring_r, disp_easy_r, disp_selfcontrol_r)
+attrib.disp.r_vars.names_s3 <- names(attrib.disp.r_vars_s3)
+
+# CREATE COMPOSITE ---------------------------
+# freq(s3$disp_nature_r)
+s3$attrib.disp_r <- rowMeans(subset(s3, select = attrib.disp.r_vars.names_s3), na.rm = TRUE) 
+summary(s3$attrib.disp_r)
+attrib.disp.r_alpha_s3 <- ltm::cronbach.alpha(attrib.disp.r_vars_s3)
+papaja::printnum(attrib.disp.r_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(attrib.disp_r.c =  scale(attrib.disp_r, center =  TRUE, scale = TRUE)
+         , disp_nature_r.c =  scale(disp_nature_r, center =  TRUE, scale = TRUE)
+         , disp_parent_r.c =  scale(disp_parent_r, center =  TRUE, scale = TRUE)
+         , disp_aggressive_r.c =  scale(disp_aggressive_r, center =  TRUE, scale = TRUE)
+         , disp_violence_r.c =  scale(disp_violence_r, center =  TRUE, scale = TRUE)
+         , disp_edu_r.c =  scale(disp_edu_r, center =  TRUE, scale = TRUE)
+         , disp_values_r.c =  scale(disp_values_r, center =  TRUE, scale = TRUE)
+         , disp_moral_r.c =  scale(disp_moral_r, center =  TRUE, scale = TRUE)
+         , disp_uncaring_r.c =  scale(disp_uncaring_r, center =  TRUE, scale = TRUE)
+         , disp_easy_r.c =  scale(disp_easy_r, center =  TRUE, scale = TRUE)
+         , disp_selfcontrol_r.c =  scale(disp_selfcontrol_r, center =  TRUE, scale = TRUE)
+         ) 
+summary(s3$attrib.disp_r.c) 
+summary(s3$disp_nature_r.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+attrib.disp.r.c_vars_s3 <- dplyr::select(s3, disp_nature_r.c, disp_parent_r.c, disp_aggressive_r.c, disp_violence_r.c, disp_edu_r.c, disp_values_r.c, disp_moral_r.c, disp_uncaring_r.c, disp_easy_r.c, disp_selfcontrol_r.c)
+attrib.disp.r.c_vars.names_s3 <- names(attrib.disp.r.c_vars_s3)
+attrib.disp.r.c_alpha_s3 <- ltm::cronbach.alpha(attrib.disp.r.c_vars_s3) 
+papaja::printnum(attrib.disp.r.c_alpha_s3$alpha) # 0.94
+
+# FACTOR VARS ---------------------------
+s3$disp_nature_r.f <- factor(s3$disp_nature_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_parent_r.f <- factor(s3$disp_parent_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_aggressive_r.f <- factor(s3$disp_aggressive_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_violence_r.f <- factor(s3$disp_violence_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_edu_r.f <- factor(s3$disp_edu_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_values_r.f <- factor(s3$disp_values_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_moral_r.f <- factor(s3$disp_moral_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_uncaring_r.f <- factor(s3$disp_uncaring_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_easy_r.f <- factor(s3$disp_easy_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+s3$disp_selfcontrol_r.f <- factor(s3$disp_selfcontrol_r, levels = 1:5, labels = factor5_r.labels, ordered = TRUE)
+freq(s3$disp_moral_r.f)
+
+# GROUP FACTORED ITEMS ---------------------------
+attrib.disp.r.f_vars_s3 <- dplyr::select(s3, disp_nature_r.f, disp_parent_r.f, disp_aggressive_r.f, disp_violence_r.f, disp_edu_r.f, disp_values_r.f, disp_moral_r.f, disp_uncaring_r.f, disp_easy_r.f, disp_selfcontrol_r.f)
+attrib.disp.r.f_vars.names_s3 <- names(attrib.disp.r.f_vars_s3)
+```
+
+```{r attribs-clean-s3}
+# ATTRIBUTIONS
+# GROUP ITEMS ---------------------------
+attribs_vars_s3 <- dplyr::select(s3, sys_policy, sys_school, sys_jobs, sys_mental, sys_police, sys_segregate, sys_housing, sys_poverty, sys_budget, sys_mass, disp_nature_r, disp_parent_r, disp_aggressive_r, disp_violence_r, disp_edu_r, disp_values_r, disp_moral_r, disp_uncaring_r, disp_easy_r, disp_selfcontrol_r)
+attribs_vars.names_s3 <- names(attribs_vars_s3)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+attribs_cormat_s3 <- cor(attribs_vars_s3, use = "complete.obs") 
+attribs_cormat_s3 <- round(attribs_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/attribs_corplot_s3.png", height = 700, width = 1000)
+psych::corPlot(attribs_cormat_s3 # labels = attribs_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Structural Attribution Items in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/images/attribs_corrgram_s3.png", height = 700, width = 1000)
+corrgram::corrgram(attribs_cormat_s3
+         , main = "Correlation Matrix of Structural Attribution Items in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# CREATE COMPOSITE ---------------------------
+s3$attribs <- rowMeans(subset(s3, select = attribs_vars.names_s3), na.rm = TRUE) 
+summary(s3$attribs)
+attribs_alpha_s3 <- ltm::cronbach.alpha(attribs_vars_s3)
+papaja::printnum(attribs_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(attribs.c = scale(attribs, center = TRUE, scale = TRUE)         
+         , attrib_gunsafety.c = scale(attrib_gunsafety, center = TRUE, scale = TRUE)         
+         , attrib_guncontrol.c = scale(attrib_guncontrol, center = TRUE, scale = TRUE)         
+         )
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+attribs.c_vars_s3 <- dplyr::select(s3, sys_policy.c, sys_school.c, sys_jobs.c, sys_mental.c, sys_police.c, sys_segregate.c, sys_housing.c, sys_poverty.c, sys_budget.c, sys_mass.c, disp_nature_r.c, disp_parent_r.c, disp_aggressive_r.c, disp_violence_r.c, disp_edu_r.c, disp_values_r.c, disp_moral_r.c, disp_uncaring_r.c, disp_easy_r.c, disp_selfcontrol_r.c)
+attribs.c_vars.names_s3 <- names(attribs.c_vars_s3)
+attribs.c_alpha_s3 <- ltm::cronbach.alpha(attribs.c_vars_s3) 
+papaja::printnum(attribs.c_alpha_s3$alpha) # 0.941
+
+# FACTOR VARS ---------------------------
+s3$attrib_gunsafety.f <- factor(s3$attrib_gunsafety, levels =1:5, labels = factor5.labels, ordered = TRUE)
+s3$attrib_guncontrol.f <- factor(s3$attrib_guncontrol, levels =1:5, labels = factor5.labels, ordered = TRUE)
+freq(s3$attrib_gunsafety.f)
+
+# GROUP FACTORED ITEMS ---------------------------
+attribs.f_vars_s3 <- dplyr::select(s3, sys_policy.f, sys_school.f, sys_jobs.f, sys_mental.f, sys_police.f, sys_segregate.f, sys_housing.f, sys_poverty.f, sys_budget.f, sys_mass.f, disp_nature_r.f, disp_parent_r.f, disp_aggressive_r.f, disp_violence_r.f, disp_edu_r.f, disp_values_r.f, disp_moral_r.f, disp_uncaring_r.f, disp_easy_r.f, disp_selfcontrol_r.f)
+attribs.f_vars.names_s3 <- names(attribs.f_vars_s3)
+```
+
+```{r share-clean-s3}
+# SHARE
+s3$share.f <- factor(s3$share, levels = 1:7, labels = c("Extremely unlikely", "Moderately unlikely", "Slightly lightly", "Neither likely nor unlikely", "Slightly likely", "Moderately likely", "Extremely likely"), ordered = TRUE)
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(share.c = scale(share, center = TRUE, scale = TRUE)
+         ) 
+summary(s3$share.c)
+```
+
+```{r pet-clean-s3}
+# PETITION INTEREST ------------
+table(s3.txt$petition.interest, s3.num$petition.interest)
+s3$petition.interest.f <- factor(s3$petition.interest, levels = 1:5, labels = c("Definitely not", "Probably not", "Maybe", "Probably yes", "Definitely yes"), ordered = TRUE)
+freq(s3$petition.interest.f)
+s3$pet1 <- s3$petition.interest
+s3$pet1.f <- s3$petition.interest.f
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(pet1.c = scale(pet1, center = TRUE, scale = TRUE)
+         ) 
+summary(s3$pet1.c) 
+
+# PETITION CLICK ------------
+table(s3.txt$petition.click, s3.num$petition.click)
+s3$petition.click.f <- factor(s3$petition.click, levels = 0:1, labels = c("Clicked", "Not clicked"), ordered = FALSE)
+freq(s3$petition.click.f)
+s3$pet2 <- s3$petition.click
+s3$pet2.f <- s3$petition.click.f
+
+# PETITION SIGNED ----------
+table(s3.txt$petition.sign, s3.num$petition.sign)
+s3$petition.sign.f <- factor(s3$petition.sign, levels = 1:3, labels = c("No, I do not plan to sign it", "Not yet, but I'm interested", "Yes, I signed it"), ordered = TRUE)
+s3$pet3 <- s3$petition.sign
+s3$pet3.f <- s3$petition.sign.f
+```
+
+```{r racism-clean-s3}
+# RACISM CONCERN
+# GROUP ITEMS ---------------------------
+racism_vars_s3 <- dplyr::select(s3, racism.society, racism.indiv)
+racism_vars.names_s3 <- names(racism_vars_s3)
+
+# CORRELATIONS ---------------------------
+# correlation matrix
+racism_cormat_s3 <- cor(racism_vars_s3, use = "complete.obs") 
+racism_cormat_s3 <- round(racism_cormat_s3, 3)
+
+# correlation plot with psych package
+png(filename="/Users/cintiahinojosa/Box/Dissertation/images/racism_corplot_s3.png", height = 700, width = 1000)
+psych::corPlot(racism_vars_s3 # labels = racism_vars.labels_s3
+               , scale = TRUE, upper = FALSE, alpha = 0.5
+               , main = "Correlation Matrix of Racism Concern Items in Study 3") #stars = FALSE, 
+dev.off()
+
+# correlation plot with corrgram package
+png(filename="/Users/cintiahinojosa/Box/Dissertation/images/racism_corrgram_s3.png", height = 700, width = 1000)
+corrgram::corrgram(racism_vars_s3
+         , main = "Correlation Matrix of Racism Concern Items in Study 3 (Ordered)"
+         , lower.panel = panel.cor #panel.cor, panel.pts, panel.conf
+#         , upper.panel =  NULL #panel.conf #panel.shade #NULL
+#         , diag.panel = panel.txt #panel.density, panel.minmax
+         , text.panel = panel.txt
+         , order = TRUE # "PCA" = TRUE
+         , col.regions = colorRampPalette(c("red4", "grey", "darkgreen"))
+           )
+dev.off()
+
+# CREATE COMPOSITE ---------------------------
+freq(s3$disp_nature)
+s3$racism <- rowMeans(subset(s3, select = racism_vars.names_s3), na.rm = TRUE) 
+summary(s3$racism)
+racism_alpha_s3 <- ltm::cronbach.alpha(racism_vars_s3)
+papaja::printnum(racism_alpha_s3$alpha) #
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(racism.c = scale(racism, center = TRUE, scale = TRUE)
+         , racism.society.c = scale(racism.society, center = TRUE, scale = TRUE)
+         , racism.indiv.c = scale(racism.indiv, center = TRUE, scale = TRUE)
+         ) 
+summary(s3$racism.c) 
+summary(s3$racism.society.c)
+
+# GROUP STANDARDIZED ITEMS ---------------------------
+racism.c_vars_s3 <- dplyr::select(s3, racism.society.c, racism.indiv.c)
+racism.c_vars.names_s3 <- names(racism.c_vars_s3)
+racism.c_alpha_s3 <- ltm::cronbach.alpha(racism.c_vars_s3) 
+papaja::printnum(racism.c_alpha_s3$alpha) # .83
+```
+
+```{r know-clean-s3}
+# KNOWLEDGE
+
+# FACTOR ---------------------------
+s3$knowledge.f <- factor(s3$knowledge, levels = 1:5, labels = c("Not at all familiar", "Somewhat familiar", "Moderately familiar", "Very familiar", "Extremely familiar"), ordered = TRUE)
+
+# GRAND-MEAN CENTER & STANDARDIZE ---------------------------
+s3 <- s3 %>%
+  mutate(knowledge.c = scale(knowledge, center = TRUE, scale = TRUE)
+         ) 
+```
+
+```{r labels-s3, eval = TRUE}
+# IV LABELS ---------------------------
+s3 = expss::apply_labels(s3
+     , id_prolific = "Prolific ID"
+     , condition = "Condition"
+     , condition.n = "Condition"
+     , condition.f = "Condition"
+     , critical = "Critical"
+     , control = "Control"
+     , individual = "Individual"
+     , naive = "Naive"
+     , condition.f = "Condition"
+     , race = "Racial/ethnic Identity"
+     , race.n = "Racial/ethnic identity"
+     , race.f = "Racial/ethnic identity"
+     , race_multi = "Racial/ethnic identity"
+     , race_multi.n = "Multi racial/ethnic"
+     , race_multi.f = "Multi racial/ethnic"
+     , age = "Age"
+     , age.c = "Age"
+     , race.f = "Racial/ethnic Identity"
+     , gender = "Gender"
+     , female = "Female"
+     , male = "Male"
+     , nonbinary = "Non-binary"
+     , gender.n = "Gender"
+     , gender.f = "Gender"
+     , nonbinary.f = "Non-binary"
+     , edu.f = "Education"
+     , edu.n = "Education"
+     , edu3 = "Education"
+     , edu3.n = "Education"
+     , edu3.f = "Education"
+     , edu_other = "Education"
+     , nocollege = "No college degree"
+     , nocollege.f = "No college degree"
+     , college = "College degree"
+     , college.f = "College degree"
+     , grad = "Graduate degree"
+     , grad.f = "Graduate degree"
+     , political = "Political orientation"
+     , political.n = "Political orientation"
+     , political.f = "Political orientation"
+     , political3 = "Political orientation"
+     , political3.n = "Political orientation"
+     , political3.f = "Political orientation"
+     , party = "Political party"
+     , party.f = "Political party"
+     , party_other_text = "Political party (other)"
+     , edu = "Education"
+     , edu3 = "Education"
+     , edu3.f = "Education"
+     , edu_other_text = "Education (Other)"
+     , duration = "Study duration (mins)"
+     , income.f = "Income"
+     , adj_income = "Adj. Income"
+     , adj_income.c = "Adj. Income"
+)
+
+# DV LABELS ---------------------------
+s3 = expss::apply_labels(s3
+  , punitive = "Punitive policy support"
+  , punitive.c = "Punitive policy support"
+  , punitive4 = "Punitive policy support (4 items)"
+  , punitive4.c = "Punitive policy support (4 items)"
+  , restorative = "Restorative policy support"
+  , restorative.c = "Restorative policy support"
+  , restorative4 = "Restorative policy support (4 items)"
+  , restorative4.c = "Restorative policy support (4 items)"
+  , restorative3 = "Restorative policy support (3 items)"
+  , restorative3.c = "Restorative policy support (3 items)"
+  , budget.pun = "Punitive budget allocation"
+  , budget.pun.c = "Punitive budget allocation"
+  , budget.rest = "Restorative budget allocation"
+  , rest_school = "More after-school programs to keep at-risk youth out of trouble"
+  , rest_fedaid = "More federal assistance to the poor"
+  , rest_jobecon = "More economic development programs to create jobs"
+  , rest_peace = "Invest in community-led peacekeeping organizations"
+  , rest_public = "Invest in public community resources to revitalize poor neighborhoods"
+  , rest_reentry = "Invest in re-entry programs to support ex-prisoners transition to society"
+  , pun_police = "More police on the street to arrest criminals"
+  , pun_prisons = "Longer prison sentences and fewer opportunities for parole"
+  , pun_penalty = "Increase the severity of criminal penalties and fines"
+  , pun_tech = "Invest in technology to identify and apprehend criminals"
+  , pun_tips = "Invest in police-led community programs to increase crime tips"
+  , pun_seize = "Seize property from people involved in gun-related crimes"
+  , gun_control = "Tighter restrictions on gun ownership and gun purchases"
+  , gun_carry = "Allow open carry of legally purchased firearms"
+  , gun_control_r = "(R) Tighter restrictions on gun ownership and gun purchases"
+  , gun_carry_r = "(R) Allow open carry of legally purchased firearms"
+  , sys_policy = "A history of racial discrimination in policy-making"
+  , sys_school = "Less access to good quality schools"
+  , sys_jobs = "A lack of good opportunities for legal employment"
+  , sys_mental = "Less access to mental health care"
+  , sys_police = "Racial discrimination in policing"
+  , sys_segregate = "Segregation of racial and ethnic minorities into poorer neighborhoods"
+  , sys_housing = "A lack of affordable housing"
+  , sys_poverty = "High rates of poverty in those neighborhoods"
+  , sys_budget = "City budgets favoring some neighborhoods more than others"
+  , sys_mass = "Damage to families from mass incarceration"
+  , disp_nature = "Some people have a criminal nature"
+  , disp_parent = "Poor parenting"
+  , disp_aggressive = "Some people are just more aggressive"
+  , disp_violence = "Cultures that glorify violence"
+  , disp_edu = "Some people don't value education"
+  , disp_values = "Lack of traditional values"
+  , disp_moral = "Low moral character"
+  , disp_uncaring = "Some people just don't care about others"
+  , disp_easy = "Some people want easy money"
+  , disp_selfcontrol = "Lack of self-control"
+  , disp_nature_r = "(R) Some people have a criminal nature"
+  , disp_parent_r = "(R) Poor parenting"
+  , disp_aggressive_r = "(R) Some people are just more aggressive"
+  , disp_violence_r = "(R) Cultures that glorify violence"
+  , disp_edu_r = "(R) Some people don't value education"
+  , disp_values_r = "(R) Lack of traditional values"
+  , disp_moral_r = "(R) Low moral character"
+  , disp_uncaring_r = "(R) Some people just don't care about others"
+  , disp_easy_r = "(R) Some people want easy money"
+  , disp_selfcontrol_r = "(R) Lack of self-control"
+  , attrib_gunsafety = "A lack of knowledge about gun safety"
+  , attrib_guncontrol = "Weak gun control laws"
+  , attribs = "Attributions for Gun Violence"
+  , attrib.disp = "Dispositional attributions"
+  , attrib.disp_r = "Dispositional attributions (reversed)"
+  , attrib.sys = "Structural attributions"
+  , rest_school.c = "More after-school programs to keep at-risk youth out of trouble"
+  , rest_fedaid.c = "More federal assistance to the poor"
+  , rest_jobecon.c = "More economic development programs to create jobs"
+  , rest_peace.c = "Invest in community-led peacekeeping organizations"
+  , rest_public.c = "Invest in public community resources to revitalize poor neighborhoods"
+  , rest_reentry.c = "Invest in re-entry programs to support ex-prisoners transition to society"
+  , pun_police.c = "More police on the street to arrest criminals"
+  , pun_prisons.c = "Longer prison sentences and fewer opportunities for parole"
+  , pun_penalty.c = "Increase the severity of criminal penalties and fines"
+  , pun_tech.c = "Invest in technology to identify and apprehend criminals"
+  , pun_tips.c = "Invest in police-led community programs to increase crime tips"
+  , pun_seize.c = "Seize property from people involved in gun-related crimes"
+  , gun_control.c = "Tighter restrictions on gun ownership and gun purchases"
+  , gun_carry.c = "Allow open carry of legally purchased firearms"
+  , gun_control_r.c = "(R) Tighter restrictions on gun ownership and gun purchases"
+  , gun_carry_r.c = "(R) Allow open carry of legally purchased firearms"
+  , sys_policy.c = "A history of racial discrimination in policy-making"
+  , sys_school.c = "Less access to good quality schools"
+  , sys_jobs.c = "A lack of good opportunities for legal employment"
+  , sys_mental.c = "Less access to mental health care"
+  , sys_police.c = "Racial discrimination in policing"
+  , sys_segregate.c = "Segregation of racial and ethnic minorities into poorer neighborhoods"
+  , sys_housing.c = "A lack of affordable housing"
+  , sys_poverty.c = "High rates of poverty in those neighborhoods"
+  , sys_budget.c = "City budgets favoring some neighborhoods more than others"
+  , sys_mass.c = "Damage to families from mass incarceration"
+  , disp_nature.c = "Some people have a criminal nature"
+  , disp_parent.c = "Poor parenting"
+  , disp_aggressive.c = "Some people are just more aggressive"
+  , disp_violence.c = "Cultures that glorify violence"
+  , disp_edu.c = "Some people don't value education"
+  , disp_values.c = "Lack of traditional values"
+  , disp_moral.c = "Low moral character"
+  , disp_uncaring.c = "Some people just don't care about others"
+  , disp_easy.c = "Some people want easy money"
+  , disp_selfcontrol.c = "Lack of self-control"
+  , disp_nature_r.c = "(R) Some people have a criminal nature"
+  , disp_parent_r.c = "(R) Poor parenting"
+  , disp_aggressive_r.c = "(R) Some people are just more aggressive"
+  , disp_violence_r.c = "(R) Cultures that glorify violence"
+  , disp_edu_r.c = "(R) Some people don't value education"
+  , disp_values_r.c = "(R) Lack of traditional values"
+  , disp_moral_r.c = "(R) Low moral character"
+  , disp_uncaring_r.c = "(R) Some people just don't care about others"
+  , disp_easy_r.c = "(R) Some people want easy money"
+  , disp_selfcontrol_r.c = "(R) Lack of self-control"
+  , attrib_gunsafety.c = "A lack of knowledge about gun safety"
+  , attrib_guncontrol.c = "Weak gun control laws"
+  , attribs.c = "Attributions for Gun Violence"
+  , attrib.disp.c = "Dispositional attributions"
+  , attrib.disp_r.c = "(R) Dispositional attributions"
+  , attrib.sys.c = "Structural attributions"
+  , share = "Willingness to share memo with friends"
+  , share.f = "Willingness to share memo with friends"
+  , share.c = "Willingness to share memo with friends"
+  , pet1 = "Interest in signing restorative petition"
+  , pet1.c = "Interest in signing restorative petition"
+  , pet1.f = "Interest in signing restorative petition"
+  , pet2 = "Petition clicked"
+  , pet2.f = "Petition clicked"
+  , petition.interest = "Interest in signing restorative petition"
+  , petition.interest.f = "Interest in signing petition"
+  , petition.sign = "Signed restorative petition"
+  , pet3 = "Signed petition"
+  , pet3.f = "Signed petition"
+  , racism = "Conern about institutional and interpersonal racism"
+  , racism.society = "Discrimination that is built into laws and institutions"
+  , racism.society.c = "Discrimination that is built into laws and institutions"
+  , racism.indiv = "Discrimination that is based on prejudiced individuals"
+  , racism.indiv.c = "Discrimination that is built into laws and institutions"
+  , knowledge = "Prior knowledge of policy memo content"
+  , knowledge.f = "Prior knowledge of policy memo content"
+  , knowledge.c = "Prior knowledge of policy memo content"
+  , refl.control = "Control memo summary"
+  , refl.naive = "Naïve memo summary"
+  , refl.individual = "Individual memo summary"
+  , refl.critical = "Critical memo summary"
+  , edu_other_text = "Education (Other)"
+)
+```
+
+```{r fun-group-s3, eval = TRUE}
+# GROUPED TABLE WITH P-VALUES
+##################################
+# create condition variable that has empty stratum
+s3$condition.n <- as.numeric(s3$condition.f)
+s3$group = NA
+s3$group <- factor(s3$condition.n, levels = c(1,2,3), labels = c("Critical", "Naive", "P-value"))
+
+# function
+rndr <- function(x, name, ...) {
+    if (length(x) == 0) {
+        y <- s3[[name]]
+        s <- rep("", length(render.default(x = y, name = name, ...)))
+        if (is.numeric(y)) {
+            p <- t.test(y ~ s3$group)$p.value
+        } else {
+            p <- chisq.test(table(y, droplevels(s3$group)))$p.value
+        }
+        s[2] <- sub("<", "&lt;", format.pval(p, digits = 3, eps = 0.001))
+        s
+    } else {
+        render.default(x = x, name = name, ...)
+    }
+}
+
+rndr.strat <- function(label, n, ...) {
+    ifelse(n == 0, label, render.strat.default(label, n, ...))
+}
+
+# individual & critical #
+# create 2 level condition variable for each comparison
+s3$condition.icrit = NA
+s3$condition.icrit[s3$condition == "individual"] <- "individual"
+s3$condition.icrit[s3$condition == "critical"] <- "critical"
+s3$condition.icrit <- factor(s3$condition.icrit, exclude = NA)
+
+# create condition variable that has empty stratum
+s3$group.icrit    <- factor(as.numeric(s3$condition.icrit), levels = c(1,2,3), labels = c("Critical", "Individual", "P-value"))
+##freq(s3$group)
+
+# function
+rndr.icrit <- function(x, name, ...) {
+    if (length(x) == 0) {
+        y <- s3[[name]]
+        s <- rep("", length(render.default(x = y, name = name, ...)))
+        if (is.numeric(y)) {
+            p <- t.test(y ~ s3$group.icrit)$p.value
+        } else {
+            p <- chisq.test(table(y, droplevels(s3$group.icrit)))$p.value
+        }
+        s[2] <- sub("<", "&lt;", format.pval(p, digits = 3, eps = 0.001))
+        s
+    } else {
+        render.default(x = x, name = name, ...)
+    }
+}
+
+
+rndr.icrit.strat <- function(label, n, ...) {
+    ifelse(n == 0, label, render.strat.default(label, n, ...))
+}
+
+# control & individual #
+s3$condition.ci = NA
+s3$condition.ci[s3$condition == "control"] <- "control"
+s3$condition.ci[s3$condition == "individual"] <- "individual"
+s3$condition.ci <- factor(s3$condition.ci, exclude = NA)
+
+s3$group.ci    <- factor(as.numeric(s3$condition.ci), levels = c(1,2,3), labels = c("Control", "Individual", "P-value"))
+
+rndr.ci <- function(x, name, ...) {
+    if (length(x) == 0) {
+        y <- s3[[name]]
+        s <- rep("", length(render.default(x = y, name = name, ...)))
+        if (is.numeric(y)) {
+            p <- t.test(y ~ s3$group.ci)$p.value
+        } else {
+            p <- chisq.test(table(y, droplevels(s3$group.ci)))$p.value
+        }
+        s[2] <- sub("<", "&lt;", format.pval(p, digits = 3, eps = 0.001))
+        s
+    } else {
+        render.default(x = x, name = name, ...)
+    }
+}
+
+rndr.ci.strat <- function(label, n, ...) {
+    ifelse(n == 0, label, render.strat.default(label, n, ...))
+}
+
+
+# control & critical #
+s3$condition.ccrit = NA
+s3$condition.ccrit[s3$condition == "control"] <- "control"
+s3$condition.ccrit[s3$condition == "critical"] <- "critical"
+s3$condition.ccrit <- as.factor(s3$condition.ccrit)
+
+s3$group.ccrit    <- factor(as.numeric(s3$condition.ccrit), levels = c(1,2,3), labels = c("Critical", "Control", "P-value"))
+
+rndr.ccrit <- function(x, name, ...) {
+    if (length(x) == 0) {
+        y <- s3[[name]]
+        s <- rep("", length(render.default(x = y, name = name, ...)))
+        if (is.numeric(y)) {
+            p <- t.test(y ~ s3$group.ccrit)$p.value
+        } else {
+            p <- chisq.test(table(y, droplevels(s3$group.ccrit)))$p.value
+        }
+        s[2] <- sub("<", "&lt;", format.pval(p, digits = 3, eps = 0.001))
+        s
+    } else {
+        render.default(x = x, name = name, ...)
+    }
+}
+
+rndr.ccrit.strat <- function(label, n, ...) {
+    ifelse(n == 0, label, render.strat.default(label, n, ...))
+}
+
+
+# naive & critical #
+s3$condition.ncrit = NA
+s3$condition.ncrit[s3$condition == "naive"] <- "naive"
+s3$condition.ncrit[s3$condition == "critical"] <- "critical"
+s3$condition.ncrit <- as.factor(s3$condition.ncrit)
+
+s3$group.ncrit    <- factor(as.numeric(s3$condition.ncrit), levels = c(1,2,3), labels = c("Critical", "Naive", "P-value"))
+
+# function
+rndr.ncrit <- function(x, name, ...) {
+    if (length(x) == 0) {
+        y <- s3[[name]]
+        s <- rep("", length(render.default(x = y, name = name, ...)))
+        if (is.numeric(y)) {
+            p <- t.test(y ~ s3$group.ncrit)$p.value
+        } else {
+            p <- chisq.test(table(y, droplevels(s3$group.ncrit)))$p.value
+        }
+        s[2] <- sub("<", "&lt;", format.pval(p, digits = 3, eps = 0.001))
+        s
+    } else {
+        render.default(x = x, name = name, ...)
+    }
+}
+
+rndr.ncrit.strat <- function(label, n, ...) {
+    ifelse(n == 0, label, render.strat.default(label, n, ...))
+}
+
+
+# control & naive #
+s3$condition.cn = NA
+s3$condition.cn[s3$condition == "control"] <- "control"
+s3$condition.cn[s3$condition == "naive"] <- "naive"
+s3$condition.cn <- as.factor(s3$condition.cn)
+
+s3$group.cn    <- factor(as.numeric(s3$condition.cn), levels = c(1,2,3), labels = c("Control", "Naïve", "P-value"))
+
+# function
+rndr.cn <- function(x, name, ...) {
+    if (length(x) == 0) {
+        y <- s3[[name]]
+        s <- rep("", length(render.default(x = y, name = name, ...)))
+        if (is.numeric(y)) {
+            p <- t.test(y ~ s3$group.cn)$p.value
+        } else {
+            p <- chisq.test(table(y, droplevels(s3$group.cn)))$p.value
+        }
+        s[2] <- sub("<", "&lt;", format.pval(p, digits = 3, eps = 0.001))
+        s
+    } else {
+        render.default(x = x, name = name, ...)
+    }
+}
+
+rndr.cn.strat <- function(label, n, ...) {
+    ifelse(n == 0, label, render.strat.default(label, n, ...))
+}
+```
+
+```{r groups-s3}
+# SAVE VARIABLE GROUPS ---------------------------
+demo_vars_s3 <- dplyr::select(s3, gender, race.f, political.f, political3.f, age, edu3.f, adj_income, duration)
+race_vars_s3 <- dplyr::select(s3, c(white, black, latino, native, asian, mideastern, islander, race_other))
+main_vars_s3 <- dplyr::select(s3, punitive, restorative, attrib.sys, attrib.disp)
+expl_vars_s3 <- dplyr::select(s3, racism.society, racism.indiv, petition.interest, petition.click, petition.sign)
+```
+
+```{r values-s3}
+# save values for in-line reporting #
+# IVs  ---------------------------
+male_perc_s3 = papaja::printnum(100*(sum(s3$male)/nrow(s3)), digits = 0)
+female_perc_s3 = papaja::printnum(100*(sum(s3$female)/nrow(s3)), digits = 0)
+
+white_perc_s3 = papaja::printnum(100*(sum(s3$white)/nrow(s3)), digits = 0)
+black_perc_s3 = papaja::printnum(100*(sum(s3$black)/nrow(s3)), digits = 0)
+latino_perc_s3 = papaja::printnum(100*(sum(s3$latino)/nrow(s3)), digits = 0)
+asian_perc_s3 = papaja::printnum(100*(sum(s3$asian)/nrow(s3)), digits = 0)
+native_perc_s3 = papaja::printnum(100*(sum(s3$native)/nrow(s3)), digits = 0)
+mideastern_perc_s3 = papaja::printnum(100*(sum(s3$mideastern)/nrow(s3)), digits = 0)
+
+income_med_s3 <- papaja::printnum(median(s3$adj_income))
+income_m_s3 <- papaja::printnum(mean(s3$adj_income))
+income_sd_s3 <- papaja::printnum(psych::SD(s3$adj_income))
+
+# DURATION ---------------------------
+duration_m_s3 <- papaja::printnum(mean(s3$duration))
+duration_sd_s3 <- papaja::printnum(psych::SD(s3$duration))
+
+duration_m_s3.critical <- papaja::printnum(mean(s3[s3$condition == "critical", "duration"]))
+duration_sd_s3.critical <- papaja::printnum(psych::SD(s3[s3$condition == "critical", "duration"]))
+
+duration_m_s3.control <- papaja::printnum(mean(s3[s3$condition == "control", "duration"]))
+duration_sd_s3.control <- papaja::printnum(psych::SD(s3[s3$condition == "control", "duration"]))
+
+duration_m_s3.individual <- papaja::printnum(mean(s3[s3$condition == "individual", "duration"]))
+duration_sd_s3.individual <- papaja::printnum(psych::SD(s3[s3$condition == "individual", "duration"]))
+
+duration_m_s3.naive <- papaja::printnum(mean(s3[s3$condition == "naive", "duration"]))
+duration_sd_s3.naive <- papaja::printnum(psych::SD(s3[s3$condition == "naive", "duration"]))
+
+# PUNITIVE ---------------------------
+pun_m_s3 <- papaja::printnum(mean(s3$punitive))
+pun_sd_s3 <- papaja::printnum(psych::SD(s3$punitive))
+
+pun_m_s3.critical <- papaja::printnum(mean(s3[s3$condition == "critical", "punitive"]))
+pun_sd_s3.critical <- papaja::printnum(psych::SD(s3[s3$condition == "critical", "punitive"]))
+
+pun_m_s3.control <- papaja::printnum(mean(s3[s3$condition == "control", "punitive"]))
+pun_sd_s3.control <- papaja::printnum(psych::SD(s3[s3$condition == "control", "punitive"]))
+
+pun_m_s3.individual <- papaja::printnum(mean(s3[s3$condition == "individual", "punitive"]))
+pun_sd_s3.individual <- papaja::printnum(psych::SD(s3[s3$condition == "individual", "punitive"]))
+
+pun_m_s3.naive <- papaja::printnum(mean(s3[s3$condition == "naive", "punitive"]))
+pun_sd_s3.naive <- papaja::printnum(psych::SD(s3[s3$condition == "naive", "punitive"]))
+
+pun_skew_s3 <- papaja::printnum(moments::skewness(s3$punitive, na.rm = TRUE))
+pun_skew_s3 <- papaja::printnum(moments::skewness(s3$punitive, na.rm = TRUE))
+
+# RESTORATIVE ---------------------------
+rest_m_s3 <- papaja::printnum(mean(s3$restorative))
+rest_sd_s3 <- papaja::printnum(psych::SD(s3$restorative))
+
+rest_m_s3.critical <- papaja::printnum(mean(s3[s3$condition == "critical", "restorative"]))
+rest_sd_s3.critical <- papaja::printnum(psych::SD(s3[s3$condition == "critical", "restorative"]))
+
+rest_m_s3.control <- papaja::printnum(mean(s3[s3$condition == "control", "restorative"]))
+rest_sd_s3.control <- papaja::printnum(psych::SD(s3[s3$condition == "control", "restorative"]))
+rest_skew_s3 <- papaja::printnum(moments::skewness(s3$restorative, na.rm = TRUE))
+
+rest_m_s3.individual <- papaja::printnum(mean(s3[s3$condition == "individual", "restorative"]))
+rest_sd_s3.individual <- papaja::printnum(psych::SD(s3[s3$condition == "individual", "restorative"]))
+
+rest_m_s3.naive <- papaja::printnum(mean(s3[s3$condition == "naive", "restorative"]))
+rest_sd_s3.naive <- papaja::printnum(psych::SD(s3[s3$condition == "naive", "restorative"]))
+```
+
+```{r dvs-reshape-s3}
+# DEPENDENT VARIABLES ---------------------------
+# select id, dvs and condition
+dvs_s3 <- dplyr::select(s3
+, id, startdate
+, punitive, names(punitive_vars_s3), names(punitive.f_vars_s3)
+, punitive.c, names(punitive.c_vars_s3)
+, restorative, names(restorative_vars_s3), names(restorative.f_vars_s3)
+, restorative.c, names(restorative.c_vars_s3)
+, restorative4, names(restorative4_vars_s3)
+, restorative4.c, names(restorative4.c_vars_s3)
+, budget.pun, budget.pun.c
+, attribs, attribs.c
+, attrib.sys, names(attrib.sys_vars_s3), names(attrib.sys.f_vars_s3), names(attrib.sys.c_vars_s3)
+, attrib.disp, names(attrib.disp_vars_s3), names(attrib.disp.f_vars_s3), names(attrib.disp.c_vars_s3)
+, attrib.disp_r, names(attrib.disp.r_vars_s3)
+, attrib_guncontrol, attrib_guncontrol.f, attrib_guncontrol.c
+, attrib_gunsafety, attrib_gunsafety.f, attrib_gunsafety.c
+, share, share.f, share.c
+, pet1, pet2, pet3
+, pet1.c, pet1.f, pet2.f, pet3.f
+, petition.interest, petition.click, petition.sign
+, petition.interest.f
+, racism, names(racism_vars_s3)
+, racism.c, names(racism.c_vars_s3)
+, knowledge, knowledge.f
+, gun_control, gun_control.f, gun_control.c
+, gun_carry, gun_carry.f, gun_carry.c
+, refl.control, refl.naive, refl.individual, refl.critical
+, comment
+, condition#, condition.f, condition.n, critical, control, individual, naive
+)
+
+# remove labels
+dvs_s3 <-   sjlabelled::unlabel(dvs_s3)
+
+# separate dv scores by condition
+# names(dvs_s3)
+dvs_s3.wide <- tidyr::pivot_wider(dvs_s3,
+                            names_from = condition,
+                            names_sep = "__",
+                            values_from = punitive:comment)
+
+# reshape to long
+# names(dvs_s3.wide)
+dvs_s3.long <- tidyr::pivot_longer(dvs_s3.wide,
+                                   cols = punitive__control:comment__critical,
+                                   names_sep = "__",
+                                   names_to = c("dv", "condition"),
+                                   values_to = "score",
+                                   values_transform = list(score = as.numeric)
+                                   ) 
+
+# order by start date
+dvs_s3.long <- dvs_s3.long[order(dvs_s3.long$startdate),]
+
+# reshape to wide
+dvs_s3.wide <- tidyr::pivot_wider(dvs_s3.long, names_from = "dv", values_from = "score")
+
+# PREVIEW ---------------------------
+# codebook
+#sjPlot::view_df(dvs_s3.wide, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE) 
+
+# preview
+dvs_s3.wide %>% glimpse() %>% head(.,20)
+dvs_s3.long %>% glimpse() %>% head(.,20)
+```
+
+```{r ivs-reshape-s3}
+# INDEPENDENT VARIABLES ---------------------------
+# select id, ivs and condition
+ivs_s3 <-   dplyr::select(s3
+, id, startdate
+, duration
+, political, political3, liberal, moderate, conservative
+, political.f, political3.f, liberal.f, moderate.f, conservative.f
+, party, democrat, independent, republican
+, party.f, democrat.f, independent.f, republican.f
+, gender, female, male
+, gender.f, female.f, male.f
+, race, white:race_other, multiracial
+, race.f, multiracial.f, race.n
+, age, age.c
+, edu, edu3, nocollege, college, grad
+, edu.f, edu3.f, nocollege.f, college.f, grad.f
+, adj_income, income.f, income.med, household# , vote
+, condition#, condition.f, condition.n, critical, control, individual, naive
+)
+
+# remove labels
+ivs_s3 <-   sjlabelled::unlabel(ivs_s3)
+
+# separate iv scores by condition
+# names(ivs_s3)
+ivs_s3.wide <- tidyr::pivot_wider(ivs_s3,
+                            names_from = condition,
+                            names_sep = "__",
+                            values_from = duration:household)
+
+# reshape to long
+# names(ivs_s3.wide)
+ivs_s3.long <- tidyr::pivot_longer(ivs_s3.wide,
+                                   cols = duration__control:household__critical,
+                                   names_sep = "__",
+                                   names_to = c("iv", "condition"),
+                                   values_to = "score",
+                                   values_transform = list(score = as.numeric)
+                                   ) 
+
+# order by start date
+ivs_s3.long <- ivs_s3.long[order(ivs_s3.long$startdate),]
+
+# reshape to wide
+ivs_s3.wide <- tidyr::pivot_wider(ivs_s3.long, names_from = "iv", values_from = "score")
+
+# PREVIEW ---------------------------
+# codebook
+#sjPlot::view_df(ivs_s3.wide, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE) 
+
+# preview
+ivs_s3.wide %>% glimpse() %>% head(.,20)
+ivs_s3.long %>% glimpse() %>% head(.,20)
+```
+
+```{r reshape-s3}
+# ALL MAIN VARS ---------------------------
+# select id, ivs and condition
+s3.wide <- dplyr::select(s3
+, id, startdate
+, punitive, names(punitive_vars_s3), names(punitive.f_vars_s3)
+, punitive.c, names(punitive.c_vars_s3)
+, restorative, names(restorative_vars_s3), names(restorative.f_vars_s3)
+, restorative.c, names(restorative.c_vars_s3)
+, restorative4, names(restorative4_vars_s3)
+, restorative4.c, names(restorative4.c_vars_s3)
+, budget.pun, budget.pun.c
+, attribs, attribs.c
+, attrib.sys, names(attrib.sys_vars_s3), names(attrib.sys.f_vars_s3), names(attrib.sys.c_vars_s3)
+, attrib.disp, names(attrib.disp_vars_s3), names(attrib.disp.f_vars_s3), names(attrib.disp.c_vars_s3)
+, attrib.disp_r, names(attrib.disp.r_vars_s3)
+, attrib_guncontrol, attrib_guncontrol.f, attrib_guncontrol.c
+, attrib_gunsafety, attrib_gunsafety.f, attrib_gunsafety.c
+, share, share.f, share.c
+, pet1, pet2, pet3
+, pet1.c, pet1.f, pet2.f, pet3.f
+, petition.interest, petition.click, petition.sign
+, petition.interest.f
+, racism, names(racism_vars_s3)
+, racism.c, names(racism.c_vars_s3)
+, knowledge, knowledge.f
+, gun_control, gun_control.f, gun_control.c
+, gun_carry, gun_carry.f, gun_carry.c
+, refl.control, refl.naive, refl.individual, refl.critical
+, comment
+, duration
+, political, political3, liberal, moderate, conservative
+, political.f, political3.f, liberal.f, moderate.f, conservative.f
+, party, democrat, independent, republican
+, party.f, democrat.f, independent.f, republican.f
+, gender, female, male
+, gender.f, female.f, male.f
+, race, white:race_other, multiracial
+, race.f, multiracial.f, race.n
+, age, age.c
+, edu, edu3, nocollege, college, grad
+, edu.f, edu3.f, nocollege.f, college.f, grad.f
+, adj_income, income.f, income.med, household # , vote
+, condition#, condition.f, condition.n, critical, control, individual, naive
+)
+
+# remove labels
+s3.wide <-   sjlabelled::unlabel(s3.wide)
+
+# separate dv scores by condition
+# names(s3.wide)
+s3.wide <- tidyr::pivot_wider(s3.wide,
+                            names_from = condition,
+                            names_sep = "__",
+                            values_from = punitive:household)
+
+# reshape to long
+# names(s3.wide)
+s3.long <- tidyr::pivot_longer(s3.wide,
+                                   cols = punitive__control:household__critical,
+                                   names_sep = "__",
+                                   names_to = c("variable", "condition"),
+                                   values_to = "score",
+                                   values_transform = list(score = as.numeric)
+                                   ) 
+
+# order by start date
+s3.long <- s3.long[order(s3.long$startdate),]
+
+# reshape to wide
+s3.wide <- tidyr::pivot_wider(s3.long, names_from = "variable", values_from = "score")
+
+# PREVIEW ---------------------------
+# codebook
+#sjPlot::view_df(s3.wide, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE) 
+
+# preview
+s3.wide %>% glimpse() %>% head(.,20)
+s3.long %>% glimpse() %>% head(.,20)
+```
+
+```{r codebook-clean-s3, eval = TRUE}
+# CODEBOOK ---------------------------
+sjPlot::view_df(s3, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE)
+
+sjPlot::view_df(s3.wide, show.type = TRUE, show.values = TRUE, show.string.values = TRUE, show.labels = TRUE, wrap.labels = 40, show.frq = TRUE, show.prc = TRUE, use.viewer = FALSE)
+```
+
+```{r save-s3, eval = FALSE}
+# SAVE WORKSPACE ---------------------------
+save.image(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-workspace.RData")
+# save.image(file = "/Users/cintiahinojosa/Box/Booth PhD/Gun Violence Dissertation/dissertation-book/data/disseration-workspace.RData")
+# save.image(file = "/Users/cintiahinojosa/Box/Dissertation/data/dissertation-starter.RData")
+save.image(file = "/Users/cintiahinojosa/Box/Dissertation/data/clean-s3.RData")
+
+# SAVE CLEANED DATA ---------------------------
+save(s3, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.RData")
+write.csv(s3, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.csv")
+#foreign::write.dta(s3, "/Users/cintiahinojosa/Box/Dissertation/data/s3.dta")
+#sjlabelled::write_spss(s3, "/Users/cintiahinojosa/Box/Dissertation/data/s3.sav")
+
+# long
+save(s3.long, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.long.RData")
+write.csv(s3.long, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.long.csv")
+
+# wide
+save(s3.wide, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.wide.RData")
+write.csv(s3.wide, file = "/Users/cintiahinojosa/Box/Dissertation/data/s3.wide.csv")
+```
+
+## Other
+
+```{r duration_test_s3, eval = FALSE}
+duration_anova_s3 <- aov(duration ~ condition, data = s3)
+duration_anova.apa_s3 <- papaja::apa_print(duration_anova_s3)
+
+duration_lm_s3 <- lm(duration ~ condition, data = s3)
+duration_lm.est_s3 <- flexplot::estimates(duration_lm_s3) duration_lm.est_s3$difference.matrix 
+```
+
+```{r outliers-s3, eval = FALSE}
+# DURATION OUTLIERS ---------------------------
+# save dataset with drops if duration < 5 mins
+#s3.num.pass <- subset(s3.num, s3.num$duration > 5)
+#s3.txt.pass <- subset(s3.txt, s3.txt$duration > 5)
+```
+
+```{r subset-s3, eval = FALSE}
+# COMPREHENSION CHECK ---------------------------
+s3.pass <- subset(s3, pass == 1)
+s3.fail <- subset(s3, pass != 1)
+
+# CONDITIONS ---------------------------
+s3.control <- subset(s3, condition == "control")
+s3.individual <- subset(s3, condition == "individual")
+s3.critical <- subset(s3, condition == "critical")
+s3.naive <- subset(s3, condition == "naive")
+
+# RACE ---------------------------
+s3.black <- subset(s3, black == 1)
+s3.latino <- subset(s3, latino == 1)
+s3.white <- subset(s3, white == 1)
+```
