@@ -1,0 +1,32 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+.book .book-body .page-inner {
+    max-width: 1000px;
+}
+tr:hover {
+  background-color: lightyellow;
+}
+table tr:hover td {
+  background: lightyellow;
+  cursor: pointer;
+}
+h1, h2 {
+  page-break-before: always;
+}
+
+/* Whole document: */
+body{
+  font-family: Helvetica;
+}
