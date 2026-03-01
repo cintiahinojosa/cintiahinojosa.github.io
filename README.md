@@ -138,13 +138,10 @@ wise psychological interventions, behavior change, value-based motivation, proso
 
 - Teaching Assistant, “Management in Organizations” (MBA) 2019-2020
      - _Prof. Ed O’Brien, UChicago Booth School of Business_
-
 - Teaching Assistant, “Behavioral Science and Public Policy” (UG) 2020
      - _Prof. Kim Wolske, UChicago Harris School of Public Policy_
-
 - Professional Advisor & Teaching Assistant, “Design for Social Impact” (MPH/Ph.D.) 2020
      - _Linda Pulik, UChicago Policy Lab Instructor & Vera Creative Director of Design Strategy_
-
 - Tutor, Ronald E. McNair Teaching Academy (UG) 2014
      - _Darren Kelly and James Brown, UTexas-Austin_
 
@@ -155,20 +152,15 @@ wise psychological interventions, behavior change, value-based motivation, proso
 - Diversity Advisory Board, 2019-2022
      - _Executive Member (2021-2022)_
      - _Member (2019-2021)_
-
 - Higher Education Internship, 2021-2022
      - _Community Engagement Intern, UChicagoGRAD_
-
 - Ph.D. Climate Committee, 2020-2021
      - _Member, UChicago Booth School of Business_
-
 - Maroon Mates Underrepresented Graduate Student Peer Mentoring Program, 2019-2021
      - _Mentor, Diversity Advisory Board (2020-2021)_
      - _Mentee, Diversity Advisory Board (2019-2020)_
-
 - Grads on the Ground, “Restoring the Village” Program, 2019-2020
      - _Member, UChicago Office of Civic Engagement in partnership with The Coppin Community Center & Boy Scouts of America_
-
 - Go Center Title-V High School Outreach Program, 2010-2011
      - _Collegiate Mentor, Texas A&M University at Corpus Christi_
 
